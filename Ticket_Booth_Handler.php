@@ -10,6 +10,6 @@
     mysqli_query($conn, $sql); 
 
         
-    header("Location: ../Ticket_Booth.php?purchase=success");
-?>
+    header("Location: ../Ticket_Booth.html?purchase=success");
+
 
