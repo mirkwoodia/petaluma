@@ -1,8 +1,8 @@
 <?php 
-$dbServername ="mydb"; 
+$dbServername ="localhost"; 
 $dbUsername = "root"; 
-$dbpassword = ""; 
-$dbname = "Themepark_Database"; 
+$dbpassword = "password"; 
+$dbname = "mydb"; 
 
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
