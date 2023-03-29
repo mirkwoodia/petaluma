@@ -12,6 +12,6 @@
     mysqli_query($conn, $sql); 
 
     //search bar will show this message if the insert is successful 
-    header("Location: ../Ticket_Booth.html?purchase=success");
+    header("Location: Ticket_Booth.html?purchase=success");
 
 
