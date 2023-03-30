@@ -12,7 +12,6 @@
 </style>
 <title>Parking Table</title>
 </head>
-
 <body>
 <table>
     <tr>
@@ -38,7 +37,6 @@
                 $class = 'closed';
             }
         }
-    
         echo "<tr class='$class'>";
         echo "<td>" . $row['parking_ID'] . "</td>";
         echo "<td>" . $row['parking_lot_name'] . "</td>";
@@ -51,9 +49,7 @@
         echo "</form>";
         echo "</td>";
         echo "</tr>";
-    
     }
-
     mysqli_close($dbc);
     ?>
 </table>
