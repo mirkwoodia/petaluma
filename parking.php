@@ -4,9 +4,14 @@ $dbUsername = "root";
 $dbpassword = "Decon_0213"; 
 $dbname = "mydb"; 
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbpassword, $dbname);
+$dbc = mysqli_connect($dbServername, $dbUsername, $dbpassword, $dbname);
 
+if (!$dbc) {
+    die('Error connecting to database: ' . mysqli_connect_error());
+}
 
+$q = "SELECT * FROM parking";
+$r = mysqli_query($dbc, $q);
 
 if (isset($_POST['close_parking'])) {
     $parking_id = $_POST['parking_id'];
