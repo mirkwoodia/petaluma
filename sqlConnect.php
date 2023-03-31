@@ -1,23 +1,25 @@
 <?php
 // Step 1: Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "Decon_0213";
-$dbname = "mydb";
-/*
+$dbServername = "localhost";
+$dbUsername = "root";
+$dbPassword = "Decon_0213";
+$dbName = "mydb";
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-*/
+
+/* 
 try {
-    $conn = new PDO("mysql:host=$dbServername;dbname=mydb", $dbUsername, $dbpassword);
+    $conn = new PDO("mysql:host=$dbServername;dbName=mydb", $dbUsername, $dbPassword);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully";
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+*/
 
 // Step 2: Execute the SQL query to fetch the data
 /*

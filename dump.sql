@@ -214,7 +214,7 @@ CREATE TABLE `member` (
   `join_date` date NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,6 +223,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (100,'Bobby','Brown','Male','711 Fondren, Houston, TX','1991-01-02','8321654958','BBrown32@gmail.com','2023-03-31','ilovebunnies'),(101,'Sally','Sea','Female','632 Voss, Houston, TX','1997-03-19','7138994652','SallySeasShells@yahoo.com','2023-03-31','Seashore_1997');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,4 +448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-31  5:16:45
+-- Dump completed on 2023-03-31 16:49:26

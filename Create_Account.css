@@ -93,10 +93,11 @@ input[type="password"] {
   font-size: 18px;
   cursor: pointer;
 }
-
+/*
 button[type="submit"]:hover {
   background-color: #000000;
 }
+*/
 
 .links {
   margin-top: 20px;
