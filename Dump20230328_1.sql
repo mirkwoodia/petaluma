@@ -330,6 +330,7 @@ CREATE TABLE `parking` (
   `total_parking_space` int NOT NULL,
   `available_slots` int unsigned DEFAULT NULL,
   `PARK_Park_ID` int NOT NULL,
+  `expiration_time` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`parking_ID`),
   KEY `fk_PARKING_PARK1_idx` (`PARK_Park_ID`),
   CONSTRAINT `fk_PARKING_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
@@ -337,7 +338,7 @@ CREATE TABLE `parking` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `parking`
+-- Table structure for table `restaurant`
 --
 
 LOCK TABLES `parking` WRITE;
@@ -448,6 +449,21 @@ CREATE TABLE `ticket_booth` (
   PRIMARY KEY (`ticket_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `parkingCheck` BEFORE INSERT ON `ticket_booth` FOR EACH ROW UPDATE parking SET available_slots = available_slots - 1 WHERE parking_ID = 1 */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Dumping data for table `ticket_booth`
