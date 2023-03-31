@@ -50,33 +50,6 @@ LOCK TABLES `attraction` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `dependent`
---
-
-DROP TABLE IF EXISTS `dependent`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dependent` (
-  `dependent_ID` int NOT NULL,
-  `dependent_name` varchar(45) NOT NULL,
-  `employee_related_to` varchar(45) NOT NULL,
-  `EMPLOYEE_employee_ID` int NOT NULL,
-  PRIMARY KEY (`dependent_ID`),
-  KEY `fk_DEPENDENT_EMPLOYEE_idx` (`EMPLOYEE_employee_ID`),
-  CONSTRAINT `fk_DEPENDENT_EMPLOYEE` FOREIGN KEY (`EMPLOYEE_employee_ID`) REFERENCES `employee` (`employee_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `dependent`
---
-
-LOCK TABLES `dependent` WRITE;
-/*!40000 ALTER TABLE `dependent` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dependent` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `employee`
 --
 
@@ -84,7 +57,7 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
-  `employee_ID` int NOT NULL,
+  `employee_ID` int NOT NULL AUTO_INCREMENT,
   `SSN` int NOT NULL,
   `employee_type` varchar(45) NOT NULL,
   `first_name` varchar(45) NOT NULL,
@@ -230,9 +203,8 @@ DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
-  `member_ID` int NOT NULL,
+  `member_ID` mediumint NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
-  `middle_initial` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) NOT NULL,
   `gender` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
@@ -240,11 +212,9 @@ CREATE TABLE `member` (
   `phone_number` varchar(45) NOT NULL,
   `email_address` varchar(45) NOT NULL,
   `join_date` date NOT NULL,
-  `PARK_Park_ID` int NOT NULL,
-  PRIMARY KEY (`member_ID`),
-  KEY `fk_MEMBER_PARK1_idx` (`PARK_Park_ID`),
-  CONSTRAINT `fk_MEMBER_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`member_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,33 +224,6 @@ CREATE TABLE `member` (
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `member_has_ticket booth`
---
-
-DROP TABLE IF EXISTS `member_has_ticket booth`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `member_has_ticket booth` (
-  `MEMBER_member_ID` int NOT NULL,
-  `TICKET BOOTH_ticket_ID` int NOT NULL,
-  PRIMARY KEY (`MEMBER_member_ID`,`TICKET BOOTH_ticket_ID`),
-  KEY `fk_MEMBER_has_TICKET BOOTH_TICKET BOOTH1_idx` (`TICKET BOOTH_ticket_ID`),
-  KEY `fk_MEMBER_has_TICKET BOOTH_MEMBER1_idx` (`MEMBER_member_ID`),
-  CONSTRAINT `fk_MEMBER_has_TICKET BOOTH_MEMBER1` FOREIGN KEY (`MEMBER_member_ID`) REFERENCES `member` (`member_ID`),
-  CONSTRAINT `fk_MEMBER_has_TICKET BOOTH_TICKET BOOTH1` FOREIGN KEY (`TICKET BOOTH_ticket_ID`) REFERENCES `ticket_booth` (`ticket_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `member_has_ticket booth`
---
-
-LOCK TABLES `member_has_ticket booth` WRITE;
-/*!40000 ALTER TABLE `member_has_ticket booth` DISABLE KEYS */;
-/*!40000 ALTER TABLE `member_has_ticket booth` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -338,12 +281,11 @@ CREATE TABLE `parking` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `restaurant`
+-- Dumping data for table `parking`
 --
 
 LOCK TABLES `parking` WRITE;
 /*!40000 ALTER TABLE `parking` DISABLE KEYS */;
-INSERT INTO `parking` VALUES (1,'parking lot 1',15,2,0,1);
 /*!40000 ALTER TABLE `parking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,33 +347,6 @@ LOCK TABLES `restaurant food` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ticket booth_has_visitor`
---
-
-DROP TABLE IF EXISTS `ticket booth_has_visitor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ticket booth_has_visitor` (
-  `TICKET BOOTH_ticket_ID` int NOT NULL,
-  `VISITOR_visitor_ID` int NOT NULL,
-  PRIMARY KEY (`TICKET BOOTH_ticket_ID`,`VISITOR_visitor_ID`),
-  KEY `fk_TICKET BOOTH_has_VISITOR_VISITOR1_idx` (`VISITOR_visitor_ID`),
-  KEY `fk_TICKET BOOTH_has_VISITOR_TICKET BOOTH1_idx` (`TICKET BOOTH_ticket_ID`),
-  CONSTRAINT `fk_TICKET BOOTH_has_VISITOR_TICKET BOOTH1` FOREIGN KEY (`TICKET BOOTH_ticket_ID`) REFERENCES `ticket_booth` (`ticket_ID`),
-  CONSTRAINT `fk_TICKET BOOTH_has_VISITOR_VISITOR1` FOREIGN KEY (`VISITOR_visitor_ID`) REFERENCES `visitor` (`visitor_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ticket booth_has_visitor`
---
-
-LOCK TABLES `ticket booth_has_visitor` WRITE;
-/*!40000 ALTER TABLE `ticket booth_has_visitor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ticket booth_has_visitor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ticket_booth`
 --
 
@@ -439,7 +354,7 @@ DROP TABLE IF EXISTS `ticket_booth`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ticket_booth` (
-  `ticket_ID` int NOT NULL,
+  `ticket_ID` int NOT NULL AUTO_INCREMENT,
   `purchase_date` date NOT NULL DEFAULT '2024-07-28',
   `QtyWheel` int NOT NULL DEFAULT '0',
   `QtySpeed` int NOT NULL DEFAULT '0',
@@ -447,8 +362,35 @@ CREATE TABLE `ticket_booth` (
   `QtyPutt` int NOT NULL DEFAULT '0',
   `ticket_total` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ticket_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket_booth`
+--
+
+LOCK TABLES `ticket_booth` WRITE;
+/*!40000 ALTER TABLE `ticket_booth` DISABLE KEYS */;
+INSERT INTO `ticket_booth` VALUES (2,'2024-07-28',5,1,9,2,245),(3,'2024-07-28',10,1,1,1,0),(4,'2023-03-28',1,1,1,1,80);
+/*!40000 ALTER TABLE `ticket_booth` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `ticket_booth_BEFORE_INSERT` BEFORE INSERT ON `ticket_booth` FOR EACH ROW BEGIN
+set NEW.ticket_total = (NEW.QtyWheel* 5) + (NEW.QtySpeed * 35) + (NEW.QtyAqua * 15) + (NEW.QtyPutt * 25);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -464,16 +406,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Dumping data for table `ticket_booth`
---
-
-LOCK TABLES `ticket_booth` WRITE;
-/*!40000 ALTER TABLE `ticket_booth` DISABLE KEYS */;
-INSERT INTO `ticket_booth` VALUES (2,'2024-07-28',5,1,9,2,245),(3,'2024-07-28',10,1,1,1,0);
-/*!40000 ALTER TABLE `ticket_booth` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `visitor`
@@ -515,4 +447,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-28 23:18:49
+-- Dump completed on 2023-03-31  5:16:45
