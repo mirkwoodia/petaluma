@@ -70,6 +70,7 @@ CREATE TABLE `employee` (
   `email` varchar(45) NOT NULL,
   `salary` double NOT NULL,
   `PARK_Park_ID` int NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`employee_ID`),
   KEY `fk_EMPLOYEE_PARK1_idx` (`PARK_Park_ID`),
   CONSTRAINT `fk_EMPLOYEE_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
@@ -448,4 +449,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-31 16:49:26
+-- Dump completed on 2023-04-01 19:33:59
