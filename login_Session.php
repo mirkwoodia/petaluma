@@ -4,6 +4,7 @@
         header('location: Login_Account.html');
     }
 ?>
-
-<h1>Logged In </h1>
-<a href="logout.php">Logout?</a>
+<!-- link to home page -->
+<div class="links">
+    <a href="Home_Page.html"></span></a>
+</div>

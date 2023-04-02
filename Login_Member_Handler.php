@@ -12,12 +12,12 @@ if (!$connLoginMember) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = "SELECT * from member where email_address= '$username' and password='$password'";
+    $query = "SELECT * from member where email_address= '$username' AND password='$password'"; 
     $result = mysqli_query($connLoginMember, $query); 
     if(mysqli_num_rows($result)==1){
         session_start(); 
         $_SESSION['auth'] = 'true';
-        header('location: login_Session.php');
+        header("Location:login_Session.php");
     }
     else{
         echo "The username or password you entered is incorrect.";
