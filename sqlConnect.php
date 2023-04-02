@@ -1,9 +1,9 @@
 <?php
 // Step 1: Connect to the database
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "Decon_0213";
-$dbName = "mydb";
+$servername = "localhost";
+$username = "root";
+$password = "Decon_0213";
+$dbname = "mydb";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
@@ -38,7 +38,6 @@ if (mysqli_num_rows($result) > 0) {
 }
 */
 // Step 4: Close the database connection
-mysqli_close($conn);
 ?>
 
 
