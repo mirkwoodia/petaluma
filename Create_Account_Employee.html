@@ -3,7 +3,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="Create_Account.css">
     <link rel="shortcut icon" type="image/x-icon" href="Tab.ico" />
-    <title>Petaluma - Create Account - Member</title>
+    <title>Petaluma - Create Account - Employee</title>
 </head>
 <body>
 	<div class="container">
@@ -17,8 +17,35 @@
           <h1 class="login-title">Create Account</h1>
 
           <div class="form-group">
+            <label for="first_name">SSN</label>
+            <input type="text" name="SSN" id="SSN" placeholder="Enter SSN: " required>
+          </div>
+
+          <div class="form-group">      
+            <TR>
+              <TD class = "select"> Employee Type        
+              </TD>   
+              <TD ALIGN="center">
+                 <select id="employee_type" name="employee_type">        
+                      <option value="Wheel"> Petaluma Wheel Operator </option>
+                      <option value="Speedway"> Petaluma Speedway Operator </option>
+                      <option value="Aqua"> Petaluma Aqua Operator </option>    
+                      <option value="Putt"> Petaluma Putt Operator </option>
+                      <option value="Giftshop"> GiftShop </option>   
+                      <option value="Restaurant"> Restaurant </option>             
+                 </select>
+              </TD>        
+          </TR>
+          </div>
+
+          <div class="form-group">
             <label for="first_name">First Name</label>
             <input type="text" name="first_name" id="first_name" placeholder="Enter First Name: " required>
+          </div>
+
+          <div class="form-group">
+            <label for="middle_initial">Middle Initial</label>
+            <input type="text" name="middle_initial" id="middle_initial" placeholder="Enter Middle Initial: " required>
           </div>
 
           <div class="form-group">
@@ -40,15 +67,15 @@
           </TR>
           </div>
 
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" placeholder="Enter Address" required>
-          </div>
-
-           <div class="form-group"> 
+          <div class="form-group"> 
             <label for="birthdate">Date of Birth</label>
             <input type="date" id="birthdate" name="birthdate" value="2023-03-28" min="1900-01-01" max="3000-12-31">
           </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" placeholder="Enter Address" required>
+          </div>           
 
           <div class="form-group">
             <label for="phone_number">Phone Number</label>
@@ -64,14 +91,15 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter Password" required>
           </div>
-
-          <div class="form-group">
-            <label for="join_date">Join Date</label>
-            <input type="date" id="join_date" name="join_date" value="2023-03-28" min="2018-01-01" max="3000-12-31">
-          </div>
+          
+          <!-- <div class="form-group">
+            <label for="salary">Salary</label>
+            <input type="date" id="salary" name="salary" >
+          </div> -->
+          
           <!-- <a href="Profile_Management.html" type="submit" class="button1"name="submit">Create</a> -->
           <div class="links">
-            <a href="Login_Member.html">Already Have an Account?</span></a>
+            <a href="Login_Employee.html">Already Have an Account?</span></a>
           </div>
 
           <button type="submit" name="submit">Create Account</button>
