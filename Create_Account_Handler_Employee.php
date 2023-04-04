@@ -4,22 +4,24 @@
     $dbPassword = "Decon_0213";
     $dbName = "mydb";
     
-    $connMember = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-    if (!$connMember) {
+    $connEmployee = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+    if (!$connEmployee) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    if (!isset($_POST['first_name'], $_POST['last_name'], $_POST['gender'], $_POST['address'], $_POST['birthdate'], $_POST['phone_number'], $_POST['email_address'], $_POST['password'], $_POST['join_date'], $_POST['username'])) {
+    if (!isset($_POST['first_name'], $_POST['middle_initial'], $_POST['last_name'], $_POST['email'], $_POST['phone_number'], $_POST['username'], 
+    $_POST['password'], $_POST['SSN'], $_POST['birthdate'], $_POST['address'], $_POST['gender'], $_POST['salary'], $_POST['department_number'])) {
         // Could not get the data that should have been sent.
         exit('Please complete the registration form!');
     }
     // Make sure the submitted registration values are not empty.
-    if (empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['gender']) || empty($_POST['address']) || empty($_POST['birthdate']) || empty($_POST['phone_number']) || empty($_POST['email_address']) || empty($_POST['password']) || empty($_POST['join_date']) || empty($_POST['username'])) {
+    if (empty($_POST['first_name']) || empty($_POST['middle_initial']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['phone_number']) || empty($_POST['username']) || 
+    empty($_POST['password']) || empty($_POST['SSN']) || empty($_POST['birthdate']) || empty($_POST['address']) || empty($_POST['gender']) || empty($_POST['salary']) || empty($_POST['department_number'])){
         // One or more values are empty.
         exit('Please complete the registration form');
     }
 //email validation
-    if (!filter_var($_POST['email_address'], FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         exit('Email is not valid!');
     }
 //will only accept alphabetical and numerical characters
@@ -32,7 +34,7 @@
     }
  
     // We need to check if the account with that username exists.
-    if ($stmt = $connMember->prepare('SELECT member_ID, password FROM member WHERE username = ?')) {
+    if ($stmt = $connEmployee->prepare('SELECT employee_ID, password FROM employee WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
 	    $stmt->bind_param('s', $_POST['username']);
 	    $stmt->execute();
@@ -43,10 +45,11 @@
 		    echo 'Username exists, please choose another!';
 	    } else {	
         // Username doesn't exists, insert new account
-            if ($stmt = $connMember->prepare('INSERT INTO member(first_name, last_name, gender, address, birthdate, phone_number, email_address, join_date, password, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')) {
+            if ($stmt = $connEmployee->prepare('INSERT INTO employee(first_name, minit, last_name, email, phone_number, username, password, ssn, birthdate, address, gender, salary, DNO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')) {
 	    // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
 	            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-	            $stmt->bind_param('ssssssssss', $_POST['first_name'], $_POST['last_name'], $_POST['gender'], $_POST['address'], $_POST['birthdate'], $_POST['phone_number'], $_POST['email_address'], $_POST['join_date'], $password, $_POST['username']);
+	            $stmt->bind_param('sssssssssssii', $_POST['first_name'], $_POST['middle_initial'], $_POST['last_name'], $_POST['email'], $_POST['phone_number'], $_POST['username'], 
+                    $password, $_POST['SSN'], $_POST['birthdate'], $_POST['address'], $_POST['gender'], $_POST['salary'], $_POST['department_number']);
 	            $stmt->execute();
 	            echo 'You have successfully registered! You can now login!';
             } else {
@@ -59,5 +62,5 @@
 	// Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
 	    echo 'Could not prepare statement!';
 }
-$connMember->close();
+$connEmployee->close();
 ?>

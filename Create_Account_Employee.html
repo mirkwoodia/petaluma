@@ -13,30 +13,8 @@
     <div class="box2">
       <div class="login-box">
 
-        <form action="Create_Account_Handler.php" method="POST">
+        <form action="Create_Account_Handler_Employee.php" method="POST"> 
           <h1 class="login-title">Create Account</h1>
-
-          <div class="form-group">
-            <label for="first_name">SSN</label>
-            <input type="text" name="SSN" id="SSN" placeholder="Enter SSN: " required>
-          </div>
-
-          <div class="form-group">      
-            <TR>
-              <TD class = "select"> Employee Type        
-              </TD>   
-              <TD ALIGN="center">
-                 <select id="employee_type" name="employee_type">        
-                      <option value="Wheel"> Petaluma Wheel Operator </option>
-                      <option value="Speedway"> Petaluma Speedway Operator </option>
-                      <option value="Aqua"> Petaluma Aqua Operator </option>    
-                      <option value="Putt"> Petaluma Putt Operator </option>
-                      <option value="Giftshop"> GiftShop </option>   
-                      <option value="Restaurant"> Restaurant </option>             
-                 </select>
-              </TD>        
-          </TR>
-          </div>
 
           <div class="form-group">
             <label for="first_name">First Name</label>
@@ -53,6 +31,41 @@
             <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name" required>
           </div>
 
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="text" name="email" id="email" placeholder="Enter Email Address" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" name="phone_number" placeholder="Enter Phone Number" id="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter Username" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter Password" required>
+          </div>
+
+          <div class="form-group">
+            <label for="SSN">SSN</label>
+            <input type="text" name="SSN" id="SSN" placeholder="Enter SSN: " required>
+          </div>
+
+          <div class="form-group"> 
+            <label for="birthdate">Date of Birth</label>
+            <input type="date" id="birthdate" name="birthdate" value="2023-03-28" min="1900-01-01" max="3000-12-31">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" placeholder="Enter Address" required>
+          </div>   
+
           <div class="form-group">      
             <TR>
               <TD class = "select"> Gender        
@@ -67,37 +80,25 @@
           </TR>
           </div>
 
-          <div class="form-group"> 
-            <label for="birthdate">Date of Birth</label>
-            <input type="date" id="birthdate" name="birthdate" value="2023-03-28" min="1900-01-01" max="3000-12-31">
-          </div>
-
           <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" placeholder="Enter Address" required>
-          </div>           
-
-          <div class="form-group">
-            <label for="phone_number">Phone Number</label>
-            <input type="text" name="phone_number" id="phone_number" placeholder="Enter Phone Number" required>
-          </div>
-
-          <div class="form-group">
-            <label for="email_address">Email Address</label>
-            <input type="text" name="email_address" id="email_address" placeholder="Enter Email Address" required>
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter Password" required>
-          </div>
-          
-          <!-- <div class="form-group">
             <label for="salary">Salary</label>
-            <input type="date" id="salary" name="salary" >
-          </div> -->
-          
-          <!-- <a href="Profile_Management.html" type="submit" class="button1"name="submit">Create</a> -->
+            <input type="text" name="salary" id="salary" placeholder="Enter Salary" required>
+          </div>  
+
+          <div class="form-group"> 
+            <label for="department_number">Department Number</label>  
+            <input type="number" id="department_number" name="department_number" min="1" max="6">
+            <datalist id="department_number">
+              <option value="1">
+              <option value="2">
+              <option value="3">
+              <option value="4">
+              <option value="5">
+              <option value="6">
+            </datalist>           
+          </div>        
+         
+             
           <div class="links">
             <a href="Login_Employee.html">Already Have an Account?</span></a>
           </div>
