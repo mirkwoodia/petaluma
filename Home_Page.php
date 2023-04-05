@@ -6,7 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: Login_Member.html');
 	exit;
 }
-include 'CRUD_function.php'
+
 ?>
 
 <!DOCTYPE html>
@@ -27,11 +27,11 @@ include 'CRUD_function.php'
 				<li style = "float:right"><a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>    
             </ul>
         </div>
-        <?=template_header('Home')?>
+        
         <div class="content">
 			<h2>Home Page</h2>
 			<p>Welcome back, <?=$_SESSION['name']?>
 		</div>
-        <?=template_footer()?>
+        
     </body>
 </html>

@@ -7,17 +7,17 @@ $msg = '';
 if (!empty($_POST)) {
     // Post data not empty insert a new record
     // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-    //$id = isset($_POST['maintenance_ID']) && !empty($_POST['maintenance_ID']) && $_POST['maintenance_ID'] != 'auto' ? $_POST['maintenance_ID'] : NULL;
+    $id = isset($_POST['maintenance_ID']) && !empty($_POST['maintenance_ID']) && $_POST['maintenance_ID'] != 'auto' ? $_POST['maintenance_ID'] : NULL;
     // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
     $name = isset($_POST['maintenance_name']) ? $_POST['maintenance_name'] : '';
     $description = isset($_POST['maintenance_description']) ? $_POST['maintenance_description'] : '';
     $start = isset($_POST['maintenance_start_time']) ? $_POST['maintenance_start_time'] : date('Y-m-d H:i:s');
     $end = isset($_POST['maintenance_end_time']) ? $_POST['maintenance_end_time'] : date('Y-m-d H:i:s');    
-    $parkNO = isset($_POST['parkNO']) ? $_POST['parkNO'] : 1;
+    $parkNO = isset($_POST['parkNO']) && !empty($_POST['parkNO']) ? $_POST['maintenance_ID'] : NULL;
 
     // Insert new record into the contacts table
-    $stmt = $pdo->prepare('INSERT INTO maintenance VALUES (?, ?, ?, ?, ?)');
-    $stmt->execute([$name, $description, $start, $end, $parkNO]);
+    $stmt = $pdo->prepare('INSERT INTO maintenance VALUES (?,?, ?, ?, ?, ?)');
+    $stmt->execute([$id, $name, $description, $start, $end, $parkNO]);
     // Output message
     $msg = 'Created Successfully!';
 }
@@ -27,17 +27,23 @@ if (!empty($_POST)) {
 
 <div class="content update">
 	<h2>Create New Maintenance</h2>
-    <form action="create_Maintenance.php" method="post">        
-        <label for="maintenance_name">Maintenance Name</label>   
+    <form action="create_Maintenance.php" method="post"> 
+
+        <label for="maintenance_ID">Maintenance ID</label>      
+        <label for="maintenance_name">Maintenance Name</label>
+        <input type="text" name="maintenance_ID" placeholder="200" value="auto" id="maintenance_ID">   
         <input type="text" name="maintenance_name" placeholder="Enter Name:" id="maintenance_name">
+
         <label for="maintenance_description">Maintenance Description</label>
-        <input type="text" name="maintenance_description" placeholder="Enter Description:" id="maintenance_description">
+        <label for="parkNO">Park ID</label>
+        <input type="text" name="maintenance_description" placeholder="Enter Description:" id="maintenance_description">        
+        <input type="text" name="parkNO" placeholder="Enter Park ID" id="parkNO">   
+
         <label for="maintenance_start_time">Created</label>
         <label for="maintenance_end_time">Finished</label>
         <input type="datetime-local" name="maintenance_start_time" placeholder="Enter Start Date & Time:" id="maintenance_start_time">
         <input type="datetime-local" name="maintenance_end_time" placeholder="Enter End Date & Time:" id="maintenance_end_time">
-        <label for="parkNO">Park ID</label>
-        <input type="number" name="parkNO" placeholder="Enter Park ID" id="parkNO">        
+            
         <input type="submit" value="Create">
     </form>
     <?php if ($msg): ?>

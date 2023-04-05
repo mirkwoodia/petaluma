@@ -28,7 +28,7 @@ echo <<<EOT
         <div>
             <h1>Petaluma Themepark</h1>
             <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
-            <a href="read.php"><i class="fas fa-address-book"></i>Contacts</a>
+            <a href="read_Maintenance.php"><i class="fas fa-address-book"></i>Maintenances</a>
         </div>
     </nav>
 EOT;
