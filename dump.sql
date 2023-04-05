@@ -50,6 +50,30 @@ LOCK TABLES `attraction` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `department`
+--
+
+DROP TABLE IF EXISTS `department`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `department` (
+  `department_ID` mediumint NOT NULL AUTO_INCREMENT,
+  `department_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`department_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `department`
+--
+
+LOCK TABLES `department` WRITE;
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (1,'Petaluma Wheel'),(2,'Petaluma Speedway'),(3,'Petaluma Aqua'),(4,'Petaluma Putt'),(5,'Giftshop'),(6,'Admin');
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `employee`
 --
 
@@ -57,23 +81,26 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
-  `employee_ID` int NOT NULL AUTO_INCREMENT,
-  `SSN` int NOT NULL,
-  `employee_type` varchar(45) NOT NULL,
+  `employee_ID` mediumint NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
-  `middle_initial` varchar(45) DEFAULT NULL,
+  `minit` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
-  `gender` varchar(45) NOT NULL,
+  `ssn` varchar(45) NOT NULL,
   `birthdate` date NOT NULL,
   `address` varchar(45) NOT NULL,
-  `phone_number` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `salary` double NOT NULL,
-  `PARK_Park_ID` int NOT NULL,
+  `gender` varchar(45) NOT NULL,
+  `salary` int NOT NULL,
+  `DNO` mediumint NOT NULL,
+  `parkNO` int NOT NULL DEFAULT '1',
+  `phone_number` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`employee_ID`),
-  KEY `fk_EMPLOYEE_PARK1_idx` (`PARK_Park_ID`),
-  CONSTRAINT `fk_EMPLOYEE_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
+  KEY `DNO` (`DNO`),
+  KEY `parkNO` (`parkNO`),
+  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`DNO`) REFERENCES `department` (`department_ID`),
+  CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -112,59 +139,28 @@ INSERT INTO `expenses` VALUES (1,'ticket',NULL);
 UNLOCK TABLES;
 
 --
--- Table structure for table `gift items`
+-- Table structure for table `giftshop`
 --
 
-DROP TABLE IF EXISTS `gift items`;
+DROP TABLE IF EXISTS `giftshop`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `gift items` (
-  `gift_ID` int NOT NULL,
-  `item_name` varchar(45) NOT NULL,
-  `item_price` decimal(10,0) NOT NULL,
-  `item_inventory` varchar(45) NOT NULL,
-  `GIFT SHOP_giftShop_ID` int NOT NULL,
-  PRIMARY KEY (`gift_ID`),
-  KEY `fk_GIFT ITEMS_GIFT SHOP1_idx` (`GIFT SHOP_giftShop_ID`),
-  CONSTRAINT `fk_GIFT ITEMS_GIFT SHOP1` FOREIGN KEY (`GIFT SHOP_giftShop_ID`) REFERENCES `gift shop` (`giftShop_ID`)
+CREATE TABLE `giftshop` (
+  `giftshop_ID` mediumint NOT NULL AUTO_INCREMENT,
+  `giftshop_name` varchar(45) NOT NULL,
+  `revenue_date` date NOT NULL,
+  `total_revenue` double DEFAULT NULL,
+  PRIMARY KEY (`giftshop_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `gift items`
+-- Dumping data for table `giftshop`
 --
 
-LOCK TABLES `gift items` WRITE;
-/*!40000 ALTER TABLE `gift items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gift items` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `gift shop`
---
-
-DROP TABLE IF EXISTS `gift shop`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `gift shop` (
-  `giftShop_ID` int NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `num_items_sold` int NOT NULL,
-  `daily_visitors` int NOT NULL,
-  `PARK_Park_ID` int NOT NULL,
-  PRIMARY KEY (`giftShop_ID`),
-  KEY `fk_GIFT SHOP_PARK1_idx` (`PARK_Park_ID`),
-  CONSTRAINT `fk_GIFT SHOP_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `gift shop`
---
-
-LOCK TABLES `gift shop` WRITE;
-/*!40000 ALTER TABLE `gift shop` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gift shop` ENABLE KEYS */;
+LOCK TABLES `giftshop` WRITE;
+/*!40000 ALTER TABLE `giftshop` DISABLE KEYS */;
+/*!40000 ALTER TABLE `giftshop` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -175,16 +171,16 @@ DROP TABLE IF EXISTS `maintenance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `maintenance` (
-  `maintenance_ID` int NOT NULL,
-  `time_start` datetime DEFAULT NULL,
-  `time_end` datetime DEFAULT NULL,
-  `maintenance_descrip` varchar(45) DEFAULT NULL,
-  `maintence_staff` varchar(45) DEFAULT NULL,
-  `ATTRACTION_attraction_ID` int NOT NULL,
+  `maintenance_ID` mediumint NOT NULL AUTO_INCREMENT,
+  `maintenance_name` varchar(45) NOT NULL,
+  `maintenance_description` varchar(255) NOT NULL,
+  `maintenance_start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `maintenance_end_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `parkNO` int NOT NULL,
   PRIMARY KEY (`maintenance_ID`),
-  KEY `fk_MAINTENANCE_ATTRACTION1_idx` (`ATTRACTION_attraction_ID`),
-  CONSTRAINT `fk_MAINTENANCE_ATTRACTION1` FOREIGN KEY (`ATTRACTION_attraction_ID`) REFERENCES `attraction` (`attraction_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `parkNO` (`parkNO`),
+  CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,6 +189,7 @@ CREATE TABLE `maintenance` (
 
 LOCK TABLES `maintenance` WRITE;
 /*!40000 ALTER TABLE `maintenance` DISABLE KEYS */;
+INSERT INTO `maintenance` VALUES (200,'test','testing test','2023-04-04 05:59:00','2023-04-04 05:59:00',1);
 /*!40000 ALTER TABLE `maintenance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,8 +211,9 @@ CREATE TABLE `member` (
   `email_address` varchar(45) NOT NULL,
   `join_date` date NOT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +222,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (100,'Bobby','Brown','Male','711 Fondren, Houston, TX','1991-01-02','8321654958','BBrown32@gmail.com','2023-03-31','ilovebunnies'),(101,'Sally','Sea','Female','632 Voss, Houston, TX','1997-03-19','7138994652','SallySeasShells@yahoo.com','2023-03-31','Seashore_1997');
+INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,63 +287,6 @@ CREATE TABLE `parking` (
 LOCK TABLES `parking` WRITE;
 /*!40000 ALTER TABLE `parking` DISABLE KEYS */;
 /*!40000 ALTER TABLE `parking` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `restaurant`
---
-
-DROP TABLE IF EXISTS `restaurant`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `restaurant` (
-  `restaurant_ID` int NOT NULL,
-  `restaurant_name` varchar(45) NOT NULL,
-  `restaurant_location` varchar(45) NOT NULL,
-  `daily_visitors` int NOT NULL,
-  `PARK_Park_ID` int NOT NULL,
-  PRIMARY KEY (`restaurant_ID`),
-  KEY `fk_RESTAURANT_PARK1_idx` (`PARK_Park_ID`),
-  CONSTRAINT `fk_RESTAURANT_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `restaurant`
---
-
-LOCK TABLES `restaurant` WRITE;
-/*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
-/*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `restaurant food`
---
-
-DROP TABLE IF EXISTS `restaurant food`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `restaurant food` (
-  `food_ID` int NOT NULL,
-  `food_name` varchar(45) NOT NULL,
-  `food_price` decimal(10,0) NOT NULL,
-  `food_type` varchar(45) NOT NULL,
-  `food_inventory` varchar(45) NOT NULL,
-  `RESTAURANT_restaurant_ID` int NOT NULL,
-  PRIMARY KEY (`food_ID`),
-  KEY `fk_RESTAURANT FOOD_RESTAURANT1_idx` (`RESTAURANT_restaurant_ID`),
-  CONSTRAINT `fk_RESTAURANT FOOD_RESTAURANT1` FOREIGN KEY (`RESTAURANT_restaurant_ID`) REFERENCES `restaurant` (`restaurant_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `restaurant food`
---
-
-LOCK TABLES `restaurant food` WRITE;
-/*!40000 ALTER TABLE `restaurant food` DISABLE KEYS */;
-/*!40000 ALTER TABLE `restaurant food` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -449,4 +390,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-01 19:33:59
+-- Dump completed on 2023-04-04 20:41:04
