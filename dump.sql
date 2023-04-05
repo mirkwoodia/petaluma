@@ -180,7 +180,7 @@ CREATE TABLE `maintenance` (
   PRIMARY KEY (`maintenance_ID`),
   KEY `parkNO` (`parkNO`),
   CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +189,6 @@ CREATE TABLE `maintenance` (
 
 LOCK TABLES `maintenance` WRITE;
 /*!40000 ALTER TABLE `maintenance` DISABLE KEYS */;
-INSERT INTO `maintenance` VALUES (200,'test','testing test','2023-04-04 05:59:00','2023-04-04 05:59:00',1);
 /*!40000 ALTER TABLE `maintenance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-04 20:41:04
+-- Dump completed on 2023-04-05 10:05:29
