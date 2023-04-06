@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="revenueReportStyling.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Revenue Report</title>
+</head>
+<body>
+	<h1>Revenue Report</h1>
+	<form method="post" action="revenueReport.php">
+		<label for="start-date">Start Date:</label>
+		<input type="date" id="start-date" name="start-date" required>
+
+		<label for="end-date">End Date:</label>
+		<input type="date" id="end-date" name="end-date" required>
+
+		<br>
+
+		<input type="submit" value="Generate Report">
+	</form>
+</body>
+</html>
