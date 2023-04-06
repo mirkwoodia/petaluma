@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: 127.0.0.1    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -177,11 +177,11 @@ CREATE TABLE `maintenance` (
   `maintenance_description` varchar(255) NOT NULL,
   `maintenance_start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `maintenance_end_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `parkNO` int NOT NULL,
+  `attractionID` int NOT NULL,
   PRIMARY KEY (`maintenance_ID`),
-  KEY `parkNO` (`parkNO`),
-  CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb3;
+  KEY `attractionID` (`attractionID`),
+  CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`attractionID`) REFERENCES `attraction` (`attraction_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,14 +380,6 @@ LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'mydb'
---
-
---
--- Dumping routines for database 'mydb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -398,4 +390,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-06 14:44:18
+-- Dump completed on 2023-04-06 15:31:34

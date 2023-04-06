@@ -34,7 +34,7 @@ $num_maintenances = $pdo->query('SELECT COUNT(*) FROM maintenance')->fetchColumn
                 <td>Maintenance Description</td>
                 <td>Maintenance Start Time</td>
                 <td>Maintenance End Time</td> 
-                <td>Park ID</td>
+                <td>Attraction ID</td>
                 <td></td>
             </tr>
         </thead>
@@ -46,7 +46,7 @@ $num_maintenances = $pdo->query('SELECT COUNT(*) FROM maintenance')->fetchColumn
                 <td><?=$maintenance['maintenance_description']?></td>
                 <td><?=$maintenance['maintenance_start_time']?></td>
                 <td><?=$maintenance['maintenance_end_time']?></td>
-                <td><?=$maintenance['parkNO']?></td>
+                <td><?=$maintenance['attractionID']?></td>
                 <td class="actions">
                     <a href="update_Maintenance.php?id=<?=$maintenance['maintenance_ID']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                     <a href="delete_Maintenance.php?id=<?=$maintenance['maintenance_ID']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>

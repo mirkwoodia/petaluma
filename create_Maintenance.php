@@ -13,11 +13,11 @@ if (!empty($_POST)) {
     $description = isset($_POST['maintenance_description']) ? $_POST['maintenance_description'] : '';
     $start = isset($_POST['maintenance_start_time']) ? $_POST['maintenance_start_time'] : date('Y-m-d H:i:s');
     $end = isset($_POST['maintenance_end_time']) ? $_POST['maintenance_end_time'] : date('Y-m-d H:i:s');    
-    $parkNO = isset($_POST['parkNO']) && !empty($_POST['parkNO']) ? $_POST['maintenance_ID'] : NULL;
+    $attractionID = isset($_POST['attractionID']) && !empty($_POST['attractionID']) ? $_POST['attractionID'] : NULL;
 
     // Insert new record into the contacts table
     $stmt = $pdo->prepare('INSERT INTO maintenance VALUES (?,?, ?, ?, ?, ?)');
-    $stmt->execute([$id, $name, $description, $start, $end, $parkNO]);
+    $stmt->execute([$id, $name, $description, $start, $end, $attractionID]);
     // Output message
     $msg = 'Created Successfully!';
 }
@@ -35,9 +35,9 @@ if (!empty($_POST)) {
         <input type="text" name="maintenance_name" placeholder="Enter Name:" id="maintenance_name">
 
         <label for="maintenance_description">Maintenance Description</label>
-        <label for="parkNO">Park ID</label>
+        <label for="attractionID">Attraction ID</label>
         <input type="text" name="maintenance_description" placeholder="Enter Description:" id="maintenance_description">        
-        <input type="text" name="parkNO" placeholder="Enter Park ID" id="parkNO">   
+        <input type="text" name="attractionID" placeholder="Enter Attraction ID" id="attractionID">   
 
         <label for="maintenance_start_time">Created</label>
         <label for="maintenance_end_time">Finished</label>

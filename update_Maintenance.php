@@ -11,10 +11,10 @@ if (isset($_GET['id'])) {
         $maintenance_description = isset($_POST['maintenance_description']) ? $_POST['maintenance_description'] : '';
         $maintenance_start_time = isset($_POST['maintenance_start_date']) ? $_POST['maintenance_start_date'] : date('Y-m-d H:i:s');
         $maintenance_end_time = isset($_POST['maintenance_end_date']) ? $_POST['maintenance_end_date'] : date('Y-m-d H:i:s');
-        $parkNO = isset($_POST['parkNO']) ? $_POST['parkNO'] : NULL;
+        $attractionID = isset($_POST['attractionID']) ? $_POST['attractionID'] : NULL;
         // Update the record
-        $stmt = $pdo->prepare('UPDATE maintenance SET maintenance_ID = ?, maintenance_name = ?, maintenance_description = ?, maintenance_start_time = ?, maintenance_end_time = ?, parkNO = ? WHERE maintenance_id = ?');
-        $stmt->execute([$maintenance_ID, $maintenance_name, $maintenance_description, $maintenance_start_time, $maintenance_end_time, $parkNO, $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE maintenance SET maintenance_ID = ?, maintenance_name = ?, maintenance_description = ?, maintenance_start_time = ?, maintenance_end_time = ?, attractionID = ? WHERE maintenance_id = ?');
+        $stmt->execute([$maintenance_ID, $maintenance_name, $maintenance_description, $maintenance_start_time, $maintenance_end_time, $attractionID, $_GET['id']]);
         $msg = 'Updated Successfully!';
     }
     // Get the contact from the contacts table
@@ -40,9 +40,9 @@ if (isset($_GET['id'])) {
         <input type="text" name="maintenance_name" placeholder="Enter Name:" value="<?=$maintenance['maintenance_name']?>" id="maintenance_name">
 
         <label for="maintenance_description">Maintenance Description</label>
-        <label for="parkNO">Park ID</label>
+        <label for="attractionID">Attraction ID</label>
         <input type="text" name="maintenance_description" placeholder="Enter Description:" value="<?=$maintenance['maintenance_description']?>" id="maintenance_description">        
-        <input type="text" name="parkNO" placeholder="Enter Park ID" value="<?=$maintenance['parkNO']?>" id="parkNO">   
+        <input type="text" name="attractionID" placeholder="Enter Attraction ID" value="<?=$maintenance['attractionID']?>" id="attractionID">   
 
         <label for="maintenance_start_time">Created</label>
         <label for="maintenance_end_time">Finished</label>
