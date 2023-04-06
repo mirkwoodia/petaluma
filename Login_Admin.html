@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Petaluma - Login - Employee</title>
+  <title>Petaluma - Login - Admin</title>
   <link rel="stylesheet" type="text/css" href="Login_Account.css">
   <link rel="shortcut icon" type="image/x-icon" href="Tab.ico" />
 </head>
@@ -15,7 +15,7 @@
     </div>
     <div class="box2">
       <div class="login-box">
-        <form action="Login_Employee_Handler.php" method="POST">
+        <form action="Login_Admin_Handler.php" method="POST">
           <h1 style="text-align:center">Login</h1>
           <div class="form-group">
             <label for="username">Username</label>
@@ -25,9 +25,8 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter Password" required>
           </div>
-          <a href="Admin_Portal.html" type="submit" class="button1" name="submit">Login</a>
+          <button type="submit" class="button1" name="submit">Login</a>
           <div class="links">
-            <a href="Create_Account.html">Create an account</span></a>
           </div>
         </form>
       </div>

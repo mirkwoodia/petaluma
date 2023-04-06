@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mydb
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -14,6 +14,47 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admin` (
+  `admin_ID` mediumint NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `minit` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `ssn` varchar(45) NOT NULL,
+  `birthdate` date NOT NULL,
+  `address` varchar(45) NOT NULL,
+  `gender` varchar(45) NOT NULL,
+  `salary` int NOT NULL,
+  `DNO` mediumint NOT NULL,
+  `parkNO` int DEFAULT '1',
+  `phone_number` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`admin_ID`),
+  KEY `DNO` (`DNO`),
+  KEY `parkNO` (`parkNO`),
+  CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`DNO`) REFERENCES `department` (`department_ID`),
+  CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1,'admin','D.','Luffy','111-11-1111','2023-03-23','11111 Bellaire st','Binary',0,1,1,'911','admin@petaluma.net','admin','$2y$10$d18sL0LVxcyzYi7lSjt3aOSu1XIXOu.w98ytXBI4WFtM8cPZK2Jga');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `attraction`
@@ -71,46 +112,6 @@ LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
 INSERT INTO `department` VALUES (1,'Petaluma Wheel'),(2,'Petaluma Speedway'),(3,'Petaluma Aqua'),(4,'Petaluma Putt'),(5,'Giftshop'),(6,'Admin');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `employee`
---
-
-DROP TABLE IF EXISTS `employee`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `employee` (
-  `employee_ID` mediumint NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) NOT NULL,
-  `minit` varchar(45) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `ssn` varchar(45) NOT NULL,
-  `birthdate` date NOT NULL,
-  `address` varchar(45) NOT NULL,
-  `gender` varchar(45) NOT NULL,
-  `salary` int NOT NULL,
-  `DNO` mediumint NOT NULL,
-  `parkNO` int NOT NULL DEFAULT '1',
-  `phone_number` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`employee_ID`),
-  KEY `DNO` (`DNO`),
-  KEY `parkNO` (`parkNO`),
-  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`DNO`) REFERENCES `department` (`department_ID`),
-  CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `employee`
---
-
-LOCK TABLES `employee` WRITE;
-/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -379,6 +380,14 @@ LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mydb'
+--
+
+--
+-- Dumping routines for database 'mydb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -389,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-05 10:05:29
+-- Dump completed on 2023-04-06 14:44:18
