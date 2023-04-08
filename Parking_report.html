@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="Create_Account.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Tab.ico" />
+    <title>Petaluma - Create Account</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Column 1</th>
+			<th>Column 2</th>
+			<th>Column 3</th>
+		</tr>
+		<?php
+		// Connect to database
+		$servername = "localhost";
+		$username = "yourusername";
+		$password = "yourpassword";
+		$dbname = "yourdatabase";
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		}
+
+		// Query database and retrieve data
+		$sql = "SELECT * FROM yourtable";
+		$result = $conn->query($sql);
+
+		// Loop through the data and display each row in the table
+		if ($result->num_rows > 0) {
+		    while($row = $result->fetch_assoc()) {
+		        echo "<tr><td>" . $row["column1"] . "</td><td>" . $row["column2"] . "</td><td>" . $row["column3"] . "</td></tr>";
+		    }
+		} else {
+		    echo "0 results";
+		}
+
+		// Close database connection
+		$conn->close();
+		?>
+	</table>
+</body>
+</html>

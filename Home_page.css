@@ -1,0 +1,158 @@
+.portal-category {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 20px 20px 0;
+    width: calc(20% - 20px);
+    text-align: center;
+    
+  }
+  
+  .category-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .category-image img {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+  }
+  
+  .category-info {
+    padding: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .portal-category {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 100%;
+    }
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    .portal-category {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 auto 20px auto;
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .portal-category {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 auto 20px auto;
+      width: calc(20% - 20px);
+    }
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(0, 0, 0)
+  }
+  
+  .category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100vh;
+  }
+  
+  .parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  
+  .portal-category:hover {
+    border-color: #14d134;
+  }
+  
+  .category-name {
+    margin-top: 0;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 1s ease;
+  
+    font-weight: 100;
+    color: #14d134;
+    font-family: "Century Gothic";
+  }
+  
+  .visit-link {
+    background-color: #000000;
+    border-color: #14d134;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: #14d134;
+    font-family: "Century Gothic";
+  }
+  
+  .portal-category:hover .visit-link {
+    border-color: #14d134;
+    opacity: 1;
+  }
+  
+  .portal-category:hover .category-name {
+    border-color: #14d134;
+    opacity: 1;
+    display: inline-block;
+  }
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(to right, #a53d3d, #dec418, #a53d3d);
+}
+.portal-category {
+    border: 2px solid transparent;
+    transition: border-color 0.5s ease;
+    width: 16%;
+    background-color:black;
+    margin-top:0px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .portal-category {
+      width: 100%;
+    }
+  }
+
+  .box {
+    background-color: black;
+    width: 100%;
+    height: 200px;
+  }
