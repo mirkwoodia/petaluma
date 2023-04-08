@@ -68,9 +68,73 @@
 			die('Connection failed: ' . $conn->connect_error);
 		}
 		
-		// TODO: This function will eventually pull out the amount of tickets each ride sold and multiply each of these amounts by the cost of the respective ticket.
-		// 		 Not quite sure how to write this query yet...
-
+		
+		//query the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
+		$wheel = "SELECT SUM(QtyWheel) * 10 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$speed = "SELECT SUM(QtySpeed) * 25 AS totalQtySpeed FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$aqua = "SELECT SUM(QtyAqua) * 20 AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$putt = "SELECT SUM(QtyPutt) * 30 AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		//if statements to check which ride is most profitable. If two rides are the same total revenue it will print out the two rides
+		//if wheel is the most profitiable
+		if($wheel >= $speed && $wheel >= $aqua && $wheel >= $putt){
+			if($wheel == $speed){
+				echo "Petaluma Wheel and Petaluma Speedway are both most profitable rides.";
+			}
+			else if($wheel == $aqua){
+				echo "Petaluma Wheel and Petaluma Aqua are both most profitable rides"; 
+			}
+			else if($wheel == $putt){
+				echo "Petaluma Wheel and Petaluma Putt are both most profitable rides"; 
+			}
+			else{
+				echo "Petaluma Wheel is the most profitable ride.";
+			}
+		}
+		//if speed is the most profitable
+		if($speed >= $wheel && $speed >= $aqua && $speed >= $putt){
+			if($speed == $wheel){
+				echo "Petaluma Speedway and Petaluma Wheel are both most profitable rides.";
+			}
+			else if($speed == $aqua){
+				echo "Petaluma Speed and Petaluma Aqua are both most profitable rides"; 
+			}
+			else if($speed == $putt){
+				echo "Petaluma Speed and Petaluma Putt are both most profitable rides"; 
+			}
+			else{
+				echo "Petaluma Speed is the most profitable ride.";
+			}
+		}
+		//if aqua is most profitable
+		if($aqua >= $wheel && $aqua >= $speed && $aqua >= $putt){
+			if($aqua == $wheel){
+				echo "Petaluma Aqua and Petaluma Wheel are both most profitable rides.";
+			}
+			else if($aqua == $speed){
+				echo "Petaluma Aqua and Petaluma Speed are both most profitable rides"; 
+			}
+			else if($aqua == $putt){
+				echo "Petaluma Aqua and Petaluma Putt are both most profitable rides"; 
+			}
+			else{
+				echo "Petaluma Aqua is the most profitable ride.";
+			}
+		}
+		//if putt is the most profitable 
+		if($putt >= $wheel && $putt >= $speed && $putt >= $aqua){
+			if($putt == $wheel){
+				echo "Petaluma Putt and Petaluma Wheel are both most profitable rides.";
+			}
+			else if($putt == $speed){
+				echo "Petaluma Putt and Petaluma Speed are both most profitable rides"; 
+			}
+			else if($putt == $aqua){
+				echo "Petaluma Putt and Petaluma Aqua are both most profitable rides"; 
+			}
+			else{
+				echo "Petaluma Putt is the most profitable ride.";
+			}
+		}
 	}
 	
 	function findGiftShopRevenue($start_date, $end_date)
