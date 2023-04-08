@@ -70,10 +70,10 @@
 		
 		
 		//query the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
-		$wheel = "SELECT SUM(QtyWheel) * 10 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$speed = "SELECT SUM(QtySpeed) * 25 AS totalQtySpeed FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$aqua = "SELECT SUM(QtyAqua) * 20 AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$putt = "SELECT SUM(QtyPutt) * 30 AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$wheel = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$speed = "SELECT SUM(QtySpeed) * 25.50 AS totalQtySpeed FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$aqua = "SELECT SUM(QtyAqua) * 20.00 AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$putt = "SELECT SUM(QtyPutt) * 30.50 AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 		//if statements to check which ride is most profitable. If two rides are the same total revenue it will print out the two rides
 		//if wheel is the most profitiable
 		if($wheel >= $speed && $wheel >= $aqua && $wheel >= $putt){
