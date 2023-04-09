@@ -67,7 +67,6 @@ CREATE TABLE `attraction` (
   `attraction_ID` int NOT NULL,
   `attraction_Name` varchar(45) NOT NULL,
   `attraction_capacity` int NOT NULL,
-  `numMaintenance` int NOT NULL,
   `attraction_age_limit` int NOT NULL,
   `attaction_height_limit` int NOT NULL,
   `PARK_Park_ID` int NOT NULL,
@@ -466,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-09  8:42:25
+-- Dump completed on 2023-04-09 17:26:25
