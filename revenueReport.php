@@ -2,13 +2,16 @@
 	function findTotalTicketRevenue($start_date, $end_date)
 	{
 		
+		// Database details
 		$dbServername = "localhost";
 		$dbUsername = "root";
 		$dbPassword = "Decon_0213";
 		$dbName = "mydb";
 		
+		// Connects to the database and checks for connection error
 		$connOne = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-		if (!$connOne) {
+		if (!$connOne)
+		{
 			die("Connection failed: " . mysqli_connect_error());
 		}	
 
@@ -21,14 +24,16 @@
 	
 		// Checks if the query returned any results
 		if ($result != false && $result->num_rows > 0)
-		{		
+		{	
+			
 			// Outputs the sum of the 'ticket_total' values
-			while($row = mysqli_fetch_array($result)){
-
-	
+			while($row = mysqli_fetch_array($result))
+			{
+				
 				echo "Date". "  " . $row['date'] . "  ". "Total Revenue" . "  " . "$".$row['total'];
 				echo "</br>"; 	
-				$totalRevenue += $row['total'];			
+				$totalRevenue += $row['total'];
+				
 			}		
 
 			echo 'Total ticket sales between ' . $start_date . ' and ' . $end_date . ': $' . $totalRevenue . "</br>";
@@ -43,24 +48,26 @@
 		
 		// Closes the SQL connection
 		$connOne->close();
+		
 	}
 
 	function findMostProfitableRides($start_date, $end_date)
 	{
 		
+		// Database details
 		$dbServername = "localhost";
 		$dbUsername = "root";
 		$dbPassword = "Decon_0213";
 		$dbName = "mydb";
 		
+		// Connects to the database and checks for connection error
 		$connTwo = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-		if (!$connTwo) {
+		if (!$connTwo)
+		{
 			die("Connection failed: " . mysqli_connect_error());
 		}
 		
-		//query the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
-		
-
+		// Queries the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
 		$wheelSql = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 		$speedSql = "SELECT SUM(QtySpeed) * 25.50 AS totalQtySpeed FROM ticket_booth  WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 		$aquaSql = "SELECT SUM(QtyAqua) * 20.00  AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
@@ -83,25 +90,31 @@
 		
 		asort($array);		
 		//$mostProfitableKey = " "; 
-		foreach($array as $first => $val){			
+		foreach($array as $first => $val)
+		{			
 			echo "Ride: " . $first . " Total Revenue: $" . implode(" ",$val). "</br>";
-		}		
+		}	
+		
 		$mostProfitableValue = max(array_values($array)); 
 		$mostProfitableKey = array_search($mostProfitableValue, $array); 
 		echo $mostProfitableKey." is the most profitable Ride." . "</br>";
-		$connTwo->close();	
+		$connTwo->close();
+		
 	}
 
 	function findGiftShopRevenue($start_date, $end_date)
 	{
 		
+		// Database details
 		$dbServername = "localhost";
 		$dbUsername = "root";
 		$dbPassword = "Decon_0213";
 		$dbName = "mydb";
 		
+		// Connects to the database and checks for connection error
 		$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-		if (!$conn) {
+		if (!$conn)
+		{
 			die("Connection failed: " . mysqli_connect_error());
 		}
 		
@@ -126,9 +139,7 @@
 		// Runs if no valid values were found
 		else
 		{
-		
 			echo 'No results found';
-		
 		}
 		
 		// Closes the SQL connection
@@ -148,7 +159,8 @@
 		$dbName = "mydb";
 		
 		$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-		if (!$conn) {
+		if (!$conn)
+		{
 			die("Connection failed: " . mysqli_connect_error());
 		}
 		
