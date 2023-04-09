@@ -1,158 +1,108 @@
 <?php
-
 	function findTotalTicketRevenue($start_date, $end_date)
 	{
 		
-		// Enter database credentials here
-		$servername = 'localhost';
-		$username = '';
-		$password = '';
-		$dbname = '';
+		$dbServername = "localhost";
+		$dbUsername = "root";
+		$dbPassword = "Decon_0213";
+		$dbName = "mydb";
 		
-		// Creates a new SQL connection using above credentials
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		
-		// Validates the SQL connection
-		if ($conn->connect_error)
-		{
-			die('Connection failed: ' . $conn->connect_error);
-		}
-		
-		// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates
-		$sql = "SELECT SUM(ticket_total) AS total FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$connOne = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+		if (!$connOne) {
+			die("Connection failed: " . mysqli_connect_error());
+		}	
+
+		// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
+		$sql = "SELECT SUM(ticket_total) AS total, purchase_date AS date FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date' GROUP BY date";
 		
 		// Executes the SQL query
-		$result = $conn->query($sql);
-		
+		$result = $connOne->query($sql);
+		$totalRevenue = 0.00; 
+	
 		// Checks if the query returned any results
-		if ($result->num_rows > 0)
-		{
-		
+		if ($result != false && $result->num_rows > 0)
+		{		
 			// Outputs the sum of the 'ticket_total' values
-			while($row = $result->fetch_assoc())
-			{
-				echo 'Total ticket sales between ' . $start_date . ' and ' . $end_date . ': $' . $row['total'];
-			}
+			while($row = mysqli_fetch_array($result)){
+
+	
+				echo "Date". "  " . $row['date'] . "  ". "Total Revenue" . "  " . "$".$row['total'];
+				echo "</br>"; 	
+				$totalRevenue += $row['total'];			
+			}		
+
+			echo 'Total ticket sales between ' . $start_date . ' and ' . $end_date . ': $' . $totalRevenue . "</br>";
 		
 		}
 		
 		// Runs if no valid values were found
 		else
-		{
-		
-			echo 'No results found';
-		
-		}
-		
+		{		
+			echo 'No results found';		
+		}		
 		
 		// Closes the SQL connection
-		$conn->close();
-
+		$connOne->close();
 	}
-	
+
 	function findMostProfitableRides($start_date, $end_date)
 	{
 		
-		// Enter database credentials here
-		$servername = 'localhost';
-		$username = '';
-		$password = '';
-		$dbname = '';
+		$dbServername = "localhost";
+		$dbUsername = "root";
+		$dbPassword = "Decon_0213";
+		$dbName = "mydb";
 		
-		// Creates a new SQL connection using above credentials
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		
-		// Validates the SQL connection
-		if ($conn->connect_error)
-		{
-			die('Connection failed: ' . $conn->connect_error);
+		$connTwo = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+		if (!$connTwo) {
+			die("Connection failed: " . mysqli_connect_error());
 		}
-		
 		
 		//query the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
-		$wheel = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$speed = "SELECT SUM(QtySpeed) * 25.50 AS totalQtySpeed FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$aqua = "SELECT SUM(QtyAqua) * 20.00 AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$putt = "SELECT SUM(QtyPutt) * 30.50 AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		//if statements to check which ride is most profitable. If two rides are the same total revenue it will print out the two rides
-		//if wheel is the most profitiable
-		if($wheel >= $speed && $wheel >= $aqua && $wheel >= $putt){
-			if($wheel == $speed){
-				echo "Petaluma Wheel and Petaluma Speedway are both most profitable rides.";
-			}
-			else if($wheel == $aqua){
-				echo "Petaluma Wheel and Petaluma Aqua are both most profitable rides"; 
-			}
-			else if($wheel == $putt){
-				echo "Petaluma Wheel and Petaluma Putt are both most profitable rides"; 
-			}
-			else{
-				echo "Petaluma Wheel is the most profitable ride.";
-			}
-		}
-		//if speed is the most profitable
-		if($speed >= $wheel && $speed >= $aqua && $speed >= $putt){
-			if($speed == $wheel){
-				echo "Petaluma Speedway and Petaluma Wheel are both most profitable rides.";
-			}
-			else if($speed == $aqua){
-				echo "Petaluma Speed and Petaluma Aqua are both most profitable rides"; 
-			}
-			else if($speed == $putt){
-				echo "Petaluma Speed and Petaluma Putt are both most profitable rides"; 
-			}
-			else{
-				echo "Petaluma Speed is the most profitable ride.";
-			}
-		}
-		//if aqua is most profitable
-		if($aqua >= $wheel && $aqua >= $speed && $aqua >= $putt){
-			if($aqua == $wheel){
-				echo "Petaluma Aqua and Petaluma Wheel are both most profitable rides.";
-			}
-			else if($aqua == $speed){
-				echo "Petaluma Aqua and Petaluma Speed are both most profitable rides"; 
-			}
-			else if($aqua == $putt){
-				echo "Petaluma Aqua and Petaluma Putt are both most profitable rides"; 
-			}
-			else{
-				echo "Petaluma Aqua is the most profitable ride.";
-			}
-		}
-		//if putt is the most profitable 
-		if($putt >= $wheel && $putt >= $speed && $putt >= $aqua){
-			if($putt == $wheel){
-				echo "Petaluma Putt and Petaluma Wheel are both most profitable rides.";
-			}
-			else if($putt == $speed){
-				echo "Petaluma Putt and Petaluma Speed are both most profitable rides"; 
-			}
-			else if($putt == $aqua){
-				echo "Petaluma Putt and Petaluma Aqua are both most profitable rides"; 
-			}
-			else{
-				echo "Petaluma Putt is the most profitable ride.";
-			}
-		}
+		
+
+		$wheelSql = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$speedSql = "SELECT SUM(QtySpeed) * 25.50 FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$aquaSql = "SELECT SUM(QtyAqua) * 20.00 FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$puttSql = "SELECT SUM(QtyPutt) * 30.50 FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		
+		$wheel= $connTwo->query($wheelSql);
+		$wheelResult = $wheel->fetch_assoc();		
+		
+		$speed = $connTwo->query($speedSql);
+		$speedResult = $speed->fetch_assoc();	
+
+		$aqua = $connTwo->query($aquaSql);
+		$aquaResult = $aqua->fetch_assoc();	
+
+		$putt = $connTwo->query($puttSql);
+		$puttResult = $putt->fetch_assoc();	
+
+		//if statements to check which ride is most profitable. 
+		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=>$speedResult, "Petaluma Aqua"=>$aquaResult, "Petaluma Putt"=>$puttResult);
+		
+		asort($array);		
+		//$mostProfitableKey = " "; 
+		foreach($array as $first => $val){			
+			echo "Ride: " . $first . " Total Revenue: $" . implode(" ",$val). "</br>";
+		}		
+		$mostProfitableValue = max(array_values($array)); 
+		$mostProfitableKey = array_search($mostProfitableValue, $array); 
+		echo $mostProfitableKey." is the most profitable Ride." . "</br>";
+		$connTwo->close();	
 	}
-	
+
 	function findGiftShopRevenue($start_date, $end_date)
 	{
 		
-		// Enter database credentials here
-		$servername = 'localhost';
-		$username = '';
-		$password = '';
-		$dbname = '';
+		$dbServername = "localhost";
+		$dbUsername = "root";
+		$dbPassword = "Decon_0213";
+		$dbName = "mydb";
 		
-		// Creates a new SQL connection using above credentials
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		
-		// Validates the SQL connection
-		if ($conn->connect_error)
-		{
-			die('Connection failed: ' . $conn->connect_error);
+		$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+		if (!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
 		}
 		
 		// Creates the SQL query to find the sum of 'total_revenue' values for any given start/end dates
@@ -187,23 +137,19 @@
 		// TODO: Find the 'n' most profitable gift shops and return them as a list.
 	
 	}
-	
+
+	/*
 	function findParkingRevenue($start_date, $end_date)
 	{
 		
-		// Enter database credentials here
-		$servername = 'localhost';
-		$username = '';
-		$password = '';
-		$dbname = '';
+		$dbServername = "localhost";
+		$dbUsername = "root";
+		$dbPassword = "Decon_0213";
+		$dbName = "mydb";
 		
-		// Creates a new SQL connection using above credentials
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		
-		// Validates the SQL connection
-		if ($conn->connect_error)
-		{
-			die('Connection failed: ' . $conn->connect_error);
+		$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+		if (!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
 		}
 		
 		// Creates the SQL query to find the total number of parking spaces in the park
@@ -234,7 +180,9 @@
 		echo 'Total parking revenue is: ' . $totalParkingRevenue;
 
 	}
-	
+	*/
+	?>
+<?php
 	// Start login process
 	session_start();
 	
@@ -252,6 +200,11 @@
 	findGiftShopRevenue($start_date, $end_date);
 	
 	// Calls the 'findParkingRevenue' function
-	findParkingRevenue($start_date, $end_date)
+	//findParkingRevenue($start_date, $end_date)
 	
 ?>
+
+
+
+
+
