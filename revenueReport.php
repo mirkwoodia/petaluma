@@ -62,9 +62,9 @@
 		
 
 		$wheelSql = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$speedSql = "SELECT SUM(QtySpeed) * 25.50 FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$aquaSql = "SELECT SUM(QtyAqua) * 20.00 FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-		$puttSql = "SELECT SUM(QtyPutt) * 30.50 FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$speedSql = "SELECT SUM(QtySpeed) * 25.50 AS totalQtySpeed FROM ticket_booth  WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$aquaSql = "SELECT SUM(QtyAqua) * 20.00  AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+		$puttSql = "SELECT SUM(QtyPutt) * 30.50  AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 		
 		$wheel= $connTwo->query($wheelSql);
 		$wheelResult = $wheel->fetch_assoc();		
@@ -184,7 +184,7 @@
 	?>
 <?php
 	// Start login process
-	session_start();
+	//session_start();
 	
 	// Retrieves the start date and end date from 'revenueReport.html'
 	$start_date = $_POST['start-date'];
