@@ -110,7 +110,7 @@
 		
 	}
 
-	
+	// Function for finding the revenue of the gift shop
 	function findGiftShopRevenue($start_date, $end_date)
 	{
 		
@@ -159,6 +159,7 @@
 	}
 
 	/*
+	// Function for finding the revenue of the parking lot(s)
 	function findParkingRevenue($start_date, $end_date)
 	{
 		
