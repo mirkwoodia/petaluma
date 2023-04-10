@@ -176,7 +176,7 @@ function numMaintenance($ride_name){
                       <option value="Wheel"> Petaluma Wheel </option>
                       <option value="Speed"> Petaluma Speedway </option>
                       <option value="Aqua"> Petaluma Aqua </option>  
-					  					<option value="Putt"> Petaluma Putt-Putt </option>                  
+					  <option value="Putt"> Petaluma Putt-Putt </option>                  
                  </select>
               </TD>        
           </TR>
@@ -195,7 +195,7 @@ function numMaintenance($ride_name){
 		<tr>
 			<td><?= $ride_name ?></td>
 			<td><?= $numVisitors ?></td>
-			<td><?= $numVisitors ?></td>
+			<td><?= $numMaintenance ?></td>
 	
 		</tr>
 		

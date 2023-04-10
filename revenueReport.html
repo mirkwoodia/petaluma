@@ -7,8 +7,16 @@
 	<title>Revenue Report Generator</title>
 </head>
 <body>
+	<nav class="navtop">
+		<div>
+			<h1>Petaluma Themepark</h1>
+		</div>
+	</nav>
+
 	<h1>Revenue Report Generator</h1>
+	<div class = content>
 	<form method="post" action="revenueReport.php">
+		<label for="ride-name">Choose a start date and end date to report on:</label>
 		<label for="start-date">Start Date:</label>
 		<input type="date" id="start-date" name="start-date" required>
 
@@ -19,5 +27,6 @@
 
 		<input type="submit" value="Generate Report">
 	</form>
+	</div>
 </body>
 </html>
