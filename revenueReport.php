@@ -1,4 +1,5 @@
 <?php
+
 	function findTotalTicketRevenue($start_date, $end_date)
 	{
 		
@@ -193,7 +194,8 @@
 
 	}
 	*/
-	?>
+?>
+
 <?php
 	// Start login process
 	//session_start();
