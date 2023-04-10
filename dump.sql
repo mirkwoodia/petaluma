@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: 127.0.0.1    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -55,6 +55,7 @@ LOCK TABLES `admin` WRITE;
 INSERT INTO `admin` VALUES (1,'admin','D.','Luffy','111-11-1111','2023-03-23','11111 Bellaire st','Binary',0,1,1,'911','admin@petaluma.net','admin','$2y$10$d18sL0LVxcyzYi7lSjt3aOSu1XIXOu.w98ytXBI4WFtM8cPZK2Jga');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
+
 --
 -- Table structure for table `attraction`
 --
@@ -63,17 +64,14 @@ DROP TABLE IF EXISTS `attraction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `attraction` (
-  `attraction_ID` int NOT NULL,
-  `attraction_Name` varchar(45) NOT NULL,
-  `attraction_capacity` int NOT NULL,
-  `attraction_age_limit` int NOT NULL,
-  `attaction_height_limit` int NOT NULL,
-  `PARK_Park_ID` int NOT NULL,
-  `attraction_price` double DEFAULT NULL,
+  `attraction_ID` mediumint NOT NULL AUTO_INCREMENT,
+  `attraction_name` varchar(45) NOT NULL,
+  `attraction_price` double NOT NULL,
+  `parkNO` int NOT NULL,
   PRIMARY KEY (`attraction_ID`),
-  KEY `fk_ATTRACTION_PARK1_idx` (`PARK_Park_ID`),
-  CONSTRAINT `fk_ATTRACTION_PARK1` FOREIGN KEY (`PARK_Park_ID`) REFERENCES `park` (`Park_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `parkNO` (`parkNO`),
+  CONSTRAINT `attraction_ibfk_1` FOREIGN KEY (`parkNO`) REFERENCES `park` (`Park_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=504 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,6 +80,7 @@ CREATE TABLE `attraction` (
 
 LOCK TABLES `attraction` WRITE;
 /*!40000 ALTER TABLE `attraction` DISABLE KEYS */;
+INSERT INTO `attraction` VALUES (500,'Petaluma Wheel',10.25,1),(501,'Petaluma Speed',25.5,1),(502,'Petaluma Aqua',20,1),(503,'Petaluma Putt-Putt',30.5,1);
 /*!40000 ALTER TABLE `attraction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +160,6 @@ LOCK TABLES `expenses` WRITE;
 INSERT INTO `expenses` VALUES (1,'ticket',NULL);
 /*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 --
 -- Table structure for table `get_parking_pass`
@@ -255,11 +253,11 @@ CREATE TABLE `maintenance` (
   `maintenance_description` varchar(255) NOT NULL,
   `maintenance_start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `maintenance_end_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `attractionID` int NOT NULL,
+  `attractionID` mediumint NOT NULL,
   PRIMARY KEY (`maintenance_ID`),
   KEY `attractionID` (`attractionID`),
   CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`attractionID`) REFERENCES `attraction` (`attraction_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,6 +266,7 @@ CREATE TABLE `maintenance` (
 
 LOCK TABLES `maintenance` WRITE;
 /*!40000 ALTER TABLE `maintenance` DISABLE KEYS */;
+INSERT INTO `maintenance` VALUES (200,'Aqua Water Pressure','Fixing water pressure for Petaluma Aqua Ride','2023-04-10 04:53:00','2023-04-17 04:53:00',502),(201,'Petaluma Wheel Ride Inspection','Regular inspection of Petaluma Wheel Ride ','2023-04-04 04:55:00','2023-04-07 08:55:00',500),(202,'Petaluma Putt Inspection','Regular Inspection of Petaluma Putt','2023-04-01 09:56:00','2023-04-03 10:56:00',503),(203,'Electrical Systems Maintenance','Electrical Systems Maintenance for Speedway','2023-03-14 08:00:00','2023-03-20 19:00:00',501),(204,'Painting and Refurbishment ','Painting and Refurbished Petaluma Wheel ','2023-03-08 10:04:00','2023-03-26 17:58:00',500),(205,'Safety Inspection','Safety Inspection for Petaluma Wheel ','2023-03-21 08:59:00','2023-04-10 04:59:00',500),(206,'Water Quality Maintenance ','Testing water quality of Petaluma Aqua','2023-02-15 09:04:00','2023-02-10 05:00:00',502);
 /*!40000 ALTER TABLE `maintenance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,7 +369,6 @@ LOCK TABLES `parking` WRITE;
 /*!40000 ALTER TABLE `parking` DISABLE KEYS */;
 /*!40000 ALTER TABLE `parking` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 --
 -- Table structure for table `parking_slots`
@@ -509,14 +507,6 @@ LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'mydb'
---
-
---
--- Dumping routines for database 'mydb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -527,4 +517,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-09 21:52:28
+-- Dump completed on 2023-04-10  5:30:18
