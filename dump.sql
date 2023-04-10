@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mydb
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -55,7 +55,6 @@ LOCK TABLES `admin` WRITE;
 INSERT INTO `admin` VALUES (1,'admin','D.','Luffy','111-11-1111','2023-03-23','11111 Bellaire st','Binary',0,1,1,'911','admin@petaluma.net','admin','$2y$10$d18sL0LVxcyzYi7lSjt3aOSu1XIXOu.w98ytXBI4WFtM8cPZK2Jga');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `attraction`
 --
@@ -84,6 +83,34 @@ CREATE TABLE `attraction` (
 LOCK TABLES `attraction` WRITE;
 /*!40000 ALTER TABLE `attraction` DISABLE KEYS */;
 /*!40000 ALTER TABLE `attraction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `attractionusage`
+--
+
+DROP TABLE IF EXISTS `attractionusage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `attractionusage` (
+  `memberID` int NOT NULL,
+  `QtySpeed` int unsigned DEFAULT NULL,
+  `QtyWheel` int unsigned DEFAULT NULL,
+  `QtyAqua` int unsigned DEFAULT NULL,
+  `QtyPutt` int unsigned DEFAULT NULL,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`memberID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `attractionusage`
+--
+
+LOCK TABLES `attractionusage` WRITE;
+/*!40000 ALTER TABLE `attractionusage` DISABLE KEYS */;
+INSERT INTO `attractionusage` VALUES (1,12,12,12,12,'2023-02-09 18:08:37'),(2,21,12,31,41,'2022-01-09 18:08:37'),(103,34,34,34,34,'2023-04-09 18:08:37');
+/*!40000 ALTER TABLE `attractionusage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -134,6 +161,7 @@ LOCK TABLES `expenses` WRITE;
 INSERT INTO `expenses` VALUES (1,'ticket',NULL);
 /*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `get_parking_pass`
@@ -262,8 +290,12 @@ CREATE TABLE `member` (
   `join_date` date NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `QtyWheel` int unsigned DEFAULT '0',
+  `QtySpeed` int unsigned DEFAULT '0',
+  `QtyAqua` int unsigned DEFAULT '0',
+  `QtyPutt` int unsigned DEFAULT '0',
   PRIMARY KEY (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +304,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown');
+INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown',0,0,0,0),(103,'Bobby','Brown','Female','111 eldridge lane','2023-03-28','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$wch8aLs8/dGM9Vi0Z5uAlOzfdaHK3jPHz75MLFdBnAvxq6Xi91scq','brown',0,0,0,0),(104,'me','wa','Female','aw','2023-03-07','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$4mBshpgnyGJ05BCxDnLWCO6AqtrH1DDx/xV6P0Y1nx6Tjz45pnJS2','member',0,0,0,0);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,6 +371,7 @@ LOCK TABLES `parking` WRITE;
 /*!40000 ALTER TABLE `parking` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
 --
 -- Table structure for table `parking_slots`
 --
@@ -379,8 +412,9 @@ CREATE TABLE `ticket_booth` (
   `QtyAqua` int NOT NULL DEFAULT '0',
   `QtyPutt` int NOT NULL DEFAULT '0',
   `ticket_total` double NOT NULL DEFAULT '0',
+  `member_id` int DEFAULT NULL,
   PRIMARY KEY (`ticket_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,7 +423,7 @@ CREATE TABLE `ticket_booth` (
 
 LOCK TABLES `ticket_booth` WRITE;
 /*!40000 ALTER TABLE `ticket_booth` DISABLE KEYS */;
-INSERT INTO `ticket_booth` VALUES (2,'2024-07-28',5,1,9,2,245),(3,'2024-07-28',10,1,1,1,0),(4,'2023-03-28',1,1,1,1,80);
+INSERT INTO `ticket_booth` VALUES (2,'2024-07-28',5,1,9,2,245,NULL),(3,'2024-07-28',10,1,1,1,0,NULL),(4,'2023-03-28',1,1,1,1,80,NULL),(5,'2023-03-28',12,2,4,1,215,1),(6,'2023-03-28',12,1,1,1,135,103),(7,'2023-03-28',1,1,1,1,80,104),(8,'2023-03-28',2,1,2,1,100,104),(9,'2023-03-28',3,2,2,1,140,104),(10,'2023-03-28',3,2,1,3,175,104),(11,'2023-03-28',3,2,1,1,125,104),(12,'2023-03-28',34,34,34,34,2720,103),(13,'2023-03-28',12,12,12,122,3710,103);
 /*!40000 ALTER TABLE `ticket_booth` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -419,6 +453,26 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `parkingCheck` BEFORE INSERT ON `ticket_booth` FOR EACH ROW UPDATE parking SET available_slots = available_slots - 1 WHERE parking_ID = 1 */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `addTicketsToMember` BEFORE INSERT ON `ticket_booth` FOR EACH ROW BEGIN
+    UPDATE member SET member.QtyWheel = member.QtyWheel + NEW.QtyWheel WHERE member.`member_ID` = NEW.`member_id`; 
+    UPDATE member SET member.QtySpeed = member.QtySpeed + NEW.QtySpeed WHERE member.`member_ID` = NEW.`member_id`;
+    UPDATE member SET member.QtyAqua = member.QtyAqua + NEW.QtyAqua WHERE member.`member_ID`= NEW.`member_id`;
+    UPDATE member SET member.QtyPutt = member.QtyPutt + NEW.QtyPutt WHERE member.`member_ID` = NEW.`member_id`;
+END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -455,6 +509,14 @@ LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mydb'
+--
+
+--
+-- Dumping routines for database 'mydb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -465,4 +527,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-09 17:26:25
+-- Dump completed on 2023-04-09 21:52:28

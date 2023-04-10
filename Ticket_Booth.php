@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: Login_Member.html');
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 

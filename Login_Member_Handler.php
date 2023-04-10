@@ -32,10 +32,13 @@ if ($stmt = $connLoginMember->prepare('SELECT member_ID, password FROM member WH
         if (password_verify($_POST['password'], $password)) {
             // Verification success! User has logged-in!
             // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
+            session_start();
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['id'] = $id;
+            $_SESSION['sid'] = session_id();
+            $_SESSION['type'] = "member";
             header('Location: Home_Page.php');
         } else {
             // Incorrect password
