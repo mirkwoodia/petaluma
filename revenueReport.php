@@ -1,5 +1,6 @@
 <?php
 
+	// Function for finding the total ride ticket revenue between any two given dates
 	function findTotalTicketRevenue($start_date, $end_date)
 	{
 		
@@ -52,6 +53,7 @@
 		
 	}
 
+	// Function for finding the most profitable rides in the park
 	function findMostProfitableRides($start_date, $end_date)
 	{
 		
@@ -93,6 +95,7 @@
 		// Finds the most profitable ride
 		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=>$speedResult, "Petaluma Aqua"=>$aquaResult, "Petaluma Putt"=>$puttResult);
 		
+		// Sorts the rides
 		asort($array);		
 		//$mostProfitableKey = " "; 
 		foreach($array as $first => $val)
@@ -107,6 +110,7 @@
 		
 	}
 
+	
 	function findGiftShopRevenue($start_date, $end_date)
 	{
 		
