@@ -74,19 +74,23 @@
 		$aquaSql = "SELECT SUM(QtyAqua) * 20.00  AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 		$puttSql = "SELECT SUM(QtyPutt) * 30.50  AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 		
+		// Makes query for the wheel ride
 		$wheel= $connTwo->query($wheelSql);
 		$wheelResult = $wheel->fetch_assoc();		
 		
+		// Makes query for the speed ride
 		$speed = $connTwo->query($speedSql);
 		$speedResult = $speed->fetch_assoc();	
 
+		// Makes query for the aqua ride
 		$aqua = $connTwo->query($aquaSql);
 		$aquaResult = $aqua->fetch_assoc();	
 
+		// Makes query for the putt ride
 		$putt = $connTwo->query($puttSql);
 		$puttResult = $putt->fetch_assoc();	
 
-		//if statements to check which ride is most profitable. 
+		// Finds the most profitable ride
 		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=>$speedResult, "Petaluma Aqua"=>$aquaResult, "Petaluma Putt"=>$puttResult);
 		
 		asort($array);		
@@ -204,7 +208,7 @@
 	$start_date = $_POST['start-date'];
 	$end_date = $_POST['end-date'];
 	
-	// Calls the 'findTotalTicketRevenue' function to get the total ticket revenue between the two dates
+	// Calls the 'findTotalTicketRevenue' function
 	findTotalTicketRevenue($start_date, $end_date);
 	
 	// Calls the 'findMostProfitableRides' function
