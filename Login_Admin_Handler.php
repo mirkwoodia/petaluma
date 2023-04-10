@@ -37,7 +37,9 @@
                     $_SESSION['loggedin'] = TRUE;
                     $_SESSION['name'] = $_POST['username'];
                     $_SESSION['id'] = $id;
+                    $_SESSION['type'] = "admin";
                     $_SESSION['sid'] = session_id();
+                    
                     header('Location: Admin_Portal.php');
                 } else {
                     // Incorrect password

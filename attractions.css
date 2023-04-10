@@ -1,0 +1,80 @@
+/* Container needed to position the button. Adjust the width as needed */
+.container {
+  position: relative;
+  width: 50%;
+}
+
+/* Make the image responsive */
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.container .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.container .inp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #d9d0d0;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: text;
+  border-radius: 5px;
+}
+
+.container .btn:hover {
+  background-color: black;
+}
+
+#div1 {
+	display: inline-block;
+	width:400px;
+	height:400px;
+	border: 1px solid red;
+}
+#div2 {
+	display: inline-block;
+	width:400px;
+	height:400px;
+	border: 1px solid green;
+}
+
+img {
+	float: left;
+	width:  auto;
+	height: auto;
+	object-fit: fill;
+}
+
+/* Full-width input fields */
+input[type=text] {
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #c9c3c3;
+}
+
+input[type=text]:focus {
+  background-color: #a0a0a0;
+  outline: none;
+}
