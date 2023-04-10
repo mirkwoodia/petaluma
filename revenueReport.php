@@ -45,7 +45,7 @@
 		$connOne->close();
 	}
 
-	function findMostProfitableRides($start_date, $end_date)
+	function attractionRevenue($start_date, $end_date)
 	{
 		
 		$dbServername = "localhost";
@@ -77,18 +77,16 @@
 
 		$putt = $connTwo->query($puttSql);
 		$puttResult = $putt->fetch_assoc();	
-
-		//if statements to check which ride is most profitable. 
-		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=>$speedResult, "Petaluma Aqua"=>$aquaResult, "Petaluma Putt"=>$puttResult);
 		
-		asort($array);		
-		//$mostProfitableKey = " "; 
+		
+		
+		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
+				
+		echo "Revenue per Attraction". "</br>";
 		foreach($array as $first => $val){			
 			echo "Ride: " . $first . " Total Revenue: $" . implode(" ",$val). "</br>";
 		}		
-		$mostProfitableValue = max(array_values($array)); 
-		$mostProfitableKey = array_search($mostProfitableValue, $array); 
-		echo $mostProfitableKey." is the most profitable Ride." . "</br>";
+		
 		$connTwo->close();	
 	}
 
@@ -104,31 +102,48 @@
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
-		
+		?>
+
+		<h4 align ="center" style = "color:blue">Gift Shop Sales Report </h4>
+		<hr>
+		<div class = "row">
+			<table class= "gift-shop-rev table-bordered" width="100%" border="0" style="padding-left:40px">
+			<thead>
+				<tr>
+					<th>Purchase Date</th>
+					<th>Total Revenue</th>
+				</tr>
+			</thead>
+
+		<?php
 		// Creates the SQL query to find the sum of 'total_revenue' values for any given start/end dates
-		$sql = "SELECT SUM(total_revenue) AS total FROM giftshop WHERE revenue_date BETWEEN '$start_date' AND '$end_date'";
-		
+		$sql = "SELECT order_date as date, OrderDetails.price, OrderDetails.quantity from Orders 
+				join OrderDetails on OrderDetails.order_detail_ID = OrdersID where date BETWEEN '$start_date' AND '$end_date' group by date";
 		// Executes the SQL query
-		$result = $conn->query($sql);
-		
-		// Checks if the query returned any results
-		if ($result->num_rows > 0)
-		{
-		
-			// Outputs the sum of the 'ticket_total' values
-			while($row = $result->fetch_assoc())
-			{
-				echo 'Total gift shop sales between ' . $start_date . ' and ' . $end_date . ': $' . $row['total'];
+		$result = $conn->query($sql);		 
+
+		if($result != false && $result->num_rows > 0){			
+			while($row = mysqli_fetch_array($result)){
+				?>
+				<tbody>
+					<tr>
+						<td><?php echo $row['purchase date'];?></td>
+						<td><?php echo $total = $row['price'] * $row['quantity'];?></td>
+			</tr>
+			<?php 
+			$totalGiftShopRev += $total; 
+			
 			}
-		
-		}
-		
-		// Runs if no valid values were found
-		else
-		{
-		
-			echo 'No results found';
-		
+			?>
+			<tr>
+				<td colspan="2" align = "center"> Total </td>
+				<td><?php echo $totalGiftShopRev . " is the total gift shop revenue.";?></td>
+		</tr>
+		</table>
+
+		<?php } 
+		else {
+			echo "No results found"; 
 		}
 		
 		// Closes the SQL connection
@@ -138,49 +153,7 @@
 	
 	}
 
-	/*
-	function findParkingRevenue($start_date, $end_date)
-	{
-		
-		$dbServername = "localhost";
-		$dbUsername = "root";
-		$dbPassword = "Decon_0213";
-		$dbName = "mydb";
-		
-		$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-		if (!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-		
-		// Creates the SQL query to find the total number of parking spaces in the park
-		$sql = "SELECT total_parking_space FROM parking";
-		
-		// Executes the SQL query
-		$totalSpots = $conn->query($sql);
-		
-		// Creates the SQL query to find the total number of available parking spaces in the park
-		$sql = "SELECT available_slots FROM parking";
-		
-		// Executes the SQL query
-		$availableSpots = $conn->query($sql);
-		
-		// Finds the total amount of taken spots (i.e. paid spots)
-		$paidSpots = totalSpots - availableSpots;
-		
-		// Creates the SQL query to find the parking rate per spot
-		$sql = "SELECT parking_rate FROM parking";
-		
-		// Executes the SQL query
-		$availableSpots = $conn->query($sql);
-		
-		// Calculates the total revenue of the parking lot
-		$totalParkingRevenue = $paidSpots * $availableSpots;
-		
-		// Outputs the total revenue of the parking lot
-		echo 'Total parking revenue is: ' . $totalParkingRevenue;
-
-	}
-	*/
+	
 	?>
 <?php
 	// Start login process
@@ -194,13 +167,12 @@
 	findTotalTicketRevenue($start_date, $end_date);
 	
 	// Calls the 'findMostProfitableRides' function
-	findMostProfitableRides($start_date, $end_date);
+	attractionRevenue($start_date, $end_date);
 	
 	// Calls the 'findGiftShopRevenue' function 
 	findGiftShopRevenue($start_date, $end_date);
 	
-	// Calls the 'findParkingRevenue' function
-	//findParkingRevenue($start_date, $end_date)
+
 	
 ?>
 

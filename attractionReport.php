@@ -7,6 +7,12 @@
 	<title>Attraction Report</title>
 </head>
 <body>
+	<nav class="navtop">
+		<div>
+			<h1>Petaluma Themepark</h1>
+		</div>
+	</nav>
+	<div class= content>
 	<h1>Attraction Report</h1>
 	<form method="post" action="attractionReport.php">
 		<label for="ride-name">Choose A Ride to Report:</label>
@@ -24,6 +30,7 @@
               </TD>        
           </TR>
           </div>
+	</div>
 
 
 		<br>
@@ -33,7 +40,7 @@
 </body>
 </html>
 
-<?
+<?php
 function totalEmployees($ride_name){
 
 
@@ -51,15 +58,6 @@ function numVisitorsPerAttraction($ride_name){
 		die("Connection failed: " . mysqli_connect_error());
 	}	
 
-	echo "<table border='1'>
-
-	<tr>
-
-	<th>Ride</th>
-
-	<th>Number of Visitors </th>	
-
-	</tr>";
 
 //query specific rides 
 	if($ride_name == "Petaluma Wheel"){
@@ -67,13 +65,10 @@ function numVisitorsPerAttraction($ride_name){
 		$wheelResult = $connTwo->query($wheel);
 		$rowWheel = $wheelResult->fetch_assoc();
 		if($wheelResult != false && $wheelResult->num_rows > 0){
-			echo "<tr>";
 
-  			echo "<td>" . "Petaluma Wheel" . "</td>";
-
-  			echo "<td>" . $rowWheel['totalQtyWheel'] . "</td>";
-
-  			echo "</tr>";
+ 
+  			echo "<td>". $rowWheel['totalQtyWheel'] . "</td>";
+ 
 		}
 	}
 
@@ -82,13 +77,10 @@ function numVisitorsPerAttraction($ride_name){
 		$speedResult = $connTwo->query($speed);
 		$rowSpeed = $speedResult->fetch_assoc();
 		if($speedResult != false && $speedResult->num_rows > 0){
-			echo "<tr>";
 
-  			echo "<td>" . "Petaluma Wheel" . "</td>";
 
-  			echo "<td>" . $rowSpeed['totalQtyWheel'] . "</td>";
-
-  			echo "</tr>";
+  			echo "<td>" . $rowSpeed['totalQtySpeed'] . "</td>";
+  			
 		}
 	}
 
@@ -97,13 +89,11 @@ function numVisitorsPerAttraction($ride_name){
 		$aquaResult = $connTwo->query($aqua);
 		$rowAqua = $aquaResult->fetch_assoc();
 		if($aquaResult != false && $aquaResult->num_rows > 0){
-			echo "<tr>";
+		
 
-  			echo "<td>" . "Petaluma Wheel" . "</td>";
+  			echo "<td>" . $rowAqua['totalQtyAqua'] . "</td>";
 
-  			echo "<td>" . $rowAqua['totalQtyWheel'] . "</td>";
 
-  			echo "</tr>";
 		}
 	}
 
@@ -112,13 +102,11 @@ function numVisitorsPerAttraction($ride_name){
 		$puttResult = $connTwo->query($putt);
 		$rowPutt = $puttResult->fetch_assoc();
 		if($puttResult != false && $puttResult->num_rows > 0){
-			echo "<tr>";
+		
 
-  			echo "<td>" . "Petaluma Wheel" . "</td>";
+  			echo "<td>" . $rowPutt['totalQtyPutt'] . "</td>";
 
-  			echo "<td>" . $rowPutt['totalQtyWheel'] . "</td>";
 
-  			echo "</tr>";
 		}
 	}
 
