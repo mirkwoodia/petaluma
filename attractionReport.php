@@ -127,11 +127,7 @@ function numMaintenance($ride_name){
 ?>
 
 
-<?php
-	// Start login process
-	//session_start();
-	
-	// Retrieves the start date and end date from 'revenueReport.html'
+<?php	
 	$ride_name = $_POST['ride-name'];
 	
 	// Calls the 'numVisitorPerAttraction' function
@@ -180,7 +176,7 @@ function numMaintenance($ride_name){
                       <option value="Wheel"> Petaluma Wheel </option>
                       <option value="Speed"> Petaluma Speedway </option>
                       <option value="Aqua"> Petaluma Aqua </option>  
-					  <option value="Putt"> Petaluma Putt-Putt </option>                  
+					  					<option value="Putt"> Petaluma Putt-Putt </option>                  
                  </select>
               </TD>        
           </TR>
@@ -197,8 +193,9 @@ function numMaintenance($ride_name){
 		</thead>
 		<tbody>
 		<tr>
-			<td><? echo $numVisitors; ?></td>
-			<td><?echo $numVisitors?></td>
+			<td><?= $ride_name ?></td>
+			<td><?= $numVisitors ?></td>
+			<td><?= $numVisitors ?></td>
 	
 		</tr>
 		
