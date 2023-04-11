@@ -100,9 +100,8 @@
 		$putt = $connTwo->query($puttSql);
 		$puttResult = $putt->fetch_assoc();	
 		
-		
-		
-		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
+		if($wheel->num_rows > 0 || $speed->num_rows >0 || $aqua->num_rows > 0 || $putt->num_rows >0){
+			$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
 
 		echo "<h1 style='text-align:center'>Revenue per Attraction from: " . $start_date . " to ". $end_date.  "</h1>";
 		echo "<table border='1'><br />";
@@ -118,6 +117,14 @@
 			echo "<td>" .  "$" . implode(" ",$val). "</td>";
 			echo "</tr>";
 		}		
+
+		}
+
+		else{
+			echo 'No results found';
+		}
+		
+		
 		
 		$connTwo->close();	
 	}
