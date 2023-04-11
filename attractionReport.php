@@ -129,22 +129,14 @@ function numMaintenance($ride_name){
 
 
 <?php	
-	$ride_name = $_POST['ride-name'];
 	
 	// Calls the 'numVisitorPerAttraction' function
-	if(isset($ride_name)){
+	if(isset($_POST['ride-name'])){
+		$ride_name = $_POST['ride-name'];
 		$numVisitors = numVisitorsPerAttraction($ride_name);
-		//echo $numVisitors;
+		$numMaintenance = numMaintenance($ride_name);
+		// echo $numVisitors;
 	}
-	
-	// Calls the 'numMaintenance' function
-	if(isset($ride_name)){
-		$numMaintenance = numMaintenance($ride_name);;
-		//echo $numMaintenance;
-	} 
-	
-	
-
 	
 ?>
 
@@ -198,9 +190,12 @@ function numMaintenance($ride_name){
 		</thead>
 		<tbody>
 		<tr>
-			<td><?= $ride_name ?></td>
-			<td><?= $numVisitors ?></td>
-			<td><?= $numMaintenance ?></td>
+			<?php
+				if(isset($_POST['ride-name'])) { ?>
+						<td><?= $ride_name ?></td>
+						<td><?= $numVisitors ?></td>
+						<td><?= $numMaintenance ?></td>
+				<?php } ?>
 	
 		</tr>
 		
