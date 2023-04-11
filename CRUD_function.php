@@ -30,7 +30,9 @@ echo <<<EOT
             <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
             <a href="read_Maintenance.php"><i class="fas fa-address-book"></i>Maintenances</a>
             <a href="Parking_report.php"><i class="fas fa-address-book"></i>Parking Report</a>
-            <a href="attractionUseReport.php"><i class="fas fa-address-book"></i>Attractions Report</a>
+            <a href="attractionUseReport.php"><i class="fas fa-address-book"></i>Attractions Usage Report</a>
+            <a href="revenueReport.php"><i class="fas fa-address-book"></i>Revenue Report</a>
+            <a href="attractionReport.php"><i class="fas fa-address-book"></i>Attractions Report</a>
             <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
         </div>
     </nav>
