@@ -127,7 +127,7 @@ function attractionRevenue($start_date, $end_date)
 			echo "<td>" .  "$" . implode(" ",$val). "</td>";
 			echo "</tr>";
 		}		
-
+		echo "</table>";
 		}
 
 		else{
@@ -138,7 +138,7 @@ function attractionRevenue($start_date, $end_date)
 		
 		$connTwo->close();	
 	}
-/*
+
 // Function for finding the revenue of the gift shop
 function findGiftShopRevenue($start_date, $end_date)
 {
@@ -157,23 +157,38 @@ function findGiftShopRevenue($start_date, $end_date)
 	}
 	
 	// Creates the SQL query to find the sum of 'total_revenue' values for any given start/end dates
-	$sql = "SELECT order_date as date, OrderDetails.price, OrderDetails.quantity from Orders 
-			join OrderDetails on OrderDetails.order_detail_ID = OrdersID where date BETWEEN '$start_date' AND '$end_date' group by date";
+	$sql = "SELECT order_date, OrderDetails.price AS price, OrderDetails.quantity AS quantity FROM Orders, OrderDetails WHERE order_date BETWEEN $start_date AND $end_date";
 	// Executes the SQL query
-	$result = $conn->query($sql);		 
-	if($result != false && $result->num_rows > 0){			
+	$result = $conn->query($sql);	
+	
+	$totalGiftShopRev = 0.00;
+	$total = 0.00;
+
+		echo "<h1 style='text-align:center'>GiftShop Revenue from: " . $start_date . " to ". $end_date.  "</h1>";
+		echo "<table border='1'><br />";
+		echo "<tr>";
+		echo "<th>Date</th>";
+		echo "<th>Total Revenue</th>";
+		echo "</tr>";
+		echo "<tr>";
+
+	if($result->num_rows > 0){			
 		while($row = mysqli_fetch_array($result)){
 	
-			echo $row['purchase date'];
-			echo $total = $row['price'] * $row['quantity'];
-	
+			echo "<td>". $row['order_date'] . "</td>";
+			$total = $row['price'] * $row['quantity'];
+			echo "<td>" . $total . "</td>";
+			echo "</tr>";
 			$totalGiftShopRev += $total; 
 		
 		}
+		echo "</table>";
 		
 		echo $totalGiftShopRev . " is the total gift shop revenue.";
 	
-	} 
+	}
+	
+
 	else {
 		echo "No results found"; 
 	}
@@ -181,10 +196,10 @@ function findGiftShopRevenue($start_date, $end_date)
 	// Closes the SQL connection
 	$conn->close();
 	
-	// TODO: Find the 'n' most profitable gift shops and return them as a list.
+	
 
 }
-*/
+
 
 ?>
 
@@ -203,7 +218,7 @@ findTotalTicketRevenue($start_date, $end_date);
 attractionRevenue($start_date, $end_date);
 
 // Calls the 'findGiftShopRevenue' function 
-//findGiftShopRevenue($start_date, $end_date);
+findGiftShopRevenue($start_date, $end_date);
 
 
 
