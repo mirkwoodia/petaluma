@@ -1,4 +1,5 @@
 
+
 <?php
 
 function numVisitorsPerAttraction($ride_name){
@@ -158,11 +159,15 @@ function numMaintenance($ride_name){
 </head>
 <body>
 	<?echo $numVisitors ?>
-	<nav class="navtop">
-		<div>
-			<h1>Petaluma Themepark</h1>
-		</div>
-	</nav>
+	<link rel="stylesheet" type="text/css" href="revenuereport.css">
+<nav class="navtop">
+        <div>
+            <h1>Petaluma Themepark</h1>
+            <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
+            <a href="Admin_Portal.html"><i class="fas fa-address-book"></i>More</a>
+            <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
+        </div>
+    </nav>
 	<div class= content>
 	<h1>Attraction Report</h1>
 	<form method="post" action="attractionReport.php">
