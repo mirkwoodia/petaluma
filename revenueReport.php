@@ -104,7 +104,7 @@
 		
 		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
 
-		echo "<h1 style='text-align:center'>Revenue per Attration from: " . $start_date . " to ". $end_date.  "</h1>";
+		echo "<h1 style='text-align:center'>Revenue per Attraction from: " . $start_date . " to ". $end_date.  "</h1>";
 		echo "<table border='1'><br />";
 		echo "<tr>";
 		echo "<th>Ride Name</th>";
