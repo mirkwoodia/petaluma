@@ -308,6 +308,65 @@ INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, T
 UNLOCK TABLES;
 
 --
+-- Table structure for table `orderdetails`
+--
+
+DROP TABLE IF EXISTS `orderdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orderdetails` (
+  `order_detail_ID` int NOT NULL AUTO_INCREMENT,
+  `orderID` int NOT NULL,
+  `productID` int NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`order_detail_ID`),
+  KEY `orderID` (`orderID`),
+  KEY `productID` (`productID`),
+  CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`),
+  CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`)
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+LOCK TABLES `orderdetails` WRITE;
+/*!40000 ALTER TABLE `orderdetails` DISABLE KEYS */;
+INSERT INTO `orderdetails` VALUES (70,80,12,1,25.00),(71,80,9,1,19.00);
+/*!40000 ALTER TABLE `orderdetails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `orderID` int NOT NULL AUTO_INCREMENT,
+  `member_ID` mediumint NOT NULL,
+  `order_date` date NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`orderID`),
+  KEY `member_ID` (`member_ID`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (80,103,'2023-04-02',25.00),(85,103,'2023-04-05',19.00);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `park`
 --
 
@@ -393,6 +452,35 @@ LOCK TABLES `parking_slots` WRITE;
 /*!40000 ALTER TABLE `parking_slots` DISABLE KEYS */;
 INSERT INTO `parking_slots` VALUES ('Lot A',100,100),('Lot B',150,149),('Lot C',200,200),('Lot D',75,74);
 /*!40000 ALTER TABLE `parking_slots` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `products` (
+  `productID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `des` text,
+  `price` double NOT NULL,
+  `quantity` int NOT NULL DEFAULT '0',
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`productID`),
+  UNIQUE KEY `giftID_UNIQUE` (`productID`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (9,'Petaluma Plushie','Squishy plushy',19,40,'2021-04-10 00:00:00'),(11,'Petaluma Cap','Baseball Cap',15,40,'2021-04-10 00:00:00'),(12,'Petaluma Hoodie','Sweatshirt',25,40,'2021-04-10 00:00:00'),(15,'Petaluma Bracelet','Beaded Bracelet',25,100,'2021-04-10 00:00:00');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -517,4 +605,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-10  5:30:18
+-- Dump completed on 2023-04-10 23:11:42

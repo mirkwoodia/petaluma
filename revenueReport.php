@@ -57,7 +57,7 @@ function findTotalTicketRevenue($start_date, $end_date)
 		}		
 		
 		echo "</table>";
-		echo 'Total ticket sales between ' . $start_date . ' and ' . $end_date . ': $' . $totalRevenue . "</br>";
+		echo "<h4 style='text-align:center'>Total Ticket Sales Between: " . $start_date . " and " . $end_date . ": $" . $totalRevenue . "</h1>". "</br>";
 	
 	}
 	
@@ -127,7 +127,7 @@ function attractionRevenue($start_date, $end_date)
 			echo "<td>" .  "$" . implode(" ",$val). "</td>";
 			echo "</tr>";
 		}		
-
+		echo "</table>";
 		}
 
 		else{
@@ -138,7 +138,7 @@ function attractionRevenue($start_date, $end_date)
 		
 		$connTwo->close();	
 	}
-/*
+
 // Function for finding the revenue of the gift shop
 function findGiftShopRevenue($start_date, $end_date)
 {
@@ -150,41 +150,60 @@ function findGiftShopRevenue($start_date, $end_date)
 	$dbName = "mydb";
 	
 	// Connects to the database and checks for connection error
-	$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-	if (!$conn)
+	$connFour = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+	if (!$connFour)
 	{
 		die("Connection failed: " . mysqli_connect_error());
 	}
 	
-	// Creates the SQL query to find the sum of 'total_revenue' values for any given start/end dates
-	$sql = "SELECT order_date as date, OrderDetails.price, OrderDetails.quantity from Orders 
-			join OrderDetails on OrderDetails.order_detail_ID = OrdersID where date BETWEEN '$start_date' AND '$end_date' group by date";
-	// Executes the SQL query
-	$result = $conn->query($sql);		 
-	if($result != false && $result->num_rows > 0){			
-		while($row = mysqli_fetch_array($result)){
+// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
+	$sql = "SELECT order_date, OrderDetails.price AS price , OrderDetails.quantity AS quantity FROM Orders, OrderDetails WHERE order_date BETWEEN '$start_date' AND '$end_date'";
 	
-			echo $row['purchase date'];
-			echo $total = $row['price'] * $row['quantity'];
+// Executes the SQL query
+	$result = $connFour->query($sql);
+	$totalRevenue = 0.00; 
+	$total = 0.00;
+	echo "<h1 style='text-align:center'>Total Gift Shop Revenue from: " . $start_date . " to ". $end_date.  "</h1>";
+	echo "<table border='1'><br />";
+	echo "<tr>";
+	echo "<th>Date</th>";
+	echo "<th>Total Revenue</th>";
+	echo "</tr>";
+	echo "<tr>";
+// Checks if the query returned any results
+	if ($result != false && $result->num_rows > 0)
+	{	
 	
-			$totalGiftShopRev += $total; 
+	// Outputs the sum of the 'ticket_total' values
+	while($row = mysqli_fetch_array($result))
+	{
 		
-		}
+		echo "<td>" . $row['order_date'] . "</td>";
+		$total = $row['quantity'] * $row['price'];		
+		echo "<td>" . "$". $total ."</td>";
+		echo "</tr>";
+			 
+		$totalRevenue += $total;
 		
-		echo $totalGiftShopRev . " is the total gift shop revenue.";
+	}		
 	
-	} 
-	else {
-		echo "No results found"; 
-	}
-	
-	// Closes the SQL connection
-	$conn->close();
-	
-	// TODO: Find the 'n' most profitable gift shops and return them as a list.
+	echo "</table>";
+	echo "<h4 style='text-align:center'>Total Sales Between: " . $start_date . " and " . $end_date . ": $" . $totalRevenue . "</h4>"."</br>";
 
 }
-*/
+
+// Runs if no valid values were found
+else
+{		
+	echo 'No results found';		
+}		
+
+// Closes the SQL connection
+$connFour->close();
+
+
+}
+
 
 ?>
 
@@ -203,7 +222,7 @@ findTotalTicketRevenue($start_date, $end_date);
 attractionRevenue($start_date, $end_date);
 
 // Calls the 'findGiftShopRevenue' function 
-//findGiftShopRevenue($start_date, $end_date);
+findGiftShopRevenue($start_date, $end_date);
 
 
 
