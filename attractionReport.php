@@ -1,7 +1,16 @@
+<link rel="stylesheet" type="text/css" href="revenuereport.css">
+<nav class="navtop">
+        <div>
+            <h1>Petaluma Themepark</h1>
+            <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
+            <a href="read_Maintenance.php"><i class="fas fa-address-book"></i>Maintenances</a>
+            <a href="Parking_report.php"><i class="fas fa-address-book"></i>Parking Report</a>
+            <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
+        </div>
+    </nav>
 
 
 <?php
-
 function numVisitorsPerAttraction($ride_name){
 
 	$dbServername = "localhost";
@@ -14,55 +23,29 @@ function numVisitorsPerAttraction($ride_name){
 		die("Connection failed: " . mysqli_connect_error());
 	}	
 
-	
-//query specific rides 
-
-	if($ride_name == "Wheel"){
-		$wheel = "SELECT SUM(QtyWheel) as totalQtyWheel from ticket_booth";
-		$wheelResult = $connTwo->query($wheel);
-		$rowWheel = $wheelResult->fetch_assoc();
-		if($wheelResult != false && $wheelResult->num_rows > 0){
-		
-			return $rowWheel['totalQtyWheel'];
-			
-		}
+	$name = "";
+	if($ride_name == "500"){
+		$name = "QtyWheel"; 
+	}
+	else if($ride_name == "501"){
+		$name = "QtySpeed"; 
+	}
+	else if($ride_name == "503"){
+		$name = "QtyAqua"; 
+	}
+	else if($ride_name == "504"){
+		$name = "QtyPutt";
 	}
 
+	$numVisitSQL = "SELECT SUM($name) as totalQtyWheel from ticket_booth";
+	$resultnumVisitSQL = $connTwo->query($numVisitSQL);
+	$row = $resultnumVisitSQL->fetch_assoc();
 
-	else if($ride_name == "Speed"){
-		$speed = "SELECT SUM(QtySpeed) as totalQtySpeed from ticket_booth";
-		$speedResult = $connTwo->query($speed);
-		$rowSpeed = $speedResult->fetch_assoc();
-		if($speedResult != false && $speedResult->num_rows > 0){
-
-			return $rowSpeed['totalQtySpeed'];		
-  			
-		}
-	}
-
-
-	else if($ride_name == "Aqua"){
-		$aqua = "SELECT SUM(QtyAqua) as totalQtyAqua from ticket_booth";		
-		$aquaResult = $connTwo->query($aqua);
-		$rowAqua = $aquaResult->fetch_assoc();
-		if($aquaResult != false && $aquaResult->num_rows > 0){
-		
-			return $rowAqua['totalQtyAqua'];
-
-		}
-	}
-
-
-	else if($ride_name == "Putt"){
-		$putt = "SELECT SUM(QtyPutt) as totalQtyPutt from ticket_booth";
-		$puttResult = $connTwo->query($putt);
-		$rowPutt = $puttResult->fetch_assoc();
-		if($puttResult != false && $puttResult->num_rows > 0){
-
-			return $rowPutt['totalQtyPutt'];	
-
-		}
+	if ($resultnumVisitSQL != false && $resultnumVisitSQL->num_rows > 0)
+	{	
+		return $row['totalQtyWheel'];
 	}	
+
 
 }
 
@@ -77,54 +60,126 @@ function numMaintenance($ride_name){
 	if (!$connThree) {
 		die("Connection failed: " . mysqli_connect_error());
 	}	
-//this counts the rows associated with the ride. 
-	if($ride_name == "Wheel"){
-		$wheel = "SELECT attractionID, COUNT(*) AS wheelMain FROM maintenance WHERE attractionID = 500 GROUP BY attractionID";
-		$wheelResult = $connThree->query($wheel);
-		$rowWheel = $wheelResult->fetch_assoc();
-		if($wheelResult != false && $wheelResult->num_rows > 0){
+
+	$totalMainSQL = "SELECT attractionID, COUNT(*) AS totalMain FROM maintenance WHERE attractionID = $ride_name GROUP BY attractionID";
+	$totalMainResult = $connThree->query($totalMainSQL); 
+	$row = $totalMainResult->fetch_assoc();
+
+	if ($totalMainResult != false && $totalMainResult->num_rows > 0)
+	{	
+		return $row['totalMain'];
+	}
+	
+
+}
+function allVisitorsPerAttraction($ride_name){
+
+	$dbServername = "localhost";
+	$dbUsername = "root";
+	$dbPassword = "Decon_0213";
+	$dbName = "mydb";
 		
-			return $rowWheel['wheelMain'];
-			
-		}
+	$connFive = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+	if (!$connFive) {
+		die("Connection failed: " . mysqli_connect_error());
+	}	
+	
+	$name = "";
+	if($ride_name == "500"){
+		$name = "QtyWheel"; 
 	}
-	else if($ride_name == "Speed"){
-		$speed = "SELECT attractionID, COUNT(*) AS speedMain FROM maintenance WHERE attractionID = 501 GROUP BY attractionID";
-		$speedResult = $connThree->query($speed);
-		$rowSpeed = $speedResult->fetch_assoc();
-		if($speedResult != false && $speedResult->num_rows > 0){
-
-			return $rowSpeed['speedMain'];		
-  			
-		}
+	else if($ride_name == "501"){
+		$name = "QtySpeed"; 
 	}
-	else if($ride_name == "Aqua"){
-		$aqua = "SELECT attractionID, COUNT(*) AS aquaMain FROM maintenance WHERE attractionID = 502 GROUP BY attractionID";
-		$aquaResult = $connThree->query($aqua);
-		$rowAqua = $aquaResult->fetch_assoc();
-		if($aquaResult != false && $aquaResult->num_rows > 0){
-		
-			return $rowAqua['aquaMain'];
-
-		}
-
+	else if($ride_name == "503"){
+		$name = "QtyAqua"; 
 	}
-	else if($ride_name == "Putt"){
-		$putt = "SELECT attractionID, COUNT(*) AS puttMain FROM maintenance WHERE attractionID = 503 GROUP BY attractionID";
-		$puttResult = $connThree->query($putt);
-		$rowPutt = $puttResult->fetch_assoc();
-		if($puttResult != false && $puttResult->num_rows > 0){
-
-			return $rowPutt['puttMain'];	
-
-		}
+	else if($ride_name == "504"){
+		$name = "QtyPutt";
 	}
+	
+	$visitorPerAttractionSQL = "SELECT $name AS name, purchase_date from ticket_booth";
+	$visitorSQLResult = $connFive->query($visitorPerAttractionSQL); 	
 
+	echo "<h1 style='text-align:center'>All Visitors" . "</h1>";
+	echo "<table border='1'>";
+  	echo "<thead>";
+  	echo "<tr>";
+  	echo "<th>Purchase Date</th>";
+  	echo "<th>Quantity</th>";
+	echo "</tr>";
+ 	echo "</thead>";
+  	echo "<tbody>";
 
+	while ($row = $visitorSQLResult->fetch_assoc()) {
+		echo "<tr>";
+		echo "<td>" . $row['purchase_date'] . "</td>";
+		echo "<td>" . $row['name'] . "</td>";	
+		echo "</tr>";
+	}
+	  echo "</tbody>";
+	  echo "</table>";
+
+	$connFive->close(); 	
 }
 
 
 
+function maintenancePerAttraction($ride_name){
+
+	$dbServername = "localhost";
+	$dbUsername = "root";
+	$dbPassword = "Decon_0213";
+	$dbName = "mydb";
+		
+	$connFour = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+	if (!$connFour) {
+		die("Connection failed: " . mysqli_connect_error());
+	}		
+
+	$mainPerAttractionSQL = "SELECT maintenance_name, maintenance_description, maintenance_start_time, maintenance_end_time FROM maintenance WHERE attractionID = '$ride_name'";
+	$mainSQLResult = $connFour->query($mainPerAttractionSQL); 
+
+	$name = "";
+	if($ride_name == "500"){
+		$name = "Petaluma Wheel"; 
+	}
+	else if($ride_name == "501"){
+		$name = "Petaluma Speedway"; 
+	}
+	else if($ride_name == "503"){
+		$name = "Petaluma Aqua"; 
+	}
+	else if($ride_name == "504"){
+		$name = "Petaluma Putt-Putt";
+	}
+
+	echo "<h2 style='text-align:center'>Attraction Report for: " . $name.  "</h2>";
+	echo "<h1 style='text-align:center'>All Maintenances".  "</h1>";
+	echo "<table border='1'>";
+  	echo "<thead>";
+  	echo "<tr>";
+  	echo "<th>Maintenance Name</th>";
+  	echo "<th>Maintenance Description</th>";
+  	echo "<th>Maintenance Start Time</th>";
+	echo "<th>Maintenance End Time</th>";
+	echo "</tr>";
+ 	echo "</thead>";
+  	echo "<tbody>";
+
+	while ($row = $mainSQLResult->fetch_assoc()) {
+		echo "<tr>";
+		echo "<td>" . $row['maintenance_name'] . "</td>";
+		echo "<td>" . $row['maintenance_description'] . "</td>";
+		echo "<td>" . $row['maintenance_start_time'] . "</td>";
+		echo "<td>" . $row['maintenance_end_time'] . "</td>";
+		echo "</tr>";
+	}
+	  echo "</tbody>";
+	  echo "</table>";
+
+	$connFour->close(); 	
+}
 ?>
 
 
@@ -135,74 +190,28 @@ function numMaintenance($ride_name){
 		$ride_name = $_POST['ride-name'];
 		$numVisitors = numVisitorsPerAttraction($ride_name);
 		$numMaintenance = numMaintenance($ride_name);
-		// echo $numVisitors;
+
+		maintenancePerAttraction($ride_name);
+		allVisitorsPerAttraction($ride_name);
+
+		echo "<h1 style='text-align:center'>Total Visitors & Maintenances for this ride " .  "</h1>";
+		echo "<table>";
+ 	 	echo "<thead>";
+  		echo "<tr>";
+  		echo "<th>Total Visitors</th>";
+  		echo "<th>Total Maintenance</th>";
+  		echo "</tr>";
+  		echo "</thead>";
+  		echo "<tbody>";
+		echo "<td>" . $numVisitors . "</td>";
+		echo "<td>" . $numMaintenance . "</td>";
+		echo "</tbody>";
+  		echo "</table>";
+		
 	}
 	
 ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="attractionReport.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Attraction Report</title>
-</head>
-<body>
-	<?echo $numVisitors ?>
-	<link rel="stylesheet" type="text/css" href="revenuereport.css">
-<nav class="navtop">
-        <div>
-            <h1>Petaluma Themepark</h1>
-            <a href="Admin_Portal.html"><i class="fas fa-home"></i>Home</a>
-            <a href="Admin_Portal.html"><i class="fas fa-address-book"></i>More</a>
-            <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
-        </div>
-    </nav>
-	<div class= content>
-	<h1>Attraction Report</h1>
-	<form method="post" action="attractionReport.php">
-		<label for="ride-name">Choose A Ride to Report:</label>
-		<div class="form-group">      
-            <TR>
-              <TD class = "select"> Ride        
-              </TD>   
-              <TD ALIGN="center">
-                 <select id="ride-name" name="ride-name">        
-                      <option value="Wheel"> Petaluma Wheel </option>
-                      <option value="Speed"> Petaluma Speedway </option>
-                      <option value="Aqua"> Petaluma Aqua </option>  
-					  <option value="Putt"> Petaluma Putt-Putt </option>                  
-                 </select>
-              </TD>        
-          </TR>
-          </div>
-		</div>
 
-	<table>
-		<thead>
-		<tr>
-			<td>Ride Name</td>
-			<td>Number of Visitors</td>
-			<td>Number of Maintenances</td>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<?php
-				if(isset($_POST['ride-name'])) { ?>
-						<td><?= $ride_name ?></td>
-						<td><?= $numVisitors ?></td>
-						<td><?= $numMaintenance ?></td>
-				<?php } ?>
-	
-		</tr>
-		
-		</tbody>
-	</table>
-		<input type="submit" value="Generate Report">
-	</form>
-</body>
-</html>
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="attractionReport.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Attraction Report</title>
+</head>
+<body>
+	
+	
+<nav class="navtop">
+        <div>
+            <h1>Petaluma Themepark</h1>
+            <a href="Admin_Portal.html"><i class="fas fa-home"></i>Home</a>
+            <a href="Admin_Portal.html"><i class="fas fa-address-book"></i>More</a>
+            <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
+        </div>
+    </nav>
+	<div class= content>
+	<h1>Attraction Report</h1>
+	<form method="post" action="attractionReport.php">
+		<label for="ride-name">Choose A Ride to Report:</label>
+		<div class="form-group">      
+            <TR>
+              <TD class = "select"> Ride        
+              </TD>   
+              <TD ALIGN="center">
+                 <select id="ride-name" name="ride-name">        
+                      <option value="500"> Petaluma Wheel </option>
+                      <option value="501"> Petaluma Speedway </option>
+                      <option value="502"> Petaluma Aqua </option>  
+					  <option value="503"> Petaluma Putt-Putt </option>                  
+                 </select>
+              </TD>        
+          </TR>
+          </div>
+		</div>	
+
+		<input type="submit" value="Generate Report">
+	</form>
+</body>
+</html>

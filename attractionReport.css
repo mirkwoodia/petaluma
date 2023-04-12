@@ -319,3 +319,32 @@
   opacity: 1;
   display: inline-block;
   }
+
+  th {
+    background-color: #3f69a8;
+    color: white;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+    width: 500px;
+}
+
+tr:nth-child(odd) {
+    background-color: #decdcd;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+	margin-top:50px
+}
+
+
+h1 {
+	color: #3f69a8;
+	font-size:20px;
+	margin: 0 auto;
+	margin-top:50px
+  }
