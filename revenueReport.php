@@ -33,7 +33,7 @@ function findTotalTicketRevenue($start_date, $end_date)
 	// Executes the SQL query
 	$result = $connOne->query($sql);
 	$totalRevenue = 0.00; 
-	echo "<h1 style='text-align:center'>Total Ticket Revenue from: " . $start_date . " to ". $end_date.  "</h1>";
+	echo "<h1 style='text-align:center'>Total Ticket Revenue From: " . $start_date . " to ". $end_date.  "</h1>";
 	echo "<table border='1'><br />";
 	echo "<tr>";
 	echo "<th>Date</th>";
@@ -117,7 +117,7 @@ function attractionRevenue($start_date, $end_date)
 		
 		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
 
-		echo "<h1 style='text-align:center'>Revenue per Attraction from: " . $start_date . " to ". $end_date.  "</h1>";
+		echo "<h1 style='text-align:center'>Revenue Per Attraction From: " . $start_date . " to ". $end_date.  "</h1>";
 		echo "<table border='1'><br />";
 		echo "<tr>";
 		echo "<th>Ride Name</th>";
@@ -173,7 +173,7 @@ function findGiftShopRevenue($start_date, $end_date)
 	$totalRevenue = 0.00; 
 	$total = 0.00;
 	
-	echo "<h1 style='text-align:center'>Total Gift Shop Revenue from: " . $start_date . " to ". $end_date.  "</h1>";
+	echo "<h1 style='text-align:center'>Total Gift Shop Revenue From: " . $start_date . " to ". $end_date.  "</h1>";
 	echo "<table border='1'><br />";
 	echo "<tr>";
 	echo "<th>Date</th>";
