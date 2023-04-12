@@ -1,0 +1,27 @@
+{
+  "parking": [
+    {
+      "type": "low",
+      "used": 10,
+      "free": 20,
+      "total": 30
+    },
+    {
+      "type": "medium",
+      "used": 15,
+      "free": 25,
+      "total": 40
+    },
+    {
+      "type": "high",
+      "used": 5,
+      "free": 15,
+      "total": 20
+    }
+  ],
+  "total": {
+    "used": 30,
+    "free": 60,
+    "total": 90
+  }
+}
