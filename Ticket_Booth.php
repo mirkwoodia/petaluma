@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedin'])) {
             <h1>Petaluma Themepark</h1>
             <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
             <a href="Admin_Portal.html"><i class="fas fa-address-book"></i>More</a>
-            <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
+            <a href="Logout_Member.php"><i class="fas fa-address-book"></i>Logout</a>
         </div>
     </nav>
 
@@ -48,7 +48,7 @@ if (!isset($_SESSION['loggedin'])) {
 
             <tr>
                 <td>Petaluma Wheel</td>
-                <td><img style="display:block;" width="100%" height="100%" src="ferris.webp" alt = "Petaluma Wheel"></td>
+                <td><img style="display:block;" width="50%" height="50%" src="ferris.webp" alt = "Petaluma Wheel"></td>
                 <td><input type="text" name="QtyWheel" id="QtyWheel"></td>
                 <td>$10.25</td>
                 <td id="Total Petaluma Wheel"></td>
@@ -56,7 +56,7 @@ if (!isset($_SESSION['loggedin'])) {
 
             <tr>
                 <td>Petaluma Speedway</td>
-                <td><img style="display:block;" width="100%" height="100%" src="speed.webp" alt = "Petaluma Speedway"></td>
+                <td><img style="display:block;" width="50%" height="50%" src="speed.webp" alt = "Petaluma Speedway"></td>
                 <td><input type="text" name="QtySpeed" id="QtySpeed"></td>
                 <td>$25.50</td>
                 <td id="Total Petaluma Speed"></td>
@@ -64,7 +64,7 @@ if (!isset($_SESSION['loggedin'])) {
             
             <tr>
                 <td>Petaluma Aqua</td>
-                <td><img style="display:block;" width="100%" height="100%" src="aqua.webp" alt = "Petaluma Aqua"></td>
+                <td><img style="display:block;" width="50%" height="50%" src="aqua.webp" alt = "Petaluma Aqua"></td>
                 <td><input type="text" name= "QtyAqua" id="QtyAqua"></td>
                 <td>$20.00</td>
                 <td id="Total Petaluma Aqua"></td>
@@ -72,7 +72,7 @@ if (!isset($_SESSION['loggedin'])) {
            
             <tr>
                 <td>Petaluma Putt-Putt</td>
-                <td><img style="display:block;" width="100%" height="100%" src="putt.webp" alt = "Petaluma Putt-Putt"></td>
+                <td><img style="display:block;" width="50%" height="50%" src="putt.webp" alt = "Petaluma Putt-Putt"></td>
                 <td><input type="text" name="QtyPutt" id="QtyPutt"></td>
                 <td>$30.50</td>
                 <td id="Total Petaluma Putt"></td>
