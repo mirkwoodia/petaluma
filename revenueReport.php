@@ -38,10 +38,10 @@ function findTotalTicketRevenue($start_date, $end_date)
 	echo "<table border='1'><br />";
 	echo "<tr>";
 	echo "<th>Date</th>";
-	echo "<th>Quantity Wheel</th>";
-	echo "<th>Quantity Speed</th>";
-	echo "<th>Quantity Aqua</th>";
-	echo "<th>Quantity Putt</th>";
+	echo "<th>Quantity Wheel ($10.25)</th>";
+	echo "<th>Quantity Speed ($25.50)</th>";
+	echo "<th>Quantity Aqua ($20.00)</th>";
+	echo "<th>Quantity Putt ($30.50)</th>";
 	echo "<th>Total Revenue</th>";
 	echo "</tr>";
 	echo "<tr>";
