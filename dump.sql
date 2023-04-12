@@ -294,7 +294,7 @@ CREATE TABLE `member` (
   `QtyAqua` int unsigned DEFAULT '0',
   `QtyPutt` int unsigned DEFAULT '0',
   PRIMARY KEY (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -303,7 +303,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown',0,0,0,0),(103,'Bobby','Brown','Female','111 eldridge lane','2023-03-28','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$wch8aLs8/dGM9Vi0Z5uAlOzfdaHK3jPHz75MLFdBnAvxq6Xi91scq','brown',0,0,0,0),(104,'me','wa','Female','aw','2023-03-07','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$4mBshpgnyGJ05BCxDnLWCO6AqtrH1DDx/xV6P0Y1nx6Tjz45pnJS2','member',0,0,0,0);
+INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown',0,0,0,0),(103,'Bobby','Brown','Female','111 eldridge lane','2023-03-28','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$wch8aLs8/dGM9Vi0Z5uAlOzfdaHK3jPHz75MLFdBnAvxq6Xi91scq','brown',5,6,4,5),(104,'me','wa','Female','aw','2023-03-07','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$4mBshpgnyGJ05BCxDnLWCO6AqtrH1DDx/xV6P0Y1nx6Tjz45pnJS2','member',0,0,0,0),(105,'Sally','Sea','Female','613 Uma St Houston, TX','2003-02-13','613-715-8989','SallySeasShells@yahoo.com','2023-04-12','$2y$10$jXN5rmtdu0FzDsKHLY7wl.jBNphSkeLm3DNhaAejjME.2nMA9j.x2','SSea',10,7,8,22),(106,'Peter','Pickles','Male','189 Cypress Houston, TX','1994-06-16','713-895-7894','PPickles@gmail.com','2023-04-12','$2y$10$oLSjWAMdmu6TMotXFRR.4.OYfdbnxXK/kCumaFfciPhq2MAFI.v2K','PPickles',16,23,35,29),(107,'Princess','Peaches','Female','123 Mario St. Houston, TX','1965-01-08','189-199-7894','ilovemario@gmail.com','2023-04-12','$2y$10$jAvnByQXGBSlsE5k4clKMuPVACDBOPVQqhRul7eWZTHbFLj/czJQS','PPeaches',16,35,18,20),(108,'Bing','Bong','Male','789 Fondren Houston, TX','2000-11-15','123-456-7891','Bong1234@yahoo.com','2023-04-12','$2y$10$YhN14GzIQp9w97Or7Z0jn.eIfyaKFaQ6pzGcWKAh3M.14vAUp0fl.','BingBong',25,35,15,25);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,7 +500,7 @@ CREATE TABLE `ticket_booth` (
   `ticket_total` double NOT NULL DEFAULT '0',
   `member_id` int DEFAULT NULL,
   PRIMARY KEY (`ticket_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -509,7 +509,7 @@ CREATE TABLE `ticket_booth` (
 
 LOCK TABLES `ticket_booth` WRITE;
 /*!40000 ALTER TABLE `ticket_booth` DISABLE KEYS */;
-INSERT INTO `ticket_booth` VALUES (2,'2024-07-28',5,1,9,2,245,NULL),(3,'2024-07-28',10,1,1,1,0,NULL),(4,'2023-03-28',1,1,1,1,80,NULL),(5,'2023-03-28',12,2,4,1,215,1),(6,'2023-03-28',12,1,1,1,135,103),(7,'2023-03-28',1,1,1,1,80,104),(8,'2023-03-28',2,1,2,1,100,104),(9,'2023-03-28',3,2,2,1,140,104),(10,'2023-03-28',3,2,1,3,175,104),(11,'2023-03-28',3,2,1,1,125,104),(12,'2023-03-28',34,34,34,34,2720,103),(13,'2023-03-28',12,12,12,122,3710,103);
+INSERT INTO `ticket_booth` VALUES (14,'2023-03-28',2,1,3,1,136.5,103),(15,'2023-02-16',1,0,0,1,40.75,103),(16,'2023-03-10',0,5,1,3,239,103),(17,'2023-02-14',2,0,0,0,20.5,103),(18,'2023-03-27',1,2,0,5,213.75,105),(19,'2023-03-02',2,2,2,2,172.5,105),(20,'2023-02-14',2,2,2,2,172.5,105),(21,'2023-03-16',5,1,4,8,400.75,105),(22,'2023-03-28',0,0,0,5,152.5,105),(23,'2023-03-28',1,2,1,5,233.75,106),(24,'2022-12-28',4,4,1,3,254.5,106),(25,'2023-03-08',1,2,3,4,243.25,106),(26,'2023-02-14',1,0,0,0,10.25,106),(27,'2023-03-10',1,5,3,8,441.75,106),(28,'2023-01-11',3,6,4,8,507.75,106),(29,'2022-06-14',5,4,23,1,643.75,106),(30,'2023-03-28',2,1,5,4,268,107),(31,'2023-03-06',1,2,4,6,324.25,107),(32,'2023-01-25',2,2,2,2,172.5,107),(33,'2023-02-14',2,2,2,2,172.5,107),(34,'2023-01-03',5,3,2,1,198.25,107),(35,'2022-11-28',2,23,1,3,718.5,107),(36,'2023-03-08',2,2,2,2,172.5,107),(37,'2023-03-28',2,2,2,2,172.5,108),(38,'2023-01-11',4,4,0,4,265,108),(39,'2023-03-09',2,2,2,2,172.5,108),(40,'2023-01-19',4,5,4,4,370.5,108),(41,'2023-02-14',3,3,3,3,258.75,108),(42,'2022-11-17',4,4,4,4,345,108),(43,'2022-12-23',6,6,0,6,397.5,108),(44,'2023-03-17',0,9,0,0,229.5,108);
 /*!40000 ALTER TABLE `ticket_booth` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -564,6 +564,23 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `calcTicketTotal` BEFORE INSERT ON `ticket_booth` FOR EACH ROW BEGIN
+ set NEW.ticket_total = (NEW.QtyWheel* 10.25) + (NEW.QtySpeed * 25.50) + (NEW.QtyAqua * 20.00) + (NEW.QtyPutt * 30.50);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `visitor`
@@ -605,4 +622,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-10 23:11:42
+-- Dump completed on 2023-04-12  4:47:21
