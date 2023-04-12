@@ -51,7 +51,8 @@
         echo "</form>";
         echo "</td>";
         echo "</tr>";
-        $member_query = "SELECT m.* FROM get_parking_pass gpp 
+
+        $member_query = "SELECT m.*, gpp.parking_lot FROM get_parking_pass gpp 
         JOIN member m ON gpp.member_ID = m.member_ID 
         WHERE gpp.parking_lot = '{$row['lot_name']}'";
         $member_result = mysqli_query($dbc, $member_query);
