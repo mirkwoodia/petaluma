@@ -40,6 +40,7 @@ function findTotalTicketRevenue($start_date, $end_date)
 	echo "<th>Total Revenue</th>";
 	echo "</tr>";
 	echo "<tr>";
+	
 	// Checks if the query returned any results
 	if ($result != false && $result->num_rows > 0)
 	{	
