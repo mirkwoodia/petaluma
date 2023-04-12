@@ -37,7 +37,13 @@ if (!empty($_POST)) {
         <label for="maintenance_description">Maintenance Description</label>
         <label for="attractionID">Attraction ID</label>
         <input type="text" name="maintenance_description" placeholder="Enter Description:" id="maintenance_description">        
-        <input type="text" name="attractionID" placeholder="Enter Attraction ID" id="attractionID">   
+        <!-- <input type="text" name="attractionID" placeholder="Enter Attraction ID" id="attractionID">   -->
+        <select style="width:400px" name="attractionID" placeholder="Select Attraction" id="attractionID">
+            <option value="500">Ferris Wheel</option>
+            <option value="501">Speedway</option>
+            <option value="502">Water Ride</option>
+            <option value="503">Mini Golf</option>
+        </select>
 
         <label for="maintenance_start_time">Created</label>
         <label for="maintenance_end_time">Finished</label>

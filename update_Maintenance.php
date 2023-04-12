@@ -42,7 +42,12 @@ if (isset($_GET['id'])) {
         <label for="maintenance_description">Maintenance Description</label>
         <label for="attractionID">Attraction ID</label>
         <input type="text" name="maintenance_description" placeholder="Enter Description:" value="<?=$maintenance['maintenance_description']?>" id="maintenance_description">        
-        <input type="text" name="attractionID" placeholder="Enter Attraction ID" value="<?=$maintenance['attractionID']?>" id="attractionID">   
+        <select style="width:400px" name="attractionID" id="attractionID">
+            <option value="500" <?php if($maintenance['attractionID'] == '500'){echo("selected");}?> >Ferris Wheel</option>
+            <option value="501" <?php if($maintenance['attractionID'] == '501'){echo("selected");}?> >Speedway</option>
+            <option value="502" <?php if($maintenance['attractionID'] == '502'){echo("selected");}?> >Water Ride</option>
+            <option value="503" <?php if($maintenance['attractionID'] == '503'){echo("selected");}?> >Mini Golf</option>
+        </select> 
 
         <label for="maintenance_start_time">Created</label>
         <label for="maintenance_end_time">Finished</label>

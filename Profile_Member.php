@@ -17,11 +17,11 @@ $connProfile = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
         die("Connection failed: " . mysqli_connect_error());
     }
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
-$stmt = $connProfile->prepare('SELECT first_name, last_name, username, email_address, join_date FROM member WHERE member_ID = ?');
+$stmt = $connProfile->prepare('SELECT first_name, last_name, username, email_address, join_date, QtyWheel, QtySpeed, QtyAqua, QtyPutt FROM member WHERE member_ID = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($first_name, $last_name, $username, $email_address, $join_date);
+$stmt->bind_result($first_name, $last_name, $username, $email_address, $join_date, $QtyWheel, $QtySpeed, $QtyAqua, $QtyPutt);
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -65,9 +65,25 @@ $stmt->close();
 						<td>Email:</td>
 						<td><?=$email_address?></td>
 					</tr>                    
-                    <tr>
+          <tr>
 						<td>Join Date:</td>
 						<td><?=$join_date?></td>
+					</tr>
+					<tr>
+						<td>Ferris Wheel:</td>
+						<td><?=$QtyWheel?></td>
+					</tr>
+					<tr>
+						<td>Speedway:</td>
+						<td><?=$QtySpeed?></td>
+					</tr>
+					<tr>
+						<td>Water ride:</td>
+						<td><?=$QtyAqua?></td>
+					</tr>
+					<tr>
+						<td>Mini Golf:</td>
+						<td><?=$QtyPutt?></td>
 					</tr>
 				</table>
 			</div>

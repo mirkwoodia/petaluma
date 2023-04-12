@@ -162,6 +162,7 @@ body {
     margin-bottom: 15px;
     border: 1px solid #cccccc;
 }
+
 .update form input[type="submit"] {
     display: block;
     background-color: #38b673;
