@@ -72,6 +72,7 @@ function findTotalTicketRevenue($start_date, $end_date)
 	
 }
 
+// Function for finding the revenue of each attraction in the park
 function attractionRevenue($start_date, $end_date)
 {
 	
@@ -106,12 +107,14 @@ function attractionRevenue($start_date, $end_date)
 	$aqua = $connTwo->query($aquaSql);
 	$aquaResult = $aqua->fetch_assoc();	
 
-		// Makes query for the putt ride
-		$putt = $connTwo->query($puttSql);
-		$puttResult = $putt->fetch_assoc();	
+	// Makes query for the putt ride
+	$putt = $connTwo->query($puttSql);
+	$puttResult = $putt->fetch_assoc();	
 		
-		if($wheel->num_rows > 0 || $speed->num_rows >0 || $aqua->num_rows > 0 || $putt->num_rows >0){
-			$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
+	if($wheel->num_rows > 0 || $speed->num_rows >0 || $aqua->num_rows > 0 || $putt->num_rows >0)
+	{
+		
+		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
 
 		echo "<h1 style='text-align:center'>Revenue per Attraction from: " . $start_date . " to ". $end_date.  "</h1>";
 		echo "<table border='1'><br />";
@@ -119,24 +122,28 @@ function attractionRevenue($start_date, $end_date)
 		echo "<th>Ride Name</th>";
 		echo "<th>Total Revenue</th>";
 		echo "</tr>";
-		echo "<tr>";
-				
+		echo "<tr>";		
 		
-		foreach($array as $first => $val){			
+		foreach($array as $first => $val)
+		{	
+			
 			echo "<td>" . $first . "</td>";
 			echo "<td>" .  "$" . implode(" ",$val). "</td>";
 			echo "</tr>";
-		}		
+			
+		}
+		
 		echo "</table>";
-		}
+		
+	}
 
-		else{
-			echo 'No results found';
-		}
+	else
+	{	
+		echo 'No results found';
+	}
 		
-		
-		
-		$connTwo->close();	
+		$connTwo->close();
+	
 	}
 
 // Function for finding the revenue of the gift shop
@@ -151,18 +158,20 @@ function findGiftShopRevenue($start_date, $end_date)
 	
 	// Connects to the database and checks for connection error
 	$connFour = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+	
 	if (!$connFour)
 	{
 		die("Connection failed: " . mysqli_connect_error());
 	}
 	
-// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
+	// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
 	$sql = "SELECT order_date, OrderDetails.price AS price , OrderDetails.quantity AS quantity FROM Orders, OrderDetails WHERE order_date BETWEEN '$start_date' AND '$end_date'";
 	
-// Executes the SQL query
+	// Executes the SQL query
 	$result = $connFour->query($sql);
 	$totalRevenue = 0.00; 
 	$total = 0.00;
+	
 	echo "<h1 style='text-align:center'>Total Gift Shop Revenue from: " . $start_date . " to ". $end_date.  "</h1>";
 	echo "<table border='1'><br />";
 	echo "<tr>";
@@ -170,44 +179,44 @@ function findGiftShopRevenue($start_date, $end_date)
 	echo "<th>Total Revenue</th>";
 	echo "</tr>";
 	echo "<tr>";
-// Checks if the query returned any results
+	
+	// Checks if the query returned any results
 	if ($result != false && $result->num_rows > 0)
 	{	
 	
-	// Outputs the sum of the 'ticket_total' values
-	while($row = mysqli_fetch_array($result))
-	{
+		// Outputs the sum of the 'ticket_total' values
+		while($row = mysqli_fetch_array($result))
+		{
 		
-		echo "<td>" . $row['order_date'] . "</td>";
-		$total = $row['quantity'] * $row['price'];		
-		echo "<td>" . "$". $total ."</td>";
-		echo "</tr>";
+			echo "<td>" . $row['order_date'] . "</td>";
+			$total = $row['quantity'] * $row['price'];		
+			echo "<td>" . "$". $total ."</td>";
+			echo "</tr>";
 			 
-		$totalRevenue += $total;
+			$totalRevenue += $total;
 		
-	}		
+		}		
 	
 	echo "</table>";
 	echo "<h4 style='text-align:center'>Total Sales Between: " . $start_date . " and " . $end_date . ": $" . $totalRevenue . "</h4>"."</br>";
 
+	}
+
+	// Runs if no valid values were found
+	else
+	{		
+		echo 'No results found';		
+	}		
+
+	// Closes the SQL connection
+	$connFour->close();
+
 }
-
-// Runs if no valid values were found
-else
-{		
-	echo 'No results found';		
-}		
-
-// Closes the SQL connection
-$connFour->close();
-
-
-}
-
 
 ?>
 
 <?php
+
 // Start login process
 //session_start();
 
@@ -224,11 +233,4 @@ attractionRevenue($start_date, $end_date);
 // Calls the 'findGiftShopRevenue' function 
 findGiftShopRevenue($start_date, $end_date);
 
-
-
 ?>
-
-
-
-
-
