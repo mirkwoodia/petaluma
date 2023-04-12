@@ -12,7 +12,7 @@ p {
 body {
   margin: 0;
   font-family: 'Prompt', sans-serif;
-  background: #918097;
+  background: #3c31dd;
   overflow-x: hidden;
 }
 
@@ -310,5 +310,3 @@ h1
 .navtop li a i {
   margin-right: 5px;
 }
-
-
