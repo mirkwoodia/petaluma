@@ -23,6 +23,7 @@ section {
   align-items: center;
   min-height: 400px;
   padding-top: 100px;
+  background-color: #0069ff
 }
 
 .blue {
@@ -94,6 +95,7 @@ section {
   width: 100%;
   overflow: hidden;
   line-height: 0;
+  background-color:black;
 }
 
 .wave1 svg {
