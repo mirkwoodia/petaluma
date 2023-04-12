@@ -15,7 +15,7 @@
 <nav class="navtop">
 			<div>
 				<h1>Petaluma Themepark Attractions</h1>
-				<a href="Home_Page.php"><i class="fas fa-user-circle"></i>Home</a>
+				<a href="Admin_Portal.html"><i class="fas fa-user-circle"></i>Home</a>
 				<a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
