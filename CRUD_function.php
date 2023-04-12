@@ -27,7 +27,7 @@ echo <<<EOT
     <nav class="navtop">
         <div>
             <h1>Petaluma Themepark</h1>
-            <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
+            <a href="Admin_Portal.html"><i class="fas fa-home"></i>Home</a>
             <a href="Admin_Portal.html"><i class="fas fa-address-book"></i>More</a>
             <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
         </div>
