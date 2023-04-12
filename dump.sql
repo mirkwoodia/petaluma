@@ -325,7 +325,7 @@ CREATE TABLE `orderdetails` (
   KEY `productID` (`productID`),
   CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`),
   CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,7 +334,7 @@ CREATE TABLE `orderdetails` (
 
 LOCK TABLES `orderdetails` WRITE;
 /*!40000 ALTER TABLE `orderdetails` DISABLE KEYS */;
-INSERT INTO `orderdetails` VALUES (70,80,12,1,25.00),(71,80,9,1,19.00);
+INSERT INTO `orderdetails` VALUES (70,80,12,1,25.00),(71,80,9,1,19.00),(72,88,15,3,75.00),(74,90,12,1,25.00),(76,87,9,3,57.00),(77,88,11,10,150.00);
 /*!40000 ALTER TABLE `orderdetails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +353,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`orderID`),
   KEY `member_ID` (`member_ID`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +362,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (80,103,'2023-04-02',25.00),(85,103,'2023-04-05',19.00);
+INSERT INTO `orders` VALUES (80,103,'2023-04-02',25.00),(85,103,'2023-04-05',19.00),(86,102,'2014-11-23',100.50),(87,104,'2017-03-20',240.32),(88,103,'2015-04-20',140.95),(89,102,'2019-12-20',1240.32),(90,103,'2012-06-29',70.50);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -622,4 +622,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-12  4:47:21
+-- Dump completed on 2023-04-12 14:28:14
