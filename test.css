@@ -1,227 +1,112 @@
-h1 {
-  font-size: 4rem;
-  z-index:1;
-
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// If the user is not logged in redirect to the login page...
+/*
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: Login_Member.html');
+	exit;
 }
+*/
 
-p {
-  font-size: 1.5rem;
-  z-index:1;
-}
+?>
 
-body {
-  margin: 0;
-  font-family: 'Prompt', sans-serif;
-  color: white;
-  background: #918097;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petaluma</title>
 
-section {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 400px;
-  padding-top: 100px;
-}
-
-.blue {
-  background: #3c31dd;
-}
-
-.red {
-  background: #dd3f31;
-}
-
-.pink {
-  background: #ff0066;
-  overflow: hidden;
-}
-
-.dark {
-  background: #0f0f10;
-}
-
-/* Curved bg with plain CSS */
-.curve {
-  position: absolute;
-  height: 250px;
-  width: 100%;
-  bottom: 0;
-  text-align: center;
-}
-
-.curve::before {
-  content: '';
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 55%;
-  height: 100%;
-  transform: translate(85%, 60%);
-  background-color: hsl(216, 21%, 16%);
-}
-
-.curve::after {
-  content: '';
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 55%;
-  height: 100%;
-  background-color: #3c31dd;
-  transform: translate(-4%, 40%);
-  z-index: -1;
-}
-
-/* Bubble bg with plain CSS */
-.bubble::after {
-  content: '';
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
-  width: 100%;
-  background-color: #0f0f10;
-  height: 85%;
-}
-
-/* Curved bg with SVG via https://www.shapedivider.app/ */
-.wave1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-
-.wave1 svg {
-  position: relative;
-  display: block;
-  width: calc(103% + 1.3px);
-  height: 262px;
-}
-
-.wave1 .shape-fill {
-  fill: #3c31dd;
-}
-
-.wave2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-
-.wave2 svg {
-  position: relative;
-  display: block;
-  width: calc(103% + 1.3px);
-  height: 262px;
-}
-
-.wave2 .shape-fill {
-  fill: hsl(240, 3%, 6%);
-}
-
-/* SVG background image via https://haikei.app/ */
-.spacer {
-  aspect-ratio: 960/300;
-  width: 5%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.layer1 {
-  background-image: url('./layer1.svg');
-}
-
-.layer2 {
-  background-image: url('./layer2.svg');
-}
-
-.flip {
-  transform: rotate(180deg);
-}
+    <link rel="stylesheet" href="Home_Page.css">
 
 
+  </head>
+  <body>
+        <div class = "navtop">
+            <ul>          
+                <?php if (isset($_SESSION['loggedin'])) { ?>      
+                    <li><a href="attractions.php">Attractions</a></li>
+                    <li><a href="Ticket_Booth.php">Ticket Booth</a></li>
+                <?php } ?>
+                <?php if (!isset($_SESSION['loggedin'])) { ?>
+                    <li style="float:right"><a href="Login_Member.html">Member Login/Register</a></li>
+                <?php } ?>                   
+                <li style="float:right"><a href="Login_Admin.html">Admin Login</a></li>
+                <li style = "float:right"><a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a></li>
+                <?php if (isset($_SESSION['loggedin'])) { ?>
+				    <li style = "float:right"><a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                <?php } ?>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <?php if (isset($_SESSION['loggedin'])) { 
+	                echo "<p>Welcome back, " . $_SESSION['name'] . "</p>"; } ?>
+		</div>
+        
+    </body>
+  <body>
+    <section class="blue">
+      <h1>Petaluma</h1>
+      <p>A theme park web app designed for you.</p>
+      <div class="blob"></div>
+      
+    </section>
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
+    <head>
+        <title>Petaluma ThemePark Database</title>
+        <link rel="stylesheet" href="test.css">
+        <link rel="shortcut icon" type="image/x-icon" href="tab.ico" />
+    </head>
+    
 
-  p {
-    font-size: 1.2rem;
-  }
+    <section>
+        <div class="wave1">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path
+                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                class="shape-fill"
+              ></path>
+            </svg>
+          </div>
+    </section>
 
-  .curve::before {
-    width: 75%;
-    transform: translate(85%, 50%);
-  }
+    <section class="bubble">
+    </section>
 
-  .curve::after {
-    width: 75%;
-    transform: translate(-4%, 30%);
-  }
+    <section class="dark">
+    </section>
 
-  .wave1 svg {
-    height: 180px;
-  }
+    <section class="red">
 
-  .wave2 svg {
-    height: 180px;
-  }
+      <div class="wave2">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            class="shape-fill"
+          ></path>
+        </svg>
+      </div>
+    </section>
 
-  .spacer {
-    aspect-ratio: 960/600;
-  }
+    <div class="spacer layer1"></div>
 
-  .blob-motion {
-    display: none;
-  }
-}
+    <section>
 
+    </section>
 
-.blob {
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  min-height: 10vh;
-  width: 550px;
-  height: 300px;
-  background-size: cover;
-  background-color: #0069ff;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, .2);
-  margin-top:-250px;
-  animation: animate 5s linear infinite;
-}
+    <div class="spacer layer2 flip"></div>
 
-@keyframes animate {
-  0% {
-      border-radius: 64% 36% 27% 73% / 55% 58% 42% 45%;
-  }
+    <section class="pink">
+    
+    </section>
 
-  25% {
-      border-radius: 73% 27% 26% 38% / 73% 36% 64% 27%;
-  }
+    <div class="spacer layer2"></div>
 
-  50% {
-      border-radius: 28% 72% 44% 56% / 49% 40% 60% 51%;
-  }
+    <section class="blobs">
 
-  75% {
-      border-radius: 40% 60% 70% 30% / 47% 62% 38% 53%;
-  }
-
-  100% {
-      border-radius: 64% 36% 27% 73% / 55% 58% 42% 45%;
-  }
-}
+    </section>
+  </body>
+</html>
