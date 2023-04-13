@@ -24,23 +24,7 @@ if (!isset($_SESSION['loggedin'])) {
 
   </head>
   <body>
-        <div class = "navtop">
-            <ul>          
-                <?php if (isset($_SESSION['loggedin'])) { ?>      
-                    <li><a href="attractions.php">Attractions</a></li>
-                    <li><a href="Ticket_Booth.php">Ticket Booth</a></li>
-                    <li><a href="getParking.php">Get Parking</a></li>
-                <?php } ?>
-                <?php if (!isset($_SESSION['loggedin'])) { ?>
-                    <li style="float:right"><a href="Login_Member.html">Member Login/Register</a></li>
-                <?php } ?>                   
-                <li style="float:right"><a href="Login_Admin.html">Admin Login</a></li>
-                <li style = "float:right"><a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a></li>
-                <?php if (isset($_SESSION['loggedin'])) { ?>
-				    <li style = "float:right"><a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                <?php } ?>
-            </ul>
-        </div>
+        <?php require_once('nav.php');?>  
         
         <div class="content">
             <?php if (isset($_SESSION['loggedin'])) { 

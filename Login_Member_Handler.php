@@ -6,6 +6,7 @@ $dbName = "mydb";
 
 $connLoginMember = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 if (!$connLoginMember) {
+    echo ":(";
     die("Connection failed: " . mysqli_connect_error());
 }
 
