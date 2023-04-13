@@ -9,8 +9,16 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$member_id = 103;
 
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: Login_Member.html');
+	exit;
+}
+
+
+$member_id = $_SESSION['id'];
 $sql = "SELECT * FROM member WHERE member_ID = '$member_id'";
 $result = $conn->query($sql);
 if ($result->num_rows == 0) {
@@ -20,6 +28,7 @@ if ($result->num_rows == 0) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $parking_lot = $_POST['parking_lot'];
+  $license_plate = $_POST['license_plate'];
 
   $sql = "SELECT * FROM get_parking_pass WHERE member_ID = '$member_id'";
   $result = $conn->query($sql);
@@ -28,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
   }
 
-  $sql = "INSERT INTO get_parking_pass (member_ID, parking_lot, date_issued) VALUES ('$member_id', '$parking_lot', NOW())";
+  $sql = "INSERT INTO get_parking_pass (member_ID, parking_lot, license_plate, date_issued) VALUES ('$member_id', '$parking_lot', '$license_plate', NOW())";
   if ($conn->query($sql) === TRUE) {
     echo "Parking pass assigned successfully!";
     
-}
+  }
 }
 ?>
 
@@ -44,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <option value="Lot C">Lot C</option>
     <option value="Lot D">Lot D</option>
   </select>
+  <br><br>
+  <label for="license_plate">Enter your license plate:</label>
+  <input type="text" id="license_plate" name="license_plate" required>
   <br><br>
   <input type="submit" value="Submit">
 </form>
