@@ -19,7 +19,7 @@ if (!isset($_SESSION['loggedin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Petaluma</title>
 
-    <link rel="stylesheet" href="Home_Page.css">
+    <link rel="stylesheet" href="_Page.css">
 
 
   </head>
@@ -56,6 +56,47 @@ if (!isset($_SESSION['loggedin'])) {
               ></path>
             </svg>
           </div>
+	    <div class="parent" style="margin-top:100px">
+            <div class="category-container">
+                
+                <div class="portal-category">
+                    <div class="category-image">
+                        <img src="attractions.png">
+                    </div>
+                    <div class="category-info">
+                        <h2 class="category-name">Petaluma Wheel</h2>
+                        <p class="category-description"></p>
+                    </div>
+                </div>
+                <div class="portal-category">
+                    <div class="category-image">
+                        <img src="Parking.png">
+                    </div>
+                    <div class="category-info">
+                        <h2 class="category-name">Petaluma Speedway</h2>
+                        <p class="category-description"></p>
+                    </div>
+                </div>
+                <div class="portal-category">
+                    <div class="category-image">
+                        <img src="Restaurant.png">
+                    </div>
+                    <div class="category-info">
+                        <h2 class="category-name">Petaluma Aqua</h2>
+                        <p class="category-description"></p>
+                    </div>
+                </div>
+                <div class="portal-category">
+                    <div class="category-image">
+                        <img src="Gift.png">
+                    </div>
+                    <div class="category-info">
+                        <h2 class="category-name">Petaluma Putt-Putt</h2>
+                        <p class="category-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="bubble">
