@@ -9,9 +9,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$parking_lot = $_POST['parking_lot'];
-
-$member_id = 112;
+$member_id = 103;
 
 $sql = "SELECT * FROM member WHERE member_ID = '$member_id'";
 $result = $conn->query($sql);
@@ -20,19 +18,36 @@ if ($result->num_rows == 0) {
   exit;
 }
 
-$sql = "SELECT * FROM Get_Parking_Pass WHERE member_ID = '$member_id'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-  echo "Error: member with ID $member_id already has a parking pass";
-  exit;
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $parking_lot = $_POST['parking_lot'];
 
-$sql = "INSERT INTO Get_Parking_Pass (member_ID, parking_lot, date_issued) VALUES ('$member_id', '$parking_lot', NOW())";
-if ($conn->query($sql) === TRUE) {
-  echo "Parking pass assigned successfully!";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
+  $sql = "SELECT * FROM get_parking_pass WHERE member_ID = '$member_id'";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    echo "Error: member with ID $member_id already has a parking pass";
+    exit;
+  }
 
+  $sql = "INSERT INTO get_parking_pass (member_ID, parking_lot, date_issued) VALUES ('$member_id', '$parking_lot', NOW())";
+  if ($conn->query($sql) === TRUE) {
+    echo "Parking pass assigned successfully!";
+    
+}
+}
+?>
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <label for="parking_lot">Select a parking lot:</label>
+  <select id="parking_lot" name="parking_lot">
+    <option value="Lot A">Lot A</option>
+    <option value="Lot B">Lot B</option>
+    <option value="Lot C">Lot C</option>
+    <option value="Lot D">Lot D</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<?php
 $conn->close();
 ?>
