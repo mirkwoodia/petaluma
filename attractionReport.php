@@ -30,20 +30,23 @@ function numVisitorsPerAttraction($ride_name){
 	else if($ride_name == "501"){
 		$name = "QtySpeed"; 
 	}
-	else if($ride_name == "503"){
+	else if($ride_name == "502"){
 		$name = "QtyAqua"; 
 	}
-	else if($ride_name == "504"){
+	else if($ride_name == "503"){
 		$name = "QtyPutt";
 	}
 
 	$numVisitSQL = "SELECT SUM($name) as totalQtyWheel from ticket_booth";
 	$resultnumVisitSQL = $connTwo->query($numVisitSQL);
-	$row = $resultnumVisitSQL->fetch_assoc();
+	
 
 	if ($resultnumVisitSQL != false && $resultnumVisitSQL->num_rows > 0)
 	{	
-		return $row['totalQtyWheel'];
+		while($row = $resultnumVisitSQL->fetch_assoc()){
+			return $row['totalQtyWheel'];
+		}
+		
 	}	
 
 
@@ -63,11 +66,14 @@ function numMaintenance($ride_name){
 
 	$totalMainSQL = "SELECT attractionID, COUNT(*) AS totalMain FROM maintenance WHERE attractionID = $ride_name GROUP BY attractionID";
 	$totalMainResult = $connThree->query($totalMainSQL); 
-	$row = $totalMainResult->fetch_assoc();
+	
 
 	if ($totalMainResult != false && $totalMainResult->num_rows > 0)
 	{	
-		return $row['totalMain'];
+		while($row = $totalMainResult->fetch_assoc()){
+			return $row['totalMain'];
+		}
+		
 	}
 	
 
@@ -91,10 +97,10 @@ function allVisitorsPerAttraction($ride_name){
 	else if($ride_name == "501"){
 		$name = "QtySpeed"; 
 	}
-	else if($ride_name == "503"){
+	else if($ride_name == "502"){
 		$name = "QtyAqua"; 
 	}
-	else if($ride_name == "504"){
+	else if($ride_name == "503"){
 		$name = "QtyPutt";
 	}
 	
@@ -111,15 +117,22 @@ function allVisitorsPerAttraction($ride_name){
  	echo "</thead>";
   	echo "<tbody>";
 
-	while ($row = $visitorSQLResult->fetch_assoc()) {
-		echo "<tr>";
-		echo "<td>" . $row['purchase_date'] . "</td>";
-		echo "<td>" . $row['name'] . "</td>";	
-		echo "</tr>";
-	}
-	  echo "</tbody>";
-	  echo "</table>";
+	if($visitorSQLResult != false && $visitorSQLResult->num_rows > 0){
+		while ($row = $visitorSQLResult->fetch_assoc()) {
+			echo "<tr>";
+			echo "<td>" . $row['purchase_date'] . "</td>";
+			echo "<td>" . $row['name'] . "</td>";	
+			echo "</tr>";
+		}
+		  echo "</tbody>";
+		  echo "</table>";
+	
 
+	}
+	else{
+		echo "No data available"; 
+	}
+	
 	$connFive->close(); 	
 }
 
@@ -147,10 +160,10 @@ function maintenancePerAttraction($ride_name){
 	else if($ride_name == "501"){
 		$name = "Petaluma Speedway"; 
 	}
-	else if($ride_name == "503"){
+	else if($ride_name == "502"){
 		$name = "Petaluma Aqua"; 
 	}
-	else if($ride_name == "504"){
+	else if($ride_name == "503"){
 		$name = "Petaluma Putt-Putt";
 	}
 
@@ -166,17 +179,22 @@ function maintenancePerAttraction($ride_name){
 	echo "</tr>";
  	echo "</thead>";
   	echo "<tbody>";
-
-	while ($row = $mainSQLResult->fetch_assoc()) {
-		echo "<tr>";
-		echo "<td>" . $row['maintenance_name'] . "</td>";
-		echo "<td>" . $row['maintenance_description'] . "</td>";
-		echo "<td>" . $row['maintenance_start_time'] . "</td>";
-		echo "<td>" . $row['maintenance_end_time'] . "</td>";
-		echo "</tr>";
+	if($mainSQLResult->num_rows > 0){
+		while ($row = $mainSQLResult->fetch_assoc()) {
+			echo "<tr>";
+			echo "<td>" . $row['maintenance_name'] . "</td>";
+			echo "<td>" . $row['maintenance_description'] . "</td>";
+			echo "<td>" . $row['maintenance_start_time'] . "</td>";
+			echo "<td>" . $row['maintenance_end_time'] . "</td>";
+			echo "</tr>";
+		}
+		  echo "</tbody>";
+		  echo "</table>";
 	}
-	  echo "</tbody>";
-	  echo "</table>";
+	else{
+		echo "No data Available"; 
+	}
+	
 
 	$connFour->close(); 	
 }
