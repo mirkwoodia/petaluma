@@ -264,9 +264,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color:#15d838;
+    color:#000000;
   }
 
+  th {
+    text-align:center !important;
+
+  }
 
 
   
