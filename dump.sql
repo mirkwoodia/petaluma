@@ -174,6 +174,7 @@ CREATE TABLE `get_parking_pass` (
   `date_issued` date NOT NULL,
   `parking_lot` varchar(255) NOT NULL,
   `parking_id` int DEFAULT NULL,
+  `license_plate` varchar(10) NOT NULL,
   PRIMARY KEY (`pass_ID`),
   KEY `member_ID` (`member_ID`),
   CONSTRAINT `get_parking_pass_ibfk_1` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
