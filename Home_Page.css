@@ -312,3 +312,136 @@ h1
 .navtop li a i {
   margin-right: 5px;
 }
+
+
+
+.portal-category {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 20px 20px 0;
+  width: calc(20% - 20px);
+  text-align: center;
+  }
+  
+  .category-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  }
+  
+  .category-image img {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+  }
+  
+  .category-info {
+  padding: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+  .portal-category {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100%;
+  }
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+  .portal-category {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 auto 20px auto;
+    width: calc(50% - 20px);
+  }
+  }
+  
+  @media screen and (min-width: 1200px) {
+  .portal-category {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 auto 20px auto;
+    width: calc(20% - 20px);
+  }
+  }
+  
+  
+  
+  .category-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+  }
+  
+  .parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  }
+  
+  .portal-category {
+  border: 2px solid transparent;
+  transition: border-color 0.5s ease;
+  background-color: #3c31dd;
+  border-radius: 40px;
+  background: #3c31dd;
+  }
+  
+  .portal-category:hover {
+  border-color: #3f69a8;
+  }
+  
+  .category-name {
+  margin-top: 0;
+  color: #3f69a8;
+  background-color: #0069ff;
+  border: none;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  
+  font-weight: 100;
+  color: #14d134;
+  font-family: "Century Gothic";
+  }
+  
+  .visit-link {
+  background-color: #ffffff;
+  border-color: #3f69a8;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  color: #3f69a8;
+  font-family: "Century Gothic";
+  }
+  
+  .portal-category:hover .visit-link {
+  border-color: #0069ff;
+  opacity: 1;
+  }
+  
+  .portal-category:hover .category-name {
+  border-color: #0069ff;
+  opacity: 1;
+  display: inline-block;
+  }
+
