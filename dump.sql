@@ -140,8 +140,10 @@ INSERT INTO `expenses` VALUES (1,'ticket',NULL);
 /*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 --
+--
 -- Table structure for table `get_parking_pass`
 --
+
 DROP TABLE IF EXISTS `get_parking_pass`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -151,17 +153,20 @@ CREATE TABLE `get_parking_pass` (
   `date_issued` date NOT NULL,
   `parking_lot` varchar(255) NOT NULL,
   `parking_id` int DEFAULT NULL,
+  `license_plate` varchar(10) NOT NULL,
   PRIMARY KEY (`pass_ID`),
   KEY `member_ID` (`member_ID`),
   CONSTRAINT `get_parking_pass_ibfk_1` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Dumping data for table `get_parking_pass`
 --
+
 LOCK TABLES `get_parking_pass` WRITE;
 /*!40000 ALTER TABLE `get_parking_pass` DISABLE KEYS */;
-INSERT INTO `get_parking_pass` VALUES (10,108,'2023-04-07','',NULL),(11,112,'2023-04-07','Lot B',NULL);
+INSERT INTO `get_parking_pass` VALUES (21,103,'2023-04-13','Lot B',NULL,'1010101010');
 /*!40000 ALTER TABLE `get_parking_pass` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -189,6 +194,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
 --
 -- Table structure for table `giftshop`
 --
@@ -376,8 +382,10 @@ LOCK TABLES `parking` WRITE;
 /*!40000 ALTER TABLE `parking` ENABLE KEYS */;
 UNLOCK TABLES;
 --
+--
 -- Table structure for table `parking_slots`
 --
+
 DROP TABLE IF EXISTS `parking_slots`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -388,14 +396,14 @@ CREATE TABLE `parking_slots` (
   PRIMARY KEY (`lot_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Dumping data for table `parking_slots`
 --
 
 LOCK TABLES `parking_slots` WRITE;
 /*!40000 ALTER TABLE `parking_slots` DISABLE KEYS */;
-INSERT INTO `parking_slots` VALUES ('Lot A',100,100),('Lot B',150,149),('Lot C',200,200),('Lot D',75,74);
-INSERT INTO `parking_slots` VALUES ('Lot A',100,100),('Lot B',150,150),('Lot C',200,200),('Lot D',75,75);
+INSERT INTO `parking_slots` VALUES ('Lot A',100,100),('Lot B',150,149),('Lot C',200,200),('Lot D',75,75);
 /*!40000 ALTER TABLE `parking_slots` ENABLE KEYS */;
 UNLOCK TABLES;
 
