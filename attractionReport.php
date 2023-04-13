@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="revenuereport.css">
+<link rel="stylesheet" type="text/css" href="revenueReport.css">
 <nav class="navtop">
         <div>
             <h1>Petaluma Themepark</h1>
