@@ -24,23 +24,7 @@ if (!isset($_SESSION['loggedin'])) {
 
   </head>
   <body>
-        <div class = "navtop">
-            <ul>          
-                <?php if (isset($_SESSION['loggedin'])) { ?>      
-                    <li><a href="attractions.php">Attractions</a></li>
-                    <li><a href="Ticket_Booth.php">Ticket Booth</a></li>
-                    <li><a href="getParking.php">Get Parking</a></li>
-                <?php } ?>
-                <?php if (!isset($_SESSION['loggedin'])) { ?>
-                    <li style="float:right"><a href="Login_Member.html">Member Login/Register</a></li>
-                <?php } ?>                   
-                <li style="float:right"><a href="Login_Admin.html">Admin Login</a></li>
-                <li style = "float:right"><a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a></li>
-                <?php if (isset($_SESSION['loggedin'])) { ?>
-				    <li style = "float:right"><a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                <?php } ?>
-            </ul>
-        </div>
+        <?php require_once('nav.php');?>  
         
         <div class="content">
             <?php if (isset($_SESSION['loggedin'])) { 
@@ -72,51 +56,6 @@ if (!isset($_SESSION['loggedin'])) {
               ></path>
             </svg>
           </div>
-
-
-          <div class="content update">
-        <div class="parent" style="margin-top:100px">
-            <div class="category-container">
-                
-                <div class="portal-category">
-                    <div class="category-image">
-                        <img src="attractions.png">
-                    </div>
-                    <div class="category-info">
-                        <h2 class="category-name">Petaluma Wheel</h2>
-                        <p class="category-description"></p>
-                    </div>
-                </div>
-                <div class="portal-category">
-                    <div class="category-image">
-                        <img src="Parking.png">
-                    </div>
-                    <div class="category-info">
-                        <h2 class="category-name">Petaluma Speedway</h2>
-                        <p class="category-description"></p>
-                    </div>
-                </div>
-                <div class="portal-category">
-                    <div class="category-image">
-                        <img src="Restaurant.png">
-                    </div>
-                    <div class="category-info">
-                        <h2 class="category-name">Petaluma Aqua</h2>
-                        <p class="category-description"></p>
-                    </div>
-                </div>
-                <div class="portal-category">
-                    <div class="category-image">
-                        <img src="Gift.png">
-                    </div>
-                    <div class="category-info">
-                        <h2 class="category-name">Petaluma Putt-Putt</h2>
-                        <p class="category-description"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </section>
 
     <section class="bubble">
