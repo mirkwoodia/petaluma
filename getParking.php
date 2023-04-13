@@ -1,3 +1,10 @@
+<link rel="stylesheet" type="text/css" href="revenueReport.css">
+<nav class="navtop">
+        <div>
+            <h1>Petaluma Themepark</h1>
+            <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
+        </div>
+    </nav>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -11,6 +18,7 @@ if ($conn->connect_error) {
 
 
 session_start();
+
 
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: Login_Member.html');
@@ -44,6 +52,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
+
+<style>
+  form {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top:100px;
+  }
+
+</style>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <label for="parking_lot">Select a parking lot:</label>
