@@ -1,13 +1,7 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
+
+// We need to use sessions, so we should start sessions using 'session_start()'
 session_start();
-// If the user is not logged in redirect to the login page...
-/*
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: Login_Member.html');
-	exit;
-}
-*/
 
 ?>
 
