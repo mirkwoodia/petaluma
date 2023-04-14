@@ -28,12 +28,15 @@ function findTotalTicketRevenue($start_date, $end_date)
 	}	
 
 	// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
-	$sql = "SELECT ticket_ID AS id, SUM(ticket_total) AS total, QtyWheel AS wheel, QtySpeed AS speed, QtyAqua AS aqua, QtyPutt AS putt, 
-			purchase_date AS date FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date' GROUP BY id";
+	$sql = "SELECT ticket_ID AS id, SUM(ticket_total) AS total, QtyWheel AS wheel, QtySpeed AS speed, QtyAqua AS aqua, QtyPutt AS putt, purchase_date AS date 
+		FROM ticket_booth 
+		WHERE purchase_date BETWEEN '$start_date' AND '$end_date' GROUP BY id";
 	
 	// Executes the SQL query
 	$result = $connOne->query($sql);
 	$totalRevenue = 0.00; 
+	
+	// Prints table
 	echo "<h1 style='text-align:center'>Total Ticket Revenue From: " . $start_date . " to ". $end_date.  "</h1>";
 	echo "<table border='1'><br />";
 	echo "<tr>";
@@ -82,8 +85,10 @@ function findTotalTicketRevenue($start_date, $end_date)
 	
 }
 
+// Function for finding the amount of revenue per attraction
 function attractionRevenueDetails($start_date, $end_date)
 {	
+	
 	// Database details
 	$dbServername = "localhost";
 	$dbUsername = "root";
@@ -98,11 +103,23 @@ function attractionRevenueDetails($start_date, $end_date)
 	}
 	
 	// Queries the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
-	$wheelSql = "SELECT SUM(QtyWheel) AS wheelQ, SUM(QtyWheel) * 10.25 AS totalQtyWheel, attraction.attraction_price AS price, attraction.attraction_name AS name FROM ticket_booth, attraction WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 500";
-	$speedSql = "SELECT SUM(QtySpeed) AS speedQ, SUM(QtySpeed) * 25.50 AS totalQtySpeed, attraction.attraction_price AS price, attraction.attraction_name AS name FROM ticket_booth, attraction WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 501";
-	$aquaSql = "SELECT SUM(QtyAqua) AS aquaQ, SUM(QtyAqua) * 20.00 AS totalQtyAqua, attraction.attraction_price AS price, attraction.attraction_name AS name FROM ticket_booth, attraction WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 502";
-	$puttSql = "SELECT SUM(QtyPutt) AS puttQ, SUM(QtyPutt) * 30.50 AS totalQtyPutt, attraction.attraction_price AS price, attraction.attraction_name AS name FROM ticket_booth, attraction WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 503";
+	$wheelSql = "SELECT SUM(QtyWheel) AS wheelQ, SUM(QtyWheel) * 10.25 AS totalQtyWheel, attraction.attraction_price AS price, attraction.attraction_name AS name 
+		     FROM ticket_booth, attraction 
+		     WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 500";
 	
+	$speedSql = "SELECT SUM(QtySpeed) AS speedQ, SUM(QtySpeed) * 25.50 AS totalQtySpeed, attraction.attraction_price AS price, attraction.attraction_name AS name 
+		     FROM ticket_booth, attraction 
+		     WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 501";
+	
+	$aquaSql = "SELECT SUM(QtyAqua) AS aquaQ, SUM(QtyAqua) * 20.00 AS totalQtyAqua, attraction.attraction_price AS price, attraction.attraction_name AS name 
+		    FROM ticket_booth, attraction 
+		    WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 502";
+	
+	$puttSql = "SELECT SUM(QtyPutt) AS puttQ, SUM(QtyPutt) * 30.50 AS totalQtyPutt, attraction.attraction_price AS price, attraction.attraction_name AS name 
+		    FROM ticket_booth, attraction 
+		    WHERE purchase_date BETWEEN '$start_date' AND '$end_date' AND attraction_ID = 503";
+	
+	// Prints table
 	echo "<h1 style='text-align:center'>Revenue Details Per Attraction From: " . $start_date . " to ". $end_date.  "</h1>";
 	echo "<table border='1'>";
   	echo "<thead>";
@@ -122,41 +139,60 @@ function attractionRevenueDetails($start_date, $end_date)
 	$aqua = $connThree->query($aquaSql);
 	$putt = $connThree->query($puttSql);
 
-	if($wheel->num_rows > 0 || $speed->num_rows > 0 || $aqua->num_rows > 0 || $putt->num_rows > 0){
-		while ($row = $wheel->fetch_assoc()) {
+	// Runs if a result is found
+	if($wheel->num_rows > 0 || $speed->num_rows > 0 || $aqua->num_rows > 0 || $putt->num_rows > 0)
+	{
+		
+		// Populates the ferris wheel row
+		while ($row = $wheel->fetch_assoc())
+		{
+			
 			echo "<tr>";
 			echo "<td>" . $row['name'] . "</td>";
 			echo "<td>" . "$". $row['price'] . "</td>";
 			echo "<td>" . $row['wheelQ'] . "</td>";
 			echo "<td>" . "$" . $row['totalQtyWheel'] . "</td>";
 			echo "</tr>";
+			
 		}
 
-		while ($row = $speed->fetch_assoc()) {
+		// Populates the speedway row
+		while ($row = $speed->fetch_assoc())
+		{
+			
 			echo "<tr>";
 			echo "<td>" . $row['name'] . "</td>";
 			echo "<td>" . "$". $row['price'] . "</td>";
 			echo "<td>" . $row['speedQ'] . "</td>";
 			echo "<td>" . "$". $row['totalQtySpeed'] . "</td>";
 			echo "</tr>";
+			
 		}
 
-		while ($row = $aqua->fetch_assoc()) {
+		// Populates the aqua row
+		while ($row = $aqua->fetch_assoc())
+		{
+			
 			echo "<tr>";
 			echo "<td>" . $row['name'] . "</td>";
 			echo "<td>" . "$". $row['price'] . "</td>";
 			echo "<td>" . $row['aquaQ'] . "</td>";
 			echo "<td>" . "$". $row['totalQtyAqua'] . "</td>";
 			echo "</tr>";
+			
 		}
 
-		while ($row = $putt->fetch_assoc()) {
+		// Populates the putt-putt row
+		while ($row = $putt->fetch_assoc())
+		{
+			
 			echo "<tr>";
 			echo "<td>" . $row['name'] . "</td>";
 			echo "<td>" . "$". $row['price'] . "</td>";
 			echo "<td>" . $row['puttQ'] . "</td>";
 			echo "<td>" . "$". $row['totalQtyPutt'] . "</td>";
 			echo "</tr>";
+			
 		}
 
 		echo "</tbody>";
@@ -164,17 +200,16 @@ function attractionRevenueDetails($start_date, $end_date)
 		 
 	}
 	
-	
+	// Runs if no result is found
 	else
 	{	
 		echo 'No results found';
 	}
 		
-		$connThree->close();
+	// Closes the SQL connection
+	$connThree->close();
 	
-	}
-
-
+}
 
 // Function for finding the revenue of each attraction in the park
 function attractionRevenue($start_date, $end_date)
@@ -194,10 +229,21 @@ function attractionRevenue($start_date, $end_date)
 	}
 	
 	// Queries the total amount of tickets for each ride and multiplies by the price of each ticket to get total revenue of each ride
-	$wheelSql = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-	$speedSql = "SELECT SUM(QtySpeed) * 25.50 AS totalQtySpeed FROM ticket_booth  WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-	$aquaSql = "SELECT SUM(QtyAqua) * 20.00  AS totalQtyAqua FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
-	$puttSql = "SELECT SUM(QtyPutt) * 30.50  AS totalQtyPutt FROM ticket_booth WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+	$wheelSql = "SELECT SUM(QtyWheel) * 10.25 AS totalQtyWheel 
+		     FROM ticket_booth 
+		     WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+	
+	$speedSql = "SELECT SUM(QtySpeed) * 25.50 AS totalQtySpeed 
+		     FROM ticket_booth  
+		     WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+	
+	$aquaSql = "SELECT SUM(QtyAqua) * 20.00  AS totalQtyAqua 
+		    FROM ticket_booth 
+		    WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+	
+	$puttSql = "SELECT SUM(QtyPutt) * 30.50  AS totalQtyPutt 
+		    FROM ticket_booth 
+		    WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
 	
 	// Makes query for the wheel ride
 	$wheel= $connTwo->query($wheelSql);
@@ -214,12 +260,14 @@ function attractionRevenue($start_date, $end_date)
 	// Makes query for the putt ride
 	$putt = $connTwo->query($puttSql);
 	$puttResult = $putt->fetch_assoc();	
-		
-	if($wheel->num_rows > 0 || $speed->num_rows >0 || $aqua->num_rows > 0 || $putt->num_rows >0)
+	
+	// Runs if a result is found
+	if($wheel->num_rows > 0 || $speed->num_rows > 0 || $aqua->num_rows > 0 || $putt->num_rows > 0)
 	{
 		
 		$array = array("Petaluma Wheel" => $wheelResult, "Petaluma Speed"=> $speedResult, "Petaluma Aqua"=> $aquaResult, "Petaluma Putt"=> $puttResult);
 
+		// Prints table
 		echo "<h1 style='text-align:center'>Revenue Per Attraction From: " . $start_date . " to ". $end_date.  "</h1>";
 		echo "<table border='1'><br />";
 		echo "<tr>";
@@ -241,14 +289,16 @@ function attractionRevenue($start_date, $end_date)
 		
 	}
 
+	// Runs if no result is found
 	else
 	{	
 		echo 'No results found';
 	}
-		
-		$connTwo->close();
 	
-	}
+	// Closes the SQL connection
+	$connTwo->close();
+	
+}
 
 // Function for finding the revenue of the gift shop
 function findGiftShopRevenue($start_date, $end_date)
@@ -268,14 +318,17 @@ function findGiftShopRevenue($start_date, $end_date)
 		die("Connection failed: " . mysqli_connect_error());
 	}
 	
-	// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
-	$sql = "SELECT order_date, OrderDetails.price AS price , OrderDetails.quantity AS quantity FROM Orders, OrderDetails WHERE order_date BETWEEN '$start_date' AND '$end_date'";
+	// Creates the SQL query to find the sum of the gift shop values for any given start/end dates		
+	$sql = "SELECT order_date, OrderDetails.price AS price , OrderDetails.quantity AS quantity 
+		FROM Orders, OrderDetails 
+		WHERE order_date BETWEEN '$start_date' AND '$end_date'";
 	
 	// Executes the SQL query
 	$result = $connFour->query($sql);
 	$totalRevenue = 0.00; 
 	$total = 0.00;
 	
+	// Prints table
 	echo "<h1 style='text-align:center'>Total Gift Shop Revenue From: " . $start_date . " to ". $end_date.  "</h1>";
 	echo "<table border='1'><br />";
 	echo "<tr>";
@@ -326,7 +379,6 @@ function findGiftShopRevenue($start_date, $end_date)
 <?php
 
 // Start login process
-//session_start();
 
 // Retrieves the start date and end date from 'revenueReport.html'
 $start_date = $_POST['start-date'];
@@ -335,6 +387,7 @@ $end_date = $_POST['end-date'];
 // Calls the 'findTotalTicketRevenue' function
 findTotalTicketRevenue($start_date, $end_date);
 
+// Calls the 'attractionRevenueDetails' function
 attractionRevenueDetails($start_date, $end_date);
 
 // Calls the 'findMostProfitableRides' function
