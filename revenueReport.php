@@ -8,7 +8,8 @@
             <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
         </div>
     </nav>
-	<?php
+
+<?php
 
 // Function for finding the total ride ticket revenue between any two given dates
 function findTotalTicketRevenue($start_date, $end_date)
