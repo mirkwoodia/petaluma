@@ -9,7 +9,6 @@
         </div>
     </nav>
 
-
 <?php
 
 // Function for finding the number of visitors per attraction in the park
