@@ -145,7 +145,7 @@
 					</tr>
 					
 					<tr>
-						<td>All time:</td>
+						<td>All Time:</td>
 						<td><?=$totalSpeed?></td>
 					</tr>
 				</table>
@@ -168,7 +168,7 @@
 					</tr>
 					
 					<tr>
-						<td>All time:</td>
+						<td>All Time:</td>
 						<td><?=$totalWheel?></td>
 					</tr>
 				</table>
@@ -191,7 +191,7 @@
 					</tr>
 					
 					<tr>
-						<td>All time:</td>
+						<td>All Time:</td>
 						<td><?=$totalAqua?></td>
 					</tr>
 				</table>
@@ -214,7 +214,7 @@
 					</tr>
 					
 					<tr>
-						<td>All time:</td>
+						<td>All Time:</td>
 						<td><?=$totalPutt?></td>
 					</tr>
 				</table>
