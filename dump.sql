@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `mydb`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mydb
@@ -175,10 +177,13 @@ CREATE TABLE `get_parking_pass` (
   `parking_lot` varchar(255) NOT NULL,
   `parking_id` int DEFAULT NULL,
   `license_plate` varchar(10) NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `duration` int NOT NULL,
   PRIMARY KEY (`pass_ID`),
   KEY `member_ID` (`member_ID`),
   CONSTRAINT `get_parking_pass_ibfk_1` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +192,6 @@ CREATE TABLE `get_parking_pass` (
 
 LOCK TABLES `get_parking_pass` WRITE;
 /*!40000 ALTER TABLE `get_parking_pass` DISABLE KEYS */;
-INSERT INTO `get_parking_pass` VALUES (21,103,'2023-04-13','Lot B',NULL,'1010101010');
 /*!40000 ALTER TABLE `get_parking_pass` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -208,6 +212,31 @@ DELIMITER ;;
         UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot C';
     ELSEIF NEW.parking_lot = 'Lot D' THEN
         UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot D';
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `delete_parking_pass` AFTER DELETE ON `get_parking_pass` FOR EACH ROW BEGIN
+    IF OLD.parking_lot = 'Lot A' THEN
+        UPDATE parking_slots SET available_slots = available_slots + 1 WHERE lot_name = 'Lot A';
+    ELSEIF OLD.parking_lot = 'Lot B' THEN
+        UPDATE parking_slots SET available_slots = available_slots + 1 WHERE lot_name = 'Lot B';
+    ELSEIF OLD.parking_lot = 'Lot C' THEN
+        UPDATE parking_slots SET available_slots = available_slots + 1 WHERE lot_name = 'Lot C';
+    ELSEIF OLD.parking_lot = 'Lot D' THEN
+        UPDATE parking_slots SET available_slots = available_slots + 1 WHERE lot_name = 'Lot D';
     END IF;
 END */;;
 DELIMITER ;
@@ -295,7 +324,7 @@ CREATE TABLE `member` (
   `QtyAqua` int unsigned DEFAULT '0',
   `QtyPutt` int unsigned DEFAULT '0',
   PRIMARY KEY (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +333,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown',0,0,0,0),(103,'Bobby','Brown','Female','111 eldridge lane','2023-03-28','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$wch8aLs8/dGM9Vi0Z5uAlOzfdaHK3jPHz75MLFdBnAvxq6Xi91scq','brown',5,6,4,5),(104,'me','wa','Female','aw','2023-03-07','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$4mBshpgnyGJ05BCxDnLWCO6AqtrH1DDx/xV6P0Y1nx6Tjz45pnJS2','member',0,0,0,0),(105,'Sally','Sea','Female','613 Uma St Houston, TX','2003-02-13','613-715-8989','SallySeasShells@yahoo.com','2023-04-12','$2y$10$jXN5rmtdu0FzDsKHLY7wl.jBNphSkeLm3DNhaAejjME.2nMA9j.x2','SSea',10,7,8,22),(106,'Peter','Pickles','Male','189 Cypress Houston, TX','1994-06-16','713-895-7894','PPickles@gmail.com','2023-04-12','$2y$10$oLSjWAMdmu6TMotXFRR.4.OYfdbnxXK/kCumaFfciPhq2MAFI.v2K','PPickles',16,23,35,29),(107,'Princess','Peaches','Female','123 Mario St. Houston, TX','1965-01-08','189-199-7894','ilovemario@gmail.com','2023-04-12','$2y$10$jAvnByQXGBSlsE5k4clKMuPVACDBOPVQqhRul7eWZTHbFLj/czJQS','PPeaches',16,35,18,20),(108,'Bing','Bong','Male','789 Fondren Houston, TX','2000-11-15','123-456-7891','Bong1234@yahoo.com','2023-04-12','$2y$10$YhN14GzIQp9w97Or7Z0jn.eIfyaKFaQ6pzGcWKAh3M.14vAUp0fl.','BingBong',25,35,15,25);
+INSERT INTO `member` VALUES (102,'Bobby','Brown','Male','732 Fondren, Houston, TX','1987-06-09','832-494-8711','BBrown32@gmail.com','2023-04-03','$2y$10$Rv2BW4hAUB02kB054BwQAO4p7EB5ZQFgQM1EGSKK0dUhsEur19ve.','BBrown',0,0,0,0),(103,'Bobby','Brown','Female','111 eldridge lane','2023-03-28','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$wch8aLs8/dGM9Vi0Z5uAlOzfdaHK3jPHz75MLFdBnAvxq6Xi91scq','brown',5,6,4,5),(104,'me','wa','Female','aw','2023-03-07','111-111-1111','brown@gmail.com','2023-03-28','$2y$10$4mBshpgnyGJ05BCxDnLWCO6AqtrH1DDx/xV6P0Y1nx6Tjz45pnJS2','member',0,0,0,0),(105,'Sally','Sea','Female','613 Uma St Houston, TX','2003-02-13','613-715-8989','SallySeasShells@yahoo.com','2023-04-12','$2y$10$jXN5rmtdu0FzDsKHLY7wl.jBNphSkeLm3DNhaAejjME.2nMA9j.x2','SSea',10,7,8,22),(106,'Peter','Pickles','Male','189 Cypress Houston, TX','1994-06-16','713-895-7894','PPickles@gmail.com','2023-04-12','$2y$10$oLSjWAMdmu6TMotXFRR.4.OYfdbnxXK/kCumaFfciPhq2MAFI.v2K','PPickles',16,23,35,29),(107,'Princess','Peaches','Female','123 Mario St. Houston, TX','1965-01-08','189-199-7894','ilovemario@gmail.com','2023-04-12','$2y$10$jAvnByQXGBSlsE5k4clKMuPVACDBOPVQqhRul7eWZTHbFLj/czJQS','PPeaches',16,35,18,20),(108,'Bing','Bong','Male','789 Fondren Houston, TX','2000-11-15','123-456-7891','Bong1234@yahoo.com','2023-04-12','$2y$10$YhN14GzIQp9w97Or7Z0jn.eIfyaKFaQ6pzGcWKAh3M.14vAUp0fl.','BingBong',25,35,15,25),(109,'AA','AA','Female','123 main st','2023-03-28','555-555-5555','aa@gmail.com','2023-03-28','$2y$10$1HlaKIxWlbbSuH8k2EJpKuj8Rk1v8JbLgNgg/cN8NvYHZXrz7CLYm','aa',0,0,0,0),(110,'test3','test3','Female','test@gmail.com','2023-03-28','555-555-5555','test@gmail.com','2023-03-28','$2y$10$xcFp.eHQOJ1Bx6XsnO0N0.mX3KzvO5..nnsXHEYpWOrgYB9jo9JwW','test3',0,0,0,0),(111,'test4','test4','Female','123','2023-03-28','555-555-5555','acecilieeo@gmail.com','2023-03-28','$2y$10$RsCRABcmmBvOullSV95PkeqR5d9ZIGO/4CEzmxltJ5wXPVasjALbq','test4',0,0,0,0);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,7 +480,7 @@ CREATE TABLE `parking_slots` (
 
 LOCK TABLES `parking_slots` WRITE;
 /*!40000 ALTER TABLE `parking_slots` DISABLE KEYS */;
-INSERT INTO `parking_slots` VALUES ('Lot A',100,100),('Lot B',150,149),('Lot C',200,200),('Lot D',75,75);
+INSERT INTO `parking_slots` VALUES ('Lot A',100,100),('Lot B',150,150),('Lot C',200,200),('Lot D',75,75);
 /*!40000 ALTER TABLE `parking_slots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -613,6 +642,54 @@ LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mydb'
+--
+/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
+/*!50106 DROP EVENT IF EXISTS `deletion` */;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = 'SYSTEM' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `deletion` ON SCHEDULE EVERY 50 SECOND STARTS '2023-04-15 22:22:47' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM get_parking_pass WHERE end_time > DATE_SUB(NOW(), INTERVAL 50 SECOND) */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+DELIMITER ;
+/*!50106 SET TIME_ZONE= @save_time_zone */ ;
+
+--
+-- Dumping routines for database 'mydb'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `delete_expired_parking_passes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_expired_parking_passes`()
+BEGIN
+  DELETE FROM get_parking_pass WHERE end_time < NOW();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -623,4 +700,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-13 16:18:06
+-- Dump completed on 2023-04-15 23:55:23

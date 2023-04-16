@@ -2,13 +2,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="Parking_report.css">
-<meta http-equiv="refresh" content="1000">
+<meta http-equiv="refresh" content="10">
 
-<style>
-    .closed {
-        background-color: red;
-    }
-</style>
 <title>Parking Table</title>
 </head>
 <body>
@@ -29,9 +24,7 @@
     <?php
     require_once('parking.php');
 
-
         $class = '';
-
 
         $STMT = "SELECT * FROM mydb.parking_slots;";
         $r = mysqli_query($dbc, $STMT);
@@ -45,47 +38,31 @@
         echo "</form>";
         echo "</td>";
         echo "</tr>";
-
-        
     }
-
-    
     ?>
 </table>
-
-
-
-
-
 </body>
-
-
-
-
-
 <br>
-
-
 <body>
-
 <table>
     <tr>
         <th>Parking lot name</th>
         <th>Username</th>
         <th>License Plate</th>
+        <th>Expiration Time</th>
+
     </tr>
     <?php
     require_once('parking.php');
 
-
         $class = '';
-
 
         $STMT = "SELECT * FROM mydb.parking_slots;";
         $r = mysqli_query($dbc, $STMT);
         while($row = mysqli_fetch_assoc($r)) {
         echo "<tr class='$class' style='background-color: " . ($class == "even" ? "#00ff84" : "#00ff84") . "; color: " . ($class == "even" ? "#333333" : "#000000") . ";'>";
         echo "<td>" . $row['lot_name'] . "</td>";
+        echo "<td></td>";
         echo "<td></td>";
 
         echo "<td></td>";
@@ -103,9 +80,9 @@
             while($member_row = mysqli_fetch_assoc($member_result)) {
                 echo "<tr>";
                 echo "<td>";
-                echo "<td>{$member_row['first_name']}</td>";
+                echo "<td>{$member_row['username']}</td>";
                 echo "<td>{$member_row['license_plate']}</td>";
-
+                echo "<td>{$member_row['end_time']}</td>";
                 echo "</tr>";
             }
         } else {
@@ -114,16 +91,8 @@
             echo "</tr>";
         }
     }
-
     mysqli_close($dbc);
-    
     ?>
 </table>
-
-
-
-
-
 </body>
-
 </html>
