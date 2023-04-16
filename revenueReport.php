@@ -320,8 +320,8 @@ function findGiftShopRevenue($start_date, $end_date)
 	}
 	
 	// Creates the SQL query to find the sum of the gift shop values for any given start/end dates		
-	$sql = "SELECT order_date, OrderDetails.price AS price , OrderDetails.quantity AS quantity 
-		FROM Orders, OrderDetails 
+	$sql = "SELECT order_date, orderdetails.price AS price , orderdetails.quantity AS quantity 
+		FROM Orders, orderdetails 
 		WHERE order_date BETWEEN '$start_date' AND '$end_date'";
 	
 	// Executes the SQL query
