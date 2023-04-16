@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="Parking_report.css">
-<meta http-equiv="refresh" content="1000">
+<meta http-equiv="refresh" content="10">
 
 <style>
     .closed {
@@ -29,9 +29,7 @@
     <?php
     require_once('parking.php');
 
-
         $class = '';
-
 
         $STMT = "SELECT * FROM mydb.parking_slots;";
         $r = mysqli_query($dbc, $STMT);
@@ -46,28 +44,12 @@
         echo "</td>";
         echo "</tr>";
 
-        
     }
-
-    
     ?>
 </table>
-
-
-
-
-
 </body>
-
-
-
-
-
 <br>
-
-
 <body>
-
 <table>
     <tr>
         <th>Parking lot name</th>
@@ -119,11 +101,5 @@
     
     ?>
 </table>
-
-
-
-
-
 </body>
-
 </html>
