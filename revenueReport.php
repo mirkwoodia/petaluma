@@ -269,7 +269,7 @@ function findGiftShopRevenue($start_date, $end_date)
 	}
 	
 	// Creates the SQL query to find the sum of 'ticket_total' values for any given start/end dates		
-	$sql = "SELECT order_date, OrderDetails.price AS price , OrderDetails.quantity AS quantity FROM Orders, OrderDetails WHERE order_date BETWEEN '$start_date' AND '$end_date'";
+	$sql = "SELECT order_date, orderdetails.price AS price , orderdetails.quantity AS quantity FROM orders, orderdetails WHERE order_date BETWEEN '$start_date' AND '$end_date'";
 	
 	// Executes the SQL query
 	$result = $connFour->query($sql);

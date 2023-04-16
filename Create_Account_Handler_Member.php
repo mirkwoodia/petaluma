@@ -49,7 +49,7 @@
 	            $stmt->bind_param('ssssssssss', $_POST['first_name'], $_POST['last_name'], $_POST['gender'], $_POST['address'], $_POST['birthdate'], $_POST['phone_number'], $_POST['email_address'], $_POST['join_date'], $password, $_POST['username']);
 	            $stmt->execute();
 	            
-                header('Location: Login_Member.html');
+                header('Location: Login_Member.php');
             } else {
 	        // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
 	            echo 'Could not prepare statement!';
