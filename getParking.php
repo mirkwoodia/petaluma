@@ -1,10 +1,10 @@
 <link rel="stylesheet" type="text/css" href="revenueReport.css">
 <nav class="navtop">
-        <div>
-            <h1>Petaluma Themepark</h1>
-            <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
-        </div>
-    </nav>
+    <div>
+        <h1>Petaluma Themepark</h1>
+        <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
+    </div>
+</nav>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -16,19 +16,17 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-
 session_start();
-
 
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: Login_Member.html');
 	exit;
 }
 
-
 $member_id = $_SESSION['id'];
 $sql = "SELECT * FROM member WHERE member_ID = '$member_id'";
 $result = $conn->query($sql);
+
 if ($result->num_rows == 0) {
   echo "Error: member with ID $member_id does not exist";
   exit;
@@ -40,15 +38,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $sql = "SELECT * FROM get_parking_pass WHERE member_ID = '$member_id'";
   $result = $conn->query($sql);
+
   if ($result->num_rows > 0) {
     echo "Error: member with ID $member_id already has a parking pass";
     exit;
   }
 
-  $sql = "INSERT INTO get_parking_pass (member_ID, parking_lot, license_plate, date_issued) VALUES ('$member_id', '$parking_lot', '$license_plate', NOW())";
+  $start_time = date('Y-m-d H:i:s');
+  $end_time = date('Y-m-d H:i:s', strtotime('+50 seconds', time()));
+  $duration = strtotime($end_time) - strtotime($start_time);
+
+  $sql = "INSERT INTO get_parking_pass (member_ID, parking_lot, license_plate, start_time, end_time, duration, date_issued) VALUES ('$member_id', '$parking_lot', '$license_plate', NOW(), '$end_time', '$duration', NOW())";
+
   if ($conn->query($sql) === TRUE) {
     echo "Parking pass assigned successfully!";
     
+    echo "Your parking pass is valid for $duration seconds.";
+
+  } else {
+    echo "Error assigning parking pass: " . $conn->error;
   }
 }
 ?>
@@ -56,13 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <style>
   form {
     display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 400px;
-  margin: 0 auto;
-  margin-top:100px;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top:100px;
   }
-
 </style>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
