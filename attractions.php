@@ -1,10 +1,36 @@
 <?php
+include_once 'sqlConnect.php';
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
 	$_SESSION['id'] = 0;
 	$_SESSION['name'] = "Guest";
+}
+
+if (isset($_POST['submit'])) {
+	$memberID = $_SESSION['id'];
+	$QtyWheel = $_POST['QtyWheel'];
+    $QtySpeed = $_POST['QtySpeed'];
+    $QtyAqua = $_POST['QtyAqua'];
+    $QtyPutt = $_POST['QtyPutt'];
+	if (($QtyAqua + $QtyPutt + $QtySpeed + $QtyWheel) > 0) {
+		$deduct = "UPDATE `mydb`.`member` SET `QtyWheel` = `QtyWheel` - $QtyWheel, `QtySpeed` = `QtySpeed` - $QtySpeed, `QtyAqua` = `QtyAqua` - $QtyAqua, `QtyPutt` = `QtyPutt` - $QtyPutt WHERE (`member_ID` = $memberID);";
+		$usage = "INSERT INTO attractionusage (memberID, QtySpeed, QtyWheel, QtyAqua, QtyPutt) VALUES ($memberID, $QtySpeed, $QtyWheel, $QtyAqua, $QtyPutt);";
+		if ($memberID == 0) {
+			echo '<script>alert("Please log in before making purchases")</script>';
+		} else {
+			try {
+				mysqli_query($conn, $deduct);
+				mysqli_query($conn, $usage);
+				header("Location:attractions.php?purchase=success");
+			} catch (Exception $e) {
+				header("Location:attractions.php?purchase=failure");
+			}
+		}
+	} else {
+		header("Location:attractions.php?purchase=empty");
+	}
 }
 
 $dbServername = "localhost";
@@ -54,7 +80,7 @@ $stmt->close();
 		</nav>
 		<div class="content">
 			<h2>Logged in as <?=$_SESSION['name']?></h2>
-			<form action="attractions_handler.php" method="post">
+			<form action="attractions.php" method="post">
 				<div class="container" id=div1>
 					<img src="aqua.webp">
 					<input type="text" class="inp" name="QtyAqua" value=<?=$QtyAqua?> placeholder="Water ride (<?=$QtyAqua?>)" required>
