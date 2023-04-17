@@ -1,3 +1,16 @@
+<?php
+
+	include 'CRUD_function.php';
+	
+	session_start();
+
+	// If the user is not logged in redirect to the login page...
+	if ($_SESSION['type'] != "admin") {
+		header('Location: Login_Admin.php');
+		exit;
+	}
+    template_header('Home');
+?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,14 +20,7 @@
 <title>Parking Table</title>
 </head>
 <body>
-<nav class="navtop" style="">
-			<div>
-				<h1>Petaluma Themepark Attractions</h1>
-				<a href="Admin_Portal.html"><i class="fas fa-user-circle"></i>Home</a>
-				<a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-			</div>
-		</nav>
+
 <table style="margin-top:100px">
     <tr>
         <th>Parking lot name</th>
