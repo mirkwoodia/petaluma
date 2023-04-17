@@ -4,6 +4,7 @@ session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
 	$_SESSION['id'] = 0;
+	$_SESSION['name'] = "Guest";
 }
 
 $dbServername = "localhost";
@@ -37,10 +38,18 @@ $stmt->close();
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-				<h1>Petaluma Themepark Attractions</h1>
-				<a href="Home_Page.php"><i class="fas fa-user-circle"></i>Home</a>
-				<a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="Logout_Member.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<h1>Petaluma Themepark</h1>
+				<a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
+				<a href="attractions.php">Attractions</a>
+				<a href="Ticket_Booth.php">Ticket Booth</a>
+				<?php if (!isset($_SESSION['loggedin'])) { ?>
+					<a href="Login_Member.php">Member Login/Register</a>
+				<?php } ?>
+				<?php if (isset($_SESSION['loggedin'])) { ?> 
+					<a href="getParking.php">Get Parking</a>
+					<a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a>
+					<a href="Logout_Member.php"><i class="fas fa-address-book"></i>Logout</a>
+				<?php } ?>
 			</div>
 		</nav>
 		<div class="content">
