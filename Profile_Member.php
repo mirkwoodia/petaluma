@@ -39,8 +39,16 @@ $stmt->close();
         <div>
             <h1>Petaluma Themepark</h1>
             <a href="Home_Page.php"><i class="fas fa-home"></i>Home</a>
-            <a href="Admin_Portal.html"><i class="fas fa-address-book"></i>More</a>
-            <a href="Logout_Admin.php"><i class="fas fa-address-book"></i>Logout</a>
+				<a href="attractions.php">Attractions</a>
+				<a href="Ticket_Booth.php">Ticket Booth</a>
+				<?php if (!isset($_SESSION['loggedin'])) { ?>
+					<a href="Login_Member.php">Member Login/Register</a>
+				<?php } ?>
+				<?php if (isset($_SESSION['loggedin'])) { ?> 
+					<a href="getParking.php">Get Parking</a>
+					<a href="Profile_Member.php"><i class="fas fa-user-circle"></i>Profile</a>
+					<a href="Logout_Member.php"><i class="fas fa-address-book"></i>Logout</a>
+				<?php } ?>
         </div>
     </nav>
 		<div class="content">

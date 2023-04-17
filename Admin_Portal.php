@@ -6,7 +6,7 @@
 
 	// If the user is not logged in redirect to the login page...
 	if ($_SESSION['type'] != "admin") {
-		header('Location: Login_Admin.html');
+		header('Location: Login_Admin.php');
 		exit;
 	}
 
