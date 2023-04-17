@@ -22,7 +22,10 @@ session_start();
         
         <div class="content">
             <?php if (isset($_SESSION['loggedin'])) { 
-	                echo "<p>Welcome back, " . $_SESSION['name'] . "</p>"; } ?>
+	                echo "<p>Welcome back, " . $_SESSION['name'] . "</p>"; 
+                } else {
+                  echo "<p>Welcome, Guest!</p>";
+                } ?>
 		</div>
         
     </body>

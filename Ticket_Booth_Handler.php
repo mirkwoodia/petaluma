@@ -1,6 +1,9 @@
 <?php
     include_once 'sqlConnect.php';
     session_start();
+    if (!isset($_SESSION['loggedin'])) {
+        $_SESSION['id'] = 0;
+    }
 
     //takes input values from HTML identified by their names and puts them into global variable
     $PurchaseDate = $_POST['date'];

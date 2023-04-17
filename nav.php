@@ -1,9 +1,9 @@
 <div class = "navtop">
             <ul>
                 <li><a href="Home_Page.php">Home</a></li>
+                <li><a href="attractions.php">Attractions</a></li>
+                <li><a href="Ticket_Booth.php">Ticket Booth</a></li>
                 <?php if (isset($_SESSION['loggedin'])) { ?>      
-                  <li><a href="attractions.php">Attractions</a></li>
-                  <li><a href="Ticket_Booth.html">Ticket Booth</a></li>
                   <li><a href="getParking.php">Get Parking</a></li>
                 <?php } ?>
                 <?php if (!isset($_SESSION['loggedin'])) { ?>
