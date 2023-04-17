@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
 
 <div class="content update">
 	<h2>Update Maintenance #<?=$maintenance['maintenance_ID']?></h2>
-    <form action="update_maintenance.php?id=<?=$maintenance['maintenance_ID']?>" method="post">
+    <form action="update_Maintenance.php?id=<?=$maintenance['maintenance_ID']?>" method="post">
     <label for="maintenance_ID">Maintenance ID</label>      
         <label for="maintenance_name">Maintenance Name</label>
         <input type="text" name="maintenance_ID" placeholder="200" value="<?=$maintenance['maintenance_ID']?>" id="maintenance_ID">   
