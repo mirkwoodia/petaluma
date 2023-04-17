@@ -15,10 +15,16 @@
 
     //call global variables to insert into table. User only inputs date, and the quantity of each ride they want to ride
     $ticket = "INSERT INTO ticket_booth(purchase_date, QtyWheel, QtySpeed, QtyAqua, QtyPutt, member_id) VALUES('$PurchaseDate', '$QtyWheel', '$QtySpeed', '$QtyAqua', '$QtyPutt', '$memberID');";
-    mysqli_query($conn, $ticket);
-
-
-    //search bar will show this message if the insert is successful
-    header("Location:Ticket_Booth.php?purchase=success");
+    try {
+        mysqli_query($conn, $ticket);
+        if ($memberID == 0) {
+            header("Location:Ticket_Booth.php?purchase=failure?Pleaselogin");
+        } else {
+            header("Location:Ticket_Booth.php?purchase=success");
+        }
+    } catch (Exception $e) {
+        header("Location:Ticket_Booth.php?purchase=failure");
+    }
+    
 ?>
 
