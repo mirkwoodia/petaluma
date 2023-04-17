@@ -1,5 +1,9 @@
 <?php
 include 'CRUD_function.php';
+if ($_SESSION['type'] != "admin") {
+    header('Location: Login_Admin.php');
+    exit;
+}
 // Connect to MySQL database
 $pdo = pdo_connect_mysql();
 

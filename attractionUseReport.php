@@ -2,7 +2,7 @@
 	include_once 'sqlConnect.php';
 	session_start();
 	if ($_SESSION['type'] != "admin") {
-		header('Location: Login_Admin.html');
+		header('Location: Login_Admin.php');
 		exit;
 	}
 	
