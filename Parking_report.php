@@ -7,7 +7,7 @@
 <title>Parking Table</title>
 </head>
 <body>
-<nav class="navtop" style="margin-top:80px">
+<nav class="navtop" style="">
 			<div>
 				<h1>Petaluma Themepark Attractions</h1>
 				<a href="Admin_Portal.html"><i class="fas fa-user-circle"></i>Home</a>
