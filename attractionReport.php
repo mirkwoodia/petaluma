@@ -318,6 +318,7 @@ function maintenancePerAttraction($ride_name)
 		maintenancePerAttraction($ride_name);
 		allVisitorsPerAttraction($ride_name);
 
+		// Prints table
 		echo "<h1 style='text-align:center'>Total Visitors and Maintenances for this Ride " .  "</h1>";
 		echo "<table>";
  	 	echo "<thead>";
