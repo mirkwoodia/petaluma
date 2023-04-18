@@ -477,7 +477,7 @@ CREATE TABLE `parking_slots` (
 
 LOCK TABLES `parking_slots` WRITE;
 /*!40000 ALTER TABLE `parking_slots` DISABLE KEYS */;
-INSERT INTO `parking_slots` VALUES ('Lot A',1,1),('Lot B',150,150),('Lot C',200,200),('Lot D',75,75);
+INSERT INTO `parking_slots` VALUES ('Lot A',0,0),('Lot B',150,150),('Lot C',200,200),('Lot D',75,75);
 /*!40000 ALTER TABLE `parking_slots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -701,4 +701,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-18 18:51:18
+-- Dump completed on 2023-04-18 18:55:36
