@@ -187,6 +187,9 @@ CREATE TABLE `get_parking_pass` (
 -- Dumping data for table `get_parking_pass`
 --
 
+-- Dumping data for table `get_parking_pass`
+--
+
 LOCK TABLES `get_parking_pass` WRITE;
 /*!40000 ALTER TABLE `get_parking_pass` DISABLE KEYS */;
 /*!40000 ALTER TABLE `get_parking_pass` ENABLE KEYS */;
@@ -200,15 +203,22 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_slots` AFTER INSERT ON `get_parking_pass` FOR EACH ROW BEGIN
-    IF NEW.parking_lot = 'Lot A' THEN
-        UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot A';
-    ELSEIF NEW.parking_lot = 'Lot B' THEN
-        UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot B';
-    ELSEIF NEW.parking_lot = 'Lot C' THEN
-        UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot C';
-    ELSEIF NEW.parking_lot = 'Lot D' THEN
-        UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot D';
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_slots_and_check_capacity` BEFORE INSERT ON `get_parking_pass` FOR EACH ROW BEGIN
+    DECLARE available_spots INT;
+    SELECT available_slots INTO available_spots FROM parking_slots WHERE lot_name = NEW.parking_lot;
+    IF available_spots = 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Parking lot is full, cannot sign up for a parking pass.';
+    ELSE
+        IF NEW.parking_lot = 'Lot A' THEN
+            UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot A';
+        ELSEIF NEW.parking_lot = 'Lot B' THEN
+            UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot B';
+        ELSEIF NEW.parking_lot = 'Lot C' THEN
+            UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot C';
+        ELSEIF NEW.parking_lot = 'Lot D' THEN
+            UPDATE parking_slots SET available_slots = available_slots - 1 WHERE lot_name = 'Lot D';
+        END IF;
     END IF;
 END */;;
 DELIMITER ;
@@ -225,7 +235,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `delete_parking_pass` AFTER DELETE ON `get_parking_pass` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_slots2` AFTER DELETE ON `get_parking_pass` FOR EACH ROW BEGIN
     IF OLD.parking_lot = 'Lot A' THEN
         UPDATE parking_slots SET available_slots = available_slots + 1 WHERE lot_name = 'Lot A';
     ELSEIF OLD.parking_lot = 'Lot B' THEN
