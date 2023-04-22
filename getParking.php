@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <option value="Lot D">Lot D</option>
   </select>
   <br><br>
-  <label for="license_plate">Enter your license plate (up to 7 characters):</label>
+  <label for="license_plate">Enter your license plate (up to 7 characters only letters and numbers):</label>
   <input type="text" id="license_plate" name="license_plate" maxlength="7" pattern="[a-zA-Z0-9]{1,7}" required>
   <br><br>
   <input type="submit" value="Submit">
