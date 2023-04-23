@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mydb
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -534,7 +534,7 @@ CREATE TABLE `ticket_booth` (
   `ticket_total` double NOT NULL DEFAULT '0',
   `member_id` int DEFAULT NULL,
   PRIMARY KEY (`ticket_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -543,7 +543,7 @@ CREATE TABLE `ticket_booth` (
 
 LOCK TABLES `ticket_booth` WRITE;
 /*!40000 ALTER TABLE `ticket_booth` DISABLE KEYS */;
-INSERT INTO `ticket_booth` VALUES (14,'2023-03-28',2,1,3,1,136.5,103),(15,'2023-02-16',1,0,0,1,40.75,103),(16,'2023-03-10',0,5,1,3,239,103),(17,'2023-02-14',2,0,0,0,20.5,103),(18,'2023-03-27',1,2,0,5,213.75,105),(19,'2023-03-02',2,2,2,2,172.5,105),(20,'2023-02-14',2,2,2,2,172.5,105),(21,'2023-03-16',5,1,4,8,400.75,105),(22,'2023-03-28',0,0,0,5,152.5,105),(23,'2023-03-28',1,2,1,5,233.75,106),(24,'2022-12-28',4,4,1,3,254.5,106),(25,'2023-03-08',1,2,3,4,243.25,106),(26,'2023-02-14',1,0,0,0,10.25,106),(27,'2023-03-10',1,5,3,8,441.75,106),(28,'2023-01-11',3,6,4,8,507.75,106),(29,'2022-06-14',5,4,23,1,643.75,106),(30,'2023-03-28',2,1,5,4,268,107),(31,'2023-03-06',1,2,4,6,324.25,107),(32,'2023-01-25',2,2,2,2,172.5,107),(33,'2023-02-14',2,2,2,2,172.5,107),(34,'2023-01-03',5,3,2,1,198.25,107),(35,'2022-11-28',2,23,1,3,718.5,107),(36,'2023-03-08',2,2,2,2,172.5,107),(37,'2023-03-28',2,2,2,2,172.5,108),(38,'2023-01-11',4,4,0,4,265,108),(39,'2023-03-09',2,2,2,2,172.5,108),(40,'2023-01-19',4,5,4,4,370.5,108),(41,'2023-02-14',3,3,3,3,258.75,108),(42,'2022-11-17',4,4,4,4,345,108),(43,'2022-12-23',6,6,0,6,397.5,108),(44,'2023-03-17',0,9,0,0,229.5,108),(45,'2023-03-28',0,0,0,0,0,0),(46,'2023-03-28',12,12,12,12,1035,103),(47,'2023-03-28',1,1,1,1,86.25,0),(48,'2023-03-28',1,1,1,1,86.25,0),(49,'2023-03-28',1,1,1,1,86.25,0),(50,'2023-03-28',1,1,1,1,86.25,0),(51,'2023-03-28',123,3,123,23,4498.75,0),(52,'2023-03-28',1,1,1,1,86.25,103),(53,'2023-03-28',12,12,12,12,1035,0),(54,'2023-03-28',12,12,12,12,1035,0),(55,'2023-03-28',12,12,12,12,1035,103),(56,'2023-03-28',345,345,345,345,29756.25,0),(57,'2023-03-28',12,123,12,123,7251,103),(58,'2023-03-28',12,12,12,12,1035,0),(59,'2023-03-28',1,1,1,1,86.25,0),(60,'2023-03-28',1,1,1,1,86.25,0),(61,'2023-03-28',1,1,1,2,116.75,103),(62,'2023-03-28',1,1,1,1,86.25,103),(63,'2023-03-28',1,2,3,4,243.25,103);
+INSERT INTO `ticket_booth` VALUES (14,'2023-03-28',2,1,3,1,136.5,103),(15,'2023-02-16',1,0,0,1,40.75,103),(16,'2023-03-10',0,5,1,3,239,103),(17,'2023-02-14',2,0,0,0,20.5,103),(18,'2023-03-27',1,2,0,5,213.75,105),(19,'2023-03-02',2,2,2,2,172.5,105),(20,'2023-02-14',2,2,2,2,172.5,105),(21,'2023-03-16',5,1,4,8,400.75,105),(22,'2023-03-28',0,0,0,5,152.5,105),(23,'2023-03-28',1,2,1,5,233.75,106),(24,'2022-12-28',4,4,1,3,254.5,106),(25,'2023-03-08',1,2,3,4,243.25,106),(26,'2023-02-14',1,0,0,0,10.25,106),(27,'2023-03-10',1,5,3,8,441.75,106),(28,'2023-01-11',3,6,4,8,507.75,106),(29,'2022-06-14',5,4,23,1,643.75,106),(30,'2023-03-28',2,1,5,4,268,107),(31,'2023-03-06',1,2,4,6,324.25,107),(32,'2023-01-25',2,2,2,2,172.5,107),(33,'2023-02-14',2,2,2,2,172.5,107),(34,'2023-01-03',5,3,2,1,198.25,107),(35,'2022-11-28',2,23,1,3,718.5,107),(36,'2023-03-08',2,2,2,2,172.5,107),(37,'2023-03-28',2,2,2,2,172.5,108),(38,'2023-01-11',4,4,0,4,265,108),(39,'2023-03-09',2,2,2,2,172.5,108),(40,'2023-01-19',4,5,4,4,370.5,108),(41,'2023-02-14',3,3,3,3,258.75,108),(42,'2022-11-17',4,4,4,4,345,108),(43,'2022-12-23',6,6,0,6,397.5,108),(44,'2023-03-17',0,9,0,0,229.5,108),(45,'2023-03-28',0,0,0,0,0,0),(46,'2023-03-28',12,12,12,12,1035,103),(47,'2023-03-28',1,1,1,1,86.25,0),(48,'2023-03-28',1,1,1,1,86.25,0),(49,'2023-03-28',1,1,1,1,86.25,0),(50,'2023-03-28',1,1,1,1,86.25,0),(51,'2023-03-28',123,3,123,23,4498.75,0),(52,'2023-03-28',1,1,1,1,86.25,103),(53,'2023-03-28',12,12,12,12,1035,0),(54,'2023-03-28',12,12,12,12,1035,0),(55,'2023-03-28',12,12,12,12,1035,103),(56,'2023-03-28',345,345,345,345,29756.25,0),(57,'2023-03-28',12,123,12,123,7251,103),(58,'2023-03-28',12,12,12,12,1035,0),(59,'2023-03-28',1,1,1,1,86.25,0),(60,'2023-03-28',1,1,1,1,86.25,0),(61,'2023-03-28',1,1,1,2,116.75,103),(62,'2023-03-28',1,1,1,1,86.25,103),(63,'2023-03-28',1,2,3,4,243.25,103),(64,'2023-03-28',1,1,2,11,411.25,0);
 /*!40000 ALTER TABLE `ticket_booth` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -650,6 +650,54 @@ LOCK TABLES `visitor` WRITE;
 /*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mydb'
+--
+/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
+/*!50106 DROP EVENT IF EXISTS `deletion` */;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = 'SYSTEM' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `deletion` ON SCHEDULE EVERY 50 SECOND STARTS '2023-04-15 22:22:47' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM get_parking_pass WHERE end_time > DATE_SUB(NOW(), INTERVAL 50 SECOND) */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+DELIMITER ;
+/*!50106 SET TIME_ZONE= @save_time_zone */ ;
+
+--
+-- Dumping routines for database 'mydb'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `delete_expired_parking_passes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_expired_parking_passes`()
+BEGIN
+  DELETE FROM get_parking_pass WHERE end_time < NOW();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -660,4 +708,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-21  1:17:50
+-- Dump completed on 2023-04-23  8:31:10
