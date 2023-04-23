@@ -55,6 +55,7 @@
         <th>Parking lot name</th>
         <th>Username</th>
         <th>License Plate</th>
+        <th>Start Time</th>
         <th>Expiration Time</th>
 
     </tr>
@@ -88,6 +89,7 @@
                 echo "<td>";
                 echo "<td>{$member_row['username']}</td>";
                 echo "<td>{$member_row['license_plate']}</td>";
+                echo "<td>{$member_row['start_time']}</td>";
                 echo "<td>{$member_row['end_time']}</td>";
                 echo "</tr>";
             }
