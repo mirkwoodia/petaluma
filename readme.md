@@ -44,7 +44,7 @@ After completing these steps, you are able to use to the site.
   3. Username should be unique, meaning if the inputted username is already in the database, the system will prompt the user to modify their username.
   4. User must complete the whole form, or the system will prompt them to fill in the incomplete sections.
 
-1. Member Login
+1. Member Login (Login_Member.php & Login_Member_Handler.php)
   1. Click "Member Login/Register" button on the top right of the Home Page.
   2. Login using the username and password the member created at registration.
   3. The system will check if the username and password exists in the database.
@@ -56,7 +56,8 @@ After completing these steps, you are able to use to the site.
     2. Username: PPeaches
  Password: bowzer
 
-1. Administrator Login
+1. Administrator Login (Login_Admin.php & Login_Admin_Handler.php)
+
   1. Click "Admin Login" on the top right of the Home Page.
   2. The login for administrators is the same for members where the system will check if entered credentials exist in the database.
   3. Once logged in, the administrator will be redirected to the Admin Portal where they will have access to many functions such as the Data Reports and Maintenance CRUD functions.
@@ -65,12 +66,13 @@ After completing these steps, you are able to use to the site.
 Username: admin
  Password: 12345
 
-1. Logout
+1. Logout (Logout_Admin.php & Logout_Member.php) 
   1. The logout function is the same for members and administrators. Click on the "Logout" button which is located at the top right corner. Once that button is clicked, users will be redirected to the main home page.
 
 **Data Entry**
 
-1. Maintenance Form
+1. Maintenance Form (read_Maintenance.php, update_Maintenance.php, delete_Maintenance.php, create_Maintenance.php, CRUD_function.php)
+
   1. To access this form on the live site, you must log in as an administrator (refer to the "User Authentication" section to do this).
   2. Click the "More" button.
   3. Click the "Maintenance" button.
@@ -79,7 +81,7 @@ Username: admin
   6. You can update a maintenance form by clicking the pencil icon, editing the values, and clicking save.
   7. You can delete a maintenance form by clicking the trash icon.
 
-1. Ticket Booth Form
+1. Ticket Booth Form (Ticket_Booth.php)
   1. To access this form on the live site, you must log in as a member (refer to the "User Authentication" section to do this).
   2. Click the "Ticket Booth" button.
   3. Select a "Purchase Date".
@@ -89,14 +91,14 @@ Username: admin
     1. First, your member ID and the amount of tickets you purchased will be entered into the database.
     2. Second, a trigger goes off and updates the member's available tickets based on what they just purchased.
 
-1. Attractions Form
+1. Attractions Form (attractions.php)
   1. To access this form on the live site, you must log in as a member (refer to the "User Authentication" section to do this).
   2. Click the "Attractions" button.
   3. There are four attractions in the Petaluma Theme Park. This form allows you to use your purchased tickets. Your amount of available tickets per ride is already loaded into the form.
   4. To use your tickets, adjust the integer value in each attraction's box to the amount you would like to use and click the "Spend Tickets" button.
   5. Once you click the "Spend Tickets" button, your amount of available tickets will be updated in the database.
 
-1. Member Registration Form
+1. Member Registration Form (Create_Account_Member.html & Create_Account_Handler_Member.php) 
   1. To access this form on the live site, you must not be logged in as either a member or an administrator.
   2. Click the "Member Login/Register" button.
   3. Click the "Create An Account" button.
@@ -106,7 +108,8 @@ Username: admin
     3. The password must be between 5 and 20 characters in length.
     4. User must complete the whole form, or the system will prompt them to fill in the incomplete sections.
   5. Click the "Create Account" button to have your profile information entered into the database.
-2. Get Parking form
+2. Get Parking form (getParking.html & getParking.php)
+
 
 - This is pulling from the member and get\_parking\_pass tables
 
@@ -132,7 +135,7 @@ Username: admin
 
 **Data Reports/Queries**
 
-1. Attraction Data Report
+1. Attraction Data Report (attractionReport.php) 
   1. To access this form on the live site, you must log in as an administrator (refer to the "User Authentication" section to do this).
   2. Click the "More" button.
   3. Click the "Attraction Report" icon (the furthest left one).
@@ -143,7 +146,7 @@ Username: admin
     2. The second table "All Visitors" is the data of quantity of tickets purchased on a certain date.
     3. The third table "Total Visitors and Maintenances for this Ride" is a summary which shows the total amount of visitors and maintenances for the chosen ride.
 
-1. Revenue Data Report
+1. Revenue Data Report (revenueReport.php) 
   1. To access this form on the live site, you must log in as an administrator (refer to the "User Authentication" section to do this).
   2. Click the "More" button.
   3. Click the "Revenue Report" icon (the furthest right one).
@@ -155,7 +158,7 @@ Username: admin
     2. The second table "Revenue Details Per Attraction" is all of the data for each of the park's attractions. This table includes the attraction's names, the attraction's price, the total amount of tickets purchased for each attraction between the inputted start and end dates, and the total revenue for each attraction between the inputted start and end dates.
     3. The third table "Total Gift Shop Revenue" is all of the data for any date between the inputted start and end dates. This table includes the date, the quantity of items purchased, the price of those items, and the total revenue for that date. The total amount of gift shop revenue between the inputted start and end dates is shown directly below this table.
 
-1. Parking Data Report
+1. Parking Data Report (getParking.php)
 
 - This is pulling from the getParking.php form that the member can access. Also updated the get\_parking\_pass tables, and "parking\_slots" table.
 
