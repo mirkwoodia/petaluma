@@ -8,7 +8,7 @@
 - **Data Entry**
 - **Triggers**
   - Parking Trigger
-  -
+  - Add tickets
 - **Data Reports/Queries**
   - Attraction Data Report
   - Revenue Data Report
