@@ -1,4 +1,4 @@
-#Theme Park Database: Petaluma Theme Park
+# Theme Park Database: Petaluma Theme Park
 
 **Table of Contents**
 
