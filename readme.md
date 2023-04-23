@@ -1,6 +1,6 @@
 # Theme Park Database: Petaluma Theme Park
 
-**Table of Contents**
+## Table of Contents
 
 - **Introduction**
 - **Installation**
