@@ -30,7 +30,7 @@ To run the site locally, follow these steps:
 1. Navigate to the codebase at: [https://github.com/mirkwoodia/petaluma](https://github.com/mirkwoodia/petaluma)
 2. Download or fork the entire codebase
 3. Verify that you have MySQL, PHP, and a web server installed (these instructions will assume you have XAMPP installed)
-  1. In MySQL, name the schema “mydb” (all lowercase no spaces)
+  1. In MySQL, create a new schema and name the schema “mydb” (all lowercase no spaces)
 4. Navigate to: c:/xampp/htdocs/www and fork into this folder/drop the files here
 5. Start the XAMPP application
 6. Open: localhost/petaluma and find the 'Home\_Page.php' file to access the home page
