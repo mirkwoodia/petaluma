@@ -86,7 +86,6 @@
         if ($member_result) {
             while($member_row = mysqli_fetch_assoc($member_result)) {
                 echo "<tr>";
-                echo "<td>";
                 echo "<td>{$member_row['username']}</td>";
                 echo "<td>{$member_row['license_plate']}</td>";
                 echo "<td>{$member_row['start_time']}</td>";
