@@ -171,12 +171,12 @@ Username: admin
 
 ## Contributors
 
-Nader Elasmar,
+* Nader Elasmar
 
-Maryann Tran,
+* Maryann Tran,
 
-Matthew Woodring,
+* Matthew Woodring,
 
-Armando Cecilio,
+* Armando Cecilio,
 
-Joshua Alegbe
+* Joshua Alegbe
