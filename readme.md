@@ -15,7 +15,7 @@
   - Parking Data Report
 - **Contributors**
 
-### Introduction
+## Introduction
 
 The Petaluma Theme Park is an online amusement park website. The first member role on the site is a member. A member can create an account, purchase tickets, get parking permits, use their tickets, and see their account information. The second member role on the site is an administrator. An administrator can edit or delete maintenance requests and can generate data reports to see information about the park's attractions, parking, and revenue.
 
@@ -36,7 +36,7 @@ To run the site locally, follow these steps:
 
 After completing these steps, you are able to use to the site.
 
-**User Authentication**
+## User Authentication
 
 1. User Registration: Users can create member accounts by clicking on the "Member Login/Register" button
   1. Password must be 5-20 characters long or the system will reject it.
@@ -69,7 +69,7 @@ Username: admin
 1. Logout (Logout_Admin.php & Logout_Member.php) 
   1. The logout function is the same for members and administrators. Click on the "Logout" button which is located at the top right corner. Once that button is clicked, users will be redirected to the main home page.
 
-**Data Entry**
+## Data Entry
 
 1. Maintenance Form (read_Maintenance.php, update_Maintenance.php, delete_Maintenance.php, create_Maintenance.php, CRUD_function.php)
 
@@ -121,7 +121,7 @@ Username: admin
 6. If a parking lot is full then the user will not be allowed to get a parking pass to that lot, and will be displayed with "Parking lot is full, cannot sign up for a parking pass."
 7. The form is also checking the database to not allow duplicate license plates, if there are duplicate license plates the user will see "Error: license plate is already being used".
 
-**Triggers**
+## Triggers
 
 1. Get Parking Report Trigger:
   1. This trigger is located in the get\_parking\_pass table
@@ -133,7 +133,7 @@ Username: admin
   3. Constraint: a member\_ID = 0 means this is a guest user and won't allow them to purchase tickets until they log in/make an account
   4. Action: An error message will appear on the page when a guest attempts to purchase tickets
 
-**Data Reports/Queries**
+## Data Reports/Queries
 
 1. Attraction Data Report (attractionReport.php) 
   1. To access this form on the live site, you must log in as an administrator (refer to the "User Authentication" section to do this).
@@ -169,7 +169,7 @@ Username: admin
     2. The second table is updated depending on members that login and choose a parking spot. So if a member were to login and choose a parking lot B, they would appear underneath the lot B cell, and the information that would be displayed on the report is their username, license plate, and expiration time.
     3. Once the members' time has run out, they will no longer show in the report. Both tables will update, the first table will increment the parking lot which the member chooses by one, and the second table will be updated to no longer show the members information. After the parking pass has expired the member can get another parking pass.
 
-**Contributors**
+## Contributors
 
 Nader Elasmar,
 
