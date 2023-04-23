@@ -81,7 +81,7 @@
 
                 <tr>
                     <td>Petaluma Wheel</td>
-                    <td><img src="" alt="Petaluma Wheel"></td>
+                    <td ><img src="ferris.webp" alt="Petaluma Wheel" style="width:50%; height:auto;"></td>
                     <td><input type="text" name="QtyWheel" id="QtyWheel" required></td>
                     <td>$10.25</td>
                     <td id="Total Petaluma Wheel"></td>
@@ -89,7 +89,7 @@
 
                 <tr>
                     <td>Petaluma Speedway</td>
-                    <td><img src="" alt="Petaluma Speedway"></td>
+                    <td><img src="speed.webp" alt="Petaluma Speedway" style="width:50%; height:auto;"></td>
                     <td><input type="text" name="QtySpeed" id="QtySpeed" required></td>
                     <td>$25.50</td>
                     <td id="Total Petaluma Speed"></td>
@@ -97,7 +97,7 @@
 
                 <tr>
                     <td>Petaluma Aqua</td>
-                    <td><img src="" alt="Petaluma Aqua"></td>
+                    <td><img src="aqua.webp" alt="Petaluma Aqua" style="width:50%; height:auto;"></td>
                     <td><input type="text" name="QtyAqua" id="QtyAqua" required></td>
                     <td>$20.00</td>
                     <td id="Total Petaluma Aqua"></td>
@@ -105,7 +105,7 @@
 
                 <tr>
                     <td>Petaluma Putt-Putt</td>
-                    <td><img src="" alt="Petaluma Putt-Putt"></td>
+                    <td><img src="putt.webp" alt="Petaluma Putt-Putt" style="width:50%; height:auto;"></td>
                     <td><input type="text" name="QtyPutt" id="QtyPutt" required></td>
                     <td>$30.50</td>
                     <td id="Total Petaluma Putt"></td>
