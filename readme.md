@@ -15,7 +15,7 @@
   - Parking Data Report
 - **Contributors**
 
-**Introduction**
+### Introduction
 
 The Petaluma Theme Park is an online amusement park website. The first member role on the site is a member. A member can create an account, purchase tickets, get parking permits, use their tickets, and see their account information. The second member role on the site is an administrator. An administrator can edit or delete maintenance requests and can generate data reports to see information about the park's attractions, parking, and revenue.
 
