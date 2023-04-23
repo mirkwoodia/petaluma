@@ -32,8 +32,9 @@ To run the site locally, follow these steps:
 3. Verify that you have MySQL, PHP, and a web server installed (these instructions will assume you have XAMPP installed)
   1. In MySQL, create a new schema and name the schema “mydb” (all lowercase no spaces)
 4. Navigate to: c:/xampp/htdocs/www and fork into this folder/drop the files here
-5. Start the XAMPP application
-6. Open: localhost/petaluma and find the 'Home\_Page.php' file to access the home page
+5. Import the dump.sql into mydb. If your on linux, you can open a terminal where the dump.sql is and run sudo mysql --user=root --password=Decon_0213 --host=localhost mydb < dump.sql. Windows users can use workbench.
+6. Start the XAMPP application
+7. Open: localhost/petaluma and find the 'Home\_Page.php' file to access the home page
 
 After completing these steps, you are able to use to the site.
 
