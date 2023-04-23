@@ -1,5 +1,6 @@
 <?php
 include 'CRUD_function.php';
+session_start();
 if ($_SESSION['type'] != "admin") {
     header('Location: Login_Admin.php');
     exit;
