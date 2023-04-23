@@ -71,7 +71,7 @@
         echo "<td>" . $row['lot_name'] . "</td>";
         echo "<td></td>";
         echo "<td></td>";
-
+        echo "<td></td>";
         echo "<td></td>";
         echo "<form method='post'>";
         echo "<input type='hidden' name='lot_name' value='" . $row['lot_name'] . "'>";
