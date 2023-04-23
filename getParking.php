@@ -36,6 +36,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $parking_lot = $_POST['parking_lot'];
   $license_plate = $_POST['license_plate'];
 
+
+    $sql = "SELECT * FROM get_parking_pass WHERE member_ID = '$member_id' AND end_time > NOW()";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $end_time = strtotime($row['end_time']);
+      $time_left = $end_time - time();
+      $time_left_minutes = ceil($time_left / 60);
+      echo "Error: you already have an active parking pass. Please try again in $time_left_minutes minute(s).";
+      exit;
+    }
+
+  
+
   $sql = "SELECT * FROM get_parking_pass WHERE license_plate = '$license_plate' AND end_time > NOW()";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
